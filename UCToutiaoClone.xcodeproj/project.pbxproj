@@ -14,6 +14,9 @@
 		484A904A1D86FBA7002E36B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484A90491D86FBA7002E36B4 /* Assets.xcassets */; };
 		484A904D1D86FBA7002E36B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484A904B1D86FBA7002E36B4 /* LaunchScreen.storyboard */; };
 		484A90581D86FBA7002E36B4 /* UCToutiaoCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90571D86FBA7002E36B4 /* UCToutiaoCloneTests.m */; };
+		484A90651D86FF76002E36B4 /* MainHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90641D86FF76002E36B4 /* MainHomeController.m */; };
+		484A90681D86FFF3002E36B4 /* ZYHomePageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90671D86FFF3002E36B4 /* ZYHomePageTableViewController.m */; };
+		484A906C1D87007E002E36B4 /* ZYNavCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A906B1D87007E002E36B4 /* ZYNavCategoryView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,12 @@
 		484A90531D86FBA7002E36B4 /* UCToutiaoCloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UCToutiaoCloneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		484A90571D86FBA7002E36B4 /* UCToutiaoCloneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCToutiaoCloneTests.m; sourceTree = "<group>"; };
 		484A90591D86FBA7002E36B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		484A90631D86FF76002E36B4 /* MainHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeController.h; sourceTree = "<group>"; };
+		484A90641D86FF76002E36B4 /* MainHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeController.m; sourceTree = "<group>"; };
+		484A90661D86FFF3002E36B4 /* ZYHomePageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHomePageTableViewController.h; sourceTree = "<group>"; };
+		484A90671D86FFF3002E36B4 /* ZYHomePageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHomePageTableViewController.m; sourceTree = "<group>"; };
+		484A906A1D87007E002E36B4 /* ZYNavCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavCategoryView.h; sourceTree = "<group>"; };
+		484A906B1D87007E002E36B4 /* ZYNavCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavCategoryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +90,8 @@
 		484A903C1D86FBA7002E36B4 /* UCToutiaoClone */ = {
 			isa = PBXGroup;
 			children = (
+				484A90621D86FF5A002E36B4 /* Controller */,
+				484A90691D870024002E36B4 /* View */,
 				484A90401D86FBA7002E36B4 /* AppDelegate.h */,
 				484A90411D86FBA7002E36B4 /* AppDelegate.m */,
 				484A90431D86FBA7002E36B4 /* ViewController.h */,
@@ -109,6 +120,26 @@
 				484A90591D86FBA7002E36B4 /* Info.plist */,
 			);
 			path = UCToutiaoCloneTests;
+			sourceTree = "<group>";
+		};
+		484A90621D86FF5A002E36B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				484A90631D86FF76002E36B4 /* MainHomeController.h */,
+				484A90641D86FF76002E36B4 /* MainHomeController.m */,
+				484A90661D86FFF3002E36B4 /* ZYHomePageTableViewController.h */,
+				484A90671D86FFF3002E36B4 /* ZYHomePageTableViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		484A90691D870024002E36B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				484A906A1D87007E002E36B4 /* ZYNavCategoryView.h */,
+				484A906B1D87007E002E36B4 /* ZYNavCategoryView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,7 +244,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				484A90681D86FFF3002E36B4 /* ZYHomePageTableViewController.m in Sources */,
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
+				484A90651D86FF76002E36B4 /* MainHomeController.m in Sources */,
+				484A906C1D87007E002E36B4 /* ZYNavCategoryView.m in Sources */,
 				484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */,
 				484A903F1D86FBA7002E36B4 /* main.m in Sources */,
 			);
