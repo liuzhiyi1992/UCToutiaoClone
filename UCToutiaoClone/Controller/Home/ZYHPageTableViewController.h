@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYHomePageTableViewController : UIViewController
+@interface ZYHPageTableViewController : UIViewController
 
 @end
