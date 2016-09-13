@@ -7,7 +7,15 @@
 //
 
 #import "ZYNavCategoryView.h"
+#import "Masonry.h"
 
 @implementation ZYNavCategoryView
-
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
+    self = [super initWithFrame:frame collectionViewLayout:layout];
+    if (self) {
+        //do something
+        [self setBackgroundColor:[UIColor yellowColor]];
+    }
+    return self;
+}
 @end

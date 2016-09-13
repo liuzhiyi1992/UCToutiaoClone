@@ -3,4 +3,5 @@ target 'UCToutiaoClone' do
     pod 'UITableView+FDTemplateLayoutCell','1.4'
     pod 'SVProgressHUD'
     pod 'MJRefresh'
+    pod 'Masonry'
 end
