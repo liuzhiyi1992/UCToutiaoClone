@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYNavCategoryView : UICollectionView
+@interface ZYNavChannelView : UICollectionView
 
 @end

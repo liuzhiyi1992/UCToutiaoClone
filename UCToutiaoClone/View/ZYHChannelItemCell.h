@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZYHCategoryItemCell : UICollectionViewCell
+@interface ZYHChannelItemCell : UICollectionViewCell
 + (NSString *)cellReuseIdentifier;
 @end

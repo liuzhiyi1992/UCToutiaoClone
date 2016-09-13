@@ -7,10 +7,10 @@
 //
 
 #import "UCTNetwork.h"
-#import "AFNetworking.h"
+//#import "AFNetworking.h"
 
 @interface UCTNetwork ()
-@property (strong, nonatomic) AFHTTPSessionManager *afHTTPSessionManager;
+//@property (strong, nonatomic) AFHTTPSessionManager *afHTTPSessionManager;
 @end
 
 @implementation UCTNetwork

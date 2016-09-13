@@ -6,10 +6,10 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "ZYNavCategoryView.h"
+#import "ZYNavChannelView.h"
 #import "Masonry.h"
 
-@implementation ZYNavCategoryView
+@implementation ZYNavChannelView
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {

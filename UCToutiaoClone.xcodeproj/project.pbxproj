@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4126DADFD087E50394F0EC0A /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 57EE1340BBB5DA055839B523 /* libPods-UCToutiaoClone.a */; };
-		4814C67E1D884DE100B8A9DB /* ZYHCategoryItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C67D1D884DE100B8A9DB /* ZYHCategoryItemCell.m */; };
+		4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */; };
 		4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C6821D885F1500B8A9DB /* UCTNetwork.m */; };
 		484A903F1D86FBA7002E36B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A903E1D86FBA7002E36B4 /* main.m */; };
 		484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90411D86FBA7002E36B4 /* AppDelegate.m */; };
@@ -17,7 +17,7 @@
 		484A904A1D86FBA7002E36B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 484A90491D86FBA7002E36B4 /* Assets.xcassets */; };
 		484A904D1D86FBA7002E36B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 484A904B1D86FBA7002E36B4 /* LaunchScreen.storyboard */; };
 		484A90581D86FBA7002E36B4 /* UCToutiaoCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90571D86FBA7002E36B4 /* UCToutiaoCloneTests.m */; };
-		552887951D87FCBD0035B4A8 /* ZYNavCategoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887941D87FCBD0035B4A8 /* ZYNavCategoryView.m */; };
+		552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */; };
 		5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887981D87FD750035B4A8 /* MainHomeController.m */; };
 		5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */; };
 		5528879F1D87FF160035B4A8 /* SingleImgNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879E1D87FF150035B4A8 /* SingleImgNewsTableViewCell.m */; };
@@ -35,8 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4814C67C1D884DE100B8A9DB /* ZYHCategoryItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYHCategoryItemCell.h; path = UCToutiaoClone/View/ZYHCategoryItemCell.h; sourceTree = SOURCE_ROOT; };
-		4814C67D1D884DE100B8A9DB /* ZYHCategoryItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYHCategoryItemCell.m; path = UCToutiaoClone/View/ZYHCategoryItemCell.m; sourceTree = SOURCE_ROOT; };
+		4814C67C1D884DE100B8A9DB /* ZYHChannelItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYHChannelItemCell.h; path = UCToutiaoClone/View/ZYHChannelItemCell.h; sourceTree = SOURCE_ROOT; };
+		4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYHChannelItemCell.m; path = UCToutiaoClone/View/ZYHChannelItemCell.m; sourceTree = SOURCE_ROOT; };
 		4814C6811D885F1500B8A9DB /* UCTNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNetwork.h; sourceTree = "<group>"; };
 		4814C6821D885F1500B8A9DB /* UCTNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNetwork.m; sourceTree = "<group>"; };
 		484A903A1D86FBA7002E36B4 /* UCToutiaoClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UCToutiaoClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,8 +53,8 @@
 		484A90571D86FBA7002E36B4 /* UCToutiaoCloneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UCToutiaoCloneTests.m; sourceTree = "<group>"; };
 		484A90591D86FBA7002E36B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F4438D4EB83B3A673996AA5 /* Pods-UCToutiaoClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.debug.xcconfig"; sourceTree = "<group>"; };
-		552887931D87FCBD0035B4A8 /* ZYNavCategoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavCategoryView.h; sourceTree = "<group>"; };
-		552887941D87FCBD0035B4A8 /* ZYNavCategoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavCategoryView.m; sourceTree = "<group>"; };
+		552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavChannelView.h; sourceTree = "<group>"; };
+		552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavChannelView.m; sourceTree = "<group>"; };
 		552887971D87FD750035B4A8 /* MainHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeController.h; sourceTree = "<group>"; };
 		552887981D87FD750035B4A8 /* MainHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeController.m; sourceTree = "<group>"; };
 		552887991D87FD750035B4A8 /* ZYHPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageTableViewController.h; sourceTree = "<group>"; };
@@ -180,8 +180,8 @@
 			children = (
 				552887911D87FCBD0035B4A8 /* CollectionViewCell */,
 				552887921D87FCBD0035B4A8 /* TableViewCell */,
-				552887931D87FCBD0035B4A8 /* ZYNavCategoryView.h */,
-				552887941D87FCBD0035B4A8 /* ZYNavCategoryView.m */,
+				552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */,
+				552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -189,8 +189,8 @@
 		552887911D87FCBD0035B4A8 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				4814C67C1D884DE100B8A9DB /* ZYHCategoryItemCell.h */,
-				4814C67D1D884DE100B8A9DB /* ZYHCategoryItemCell.m */,
+				4814C67C1D884DE100B8A9DB /* ZYHChannelItemCell.h */,
+				4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";
@@ -388,9 +388,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5528879F1D87FF160035B4A8 /* SingleImgNewsTableViewCell.m in Sources */,
-				4814C67E1D884DE100B8A9DB /* ZYHCategoryItemCell.m in Sources */,
+				4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */,
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
-				552887951D87FCBD0035B4A8 /* ZYNavCategoryView.m in Sources */,
+				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
 				552887A21D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m in Sources */,
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
 				484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */,

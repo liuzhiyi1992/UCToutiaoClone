@@ -7,8 +7,8 @@
 //
 
 #import "MainHomeController.h"
-#import "ZYNavCategoryView.h"
-#import "ZYHCategoryItemCell.h"
+#import "ZYNavChannelView.h"
+#import "ZYHChannelItemCell.h"
 #import "Masonry.h"
 #import "ZYHPageTableViewController.h"
 
@@ -17,17 +17,17 @@
 #define NAV_COLLECTION_VIEW_CELL_SIZE CGSizeMake(80, NAV_COLLECTION_VIEW_HEIGHT)
 
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (strong, nonatomic) ZYNavCategoryView *categoryView;
+@property (strong, nonatomic) ZYNavChannelView *navChannelview;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIView *mainNavView;
-@property (strong, nonatomic) NSArray *categoryList;
+@property (strong, nonatomic) NSArray *navChannelList;
 @end
 
 @implementation MainHomeController
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupCustomNavView];
-    [self setupCategoryBar];
+    [self setupNavChannelBar];
     [self setupMainScrollView];
 }
 
@@ -54,21 +54,21 @@
     }];
 }
 
-- (void)setupCategoryBar {
+- (void)setupNavChannelBar {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     layout.itemSize = NAV_COLLECTION_VIEW_CELL_SIZE;
-    self.categoryView = [[ZYNavCategoryView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-    [_categoryView registerClass:[ZYHCategoryItemCell class] forCellWithReuseIdentifier:[ZYHCategoryItemCell cellReuseIdentifier]];
-    [_categoryView setShowsHorizontalScrollIndicator:NO];
-    _categoryView.delegate = self;
-    _categoryView.dataSource = self;
-    _categoryView.contentInset = NAV_COLLECTION_VIEW_CONTENT_INSET;
-    [self.view addSubview:_categoryView];
+    self.navChannelview = [[ZYNavChannelView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+    [_navChannelview registerClass:[ZYHChannelItemCell class] forCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier]];
+    [_navChannelview setShowsHorizontalScrollIndicator:NO];
+    _navChannelview.delegate = self;
+    _navChannelview.dataSource = self;
+    _navChannelview.contentInset = NAV_COLLECTION_VIEW_CONTENT_INSET;
+    [self.view addSubview:_navChannelview];
     
-    [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_navChannelview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@NAV_COLLECTION_VIEW_HEIGHT);
         make.top.equalTo(_mainNavView.mas_bottom);
         make.left.equalTo(self.view);
@@ -86,7 +86,7 @@
     [_mainScrollView setBackgroundColor:[UIColor redColor]];
     
     [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_categoryView.mas_bottom);
+        make.top.equalTo(_navChannelview.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -95,14 +95,14 @@
 
 - (void)setupHomeTableViewControllers {
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    for (int i = 0; i < _categoryList.count; i ++) {
+    for (int i = 0; i < _navChannelList.count; i ++) {
         ZYHPageTableViewController *tableVC = [[ZYHPageTableViewController alloc] init];
         [self addChildViewController:tableVC];
         [tableVC.view setBackgroundColor:[UIColor greenColor]];
          [_mainScrollView addSubview:tableVC.view];
         [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _mainScrollView.frame.size.width, _mainScrollView.frame.size.height)];
     }
-    [_mainScrollView setContentSize:CGSizeMake(_categoryList.count * screenWidth, 0)];
+    [_mainScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
 }
 
 - (void)queryCategoryData {
@@ -115,7 +115,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _categoryList.count;
+    return _navChannelList.count;
 }
 
 //- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {

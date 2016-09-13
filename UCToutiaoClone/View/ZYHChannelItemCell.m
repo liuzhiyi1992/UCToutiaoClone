@@ -6,10 +6,10 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "ZYHCategoryItemCell.h"
+#import "ZYHChannelItemCell.h"
 
-@implementation ZYHCategoryItemCell
+@implementation ZYHChannelItemCell
 + (NSString *)cellReuseIdentifier {
-    return @"ZYHCategoryItemCell";
+    return @"ZYHChannelItemCell";
 }
 @end
