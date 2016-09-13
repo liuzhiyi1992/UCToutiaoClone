@@ -10,6 +10,7 @@
 #import "ZYNavCategoryView.h"
 #import "ZYHCategoryItemCell.h"
 #import "Masonry.h"
+#import "ZYHPageTableViewController.h"
 
 #define NAV_COLLECTION_VIEW_HEIGHT 40
 #define NAV_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -18,13 +19,13 @@
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) ZYNavCategoryView *categoryView;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
+@property (strong, nonatomic) UIView *mainNavView;
 @property (strong, nonatomic) NSArray *categoryList;
 @end
 
 @implementation MainHomeController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor grayColor]];
     [self setupCustomNavView];
     [self setupCategoryBar];
     [self setupMainScrollView];
@@ -41,7 +42,16 @@
 }
 
 - (void)setupCustomNavView {
+    self.mainNavView = [[UIView alloc] init];
+    [_mainNavView setBackgroundColor:[UIColor grayColor]];
+    [self.view addSubview:_mainNavView];
     
+    [_mainNavView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@64);
+        make.top.equalTo(self.view);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+    }];
 }
 
 - (void)setupCategoryBar {
@@ -60,7 +70,7 @@
     
     [_categoryView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@NAV_COLLECTION_VIEW_HEIGHT);
-        make.top.equalTo(self.view);
+        make.top.equalTo(_mainNavView.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
@@ -83,9 +93,22 @@
     }];
 }
 
+- (void)setupHomeTableViewControllers {
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    for (int i = 0; i < _categoryList.count; i ++) {
+        ZYHPageTableViewController *tableVC = [[ZYHPageTableViewController alloc] init];
+        [self addChildViewController:tableVC];
+        [tableVC.view setBackgroundColor:[UIColor greenColor]];
+         [_mainScrollView addSubview:tableVC.view];
+        [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _mainScrollView.frame.size.width, _mainScrollView.frame.size.height)];
+    }
+    [_mainScrollView setContentSize:CGSizeMake(_categoryList.count * screenWidth, 0)];
+}
+
 - (void)queryCategoryData {
     
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
