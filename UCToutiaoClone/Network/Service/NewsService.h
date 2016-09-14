@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UCTNetwork.h"
 
 @interface NewsService : NSObject
-
++ (void)queryNavChannelWithcompletion:(void(^)(UCTNetworkResponseStatus status, NSArray *channelList))completion;
 @end

@@ -12,6 +12,7 @@
 #import "Masonry.h"
 #import "ZYHPageTableViewController.h"
 #import "ZYHChannelModel.h"
+#import "NewsService.h"
 
 #define NAV_COLLECTION_VIEW_HEIGHT 40
 #define NAV_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -108,9 +109,14 @@
 }
 
 - (void)queryChannelData {
-    
+    [NewsService queryNavChannelWithcompletion:^(UCTNetworkResponseStatus status, NSArray *channelList) {
+        if (status == UCTNetworkResponseSucceed) {
+            NSLog(@"");
+        } else {
+            NSLog(@"");
+        }
+    }];
 }
-
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZYHChannelItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier] forIndexPath:indexPath];
