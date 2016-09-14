@@ -8,8 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, UCTNetworkResponseStatus) {
+    UCTNetworkResponseSucceed = 0,
+    UCTNetworkResponseFail = 1
+};
+
+typedef void(^UCTNetworkResponseHandler)(UCTNetworkResponseStatus status, NSDictionary *resultDict);
+
 @interface UCTNetwork : NSObject
-+ (NSURLSessionTask *)getWithUrlString:(NSString *)basicUrlString
++ (NSURLSessionTask *)getWithUrlString:(NSString *)urlString
                              parameters:(NSDictionary *)parameters
-                               complete:(void(^)())complete;
+                        responseHandler:(UCTNetworkResponseHandler)responseHandler;
 @end

@@ -21,6 +21,7 @@
 		5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */; };
 		5528879F1D87FF160035B4A8 /* SingleImgNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879E1D87FF150035B4A8 /* SingleImgNewsTableViewCell.m */; };
 		552887A21D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887A11D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m */; };
+		558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		5528879E1D87FF150035B4A8 /* SingleImgNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleImgNewsTableViewCell.m; sourceTree = "<group>"; };
 		552887A01D87FF590035B4A8 /* ThreeImgNewsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeImgNewsTableViewCell.h; sourceTree = "<group>"; };
 		552887A11D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeImgNewsTableViewCell.m; sourceTree = "<group>"; };
+		558D16FB1D892CE3008FC971 /* UCTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNetworkManager.h; sourceTree = "<group>"; };
+		558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNetworkManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +95,8 @@
 				4814C6801D885EE300B8A9DB /* Service */,
 				4814C6811D885F1500B8A9DB /* UCTNetwork.h */,
 				4814C6821D885F1500B8A9DB /* UCTNetwork.m */,
+				558D16FB1D892CE3008FC971 /* UCTNetworkManager.h */,
+				558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				5528879F1D87FF160035B4A8 /* SingleImgNewsTableViewCell.m in Sources */,
 				4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */,
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
+				558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */,
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
 				552887A21D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m in Sources */,
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
