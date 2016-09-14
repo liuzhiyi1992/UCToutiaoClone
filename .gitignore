@@ -10,3 +10,5 @@ UCToutiaoClone.xcodeproj/xcuserdata/zhiyi.xcuserdatad/xcschemes/xcschememanageme
 UCToutiaoClone.xcworkspace/xcuserdata/zhiyi.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcbkptlist
+
+Pods/Pods.xcodeproj/xcuserdata/lzy.xcuserdatad/xcschemes/xcschememanagement.plist
