@@ -9,7 +9,7 @@
 #import "ZYHChannelItemCell.h"
 #import "UIColor+hexColor.h"
 #import "Masonry.h"
-
+#import "ZYHChannelModel.h"
 
 #define TITLE_FONT_SIZE 14.f
 #define TITLE_COLOR_NORMAL [UIColor hexColor:@"aaaaaa"]
@@ -48,8 +48,9 @@
     }];
 }
 
-- (void)updateCellWithTitle:(NSString *)title {
-    [_titleLabel setText:title];
+- (void)updateCellWithChannel:(ZYHChannelModel *)channel {
+    [_titleLabel setText:[channel title]];
+    [self changeCellSelect:channel.isSelected];
 }
 
 - (void)changeCellSelect:(BOOL)select {

@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UCTCollectionViewCell.h"
 
+@class ZYHChannelModel;
 @interface ZYHChannelItemCell : UCTCollectionViewCell
 + (NSString *)cellReuseIdentifier;
-- (void)updateCellWithTitle:(NSString *)title;
+- (void)updateCellWithChannel:(ZYHChannelModel *)channel;
 - (void)changeCellSelect:(BOOL)select;
 + (NSDictionary *)attributeForTitleLabel;
 @end

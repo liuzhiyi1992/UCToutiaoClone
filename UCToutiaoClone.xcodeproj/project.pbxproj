@@ -24,6 +24,7 @@
 		558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */; };
 		558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FF1D894CBC008FC971 /* UCTCollectionViewCell.m */; };
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
+		558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17081D895170008FC971 /* ZYHChannelModel.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,8 @@
 		558D16FF1D894CBC008FC971 /* UCTCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTCollectionViewCell.m; sourceTree = "<group>"; };
 		558D17021D894DF2008FC971 /* UIColor+hexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+hexColor.h"; sourceTree = "<group>"; };
 		558D17031D894DF2008FC971 /* UIColor+hexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
+		558D17071D895170008FC971 /* ZYHChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHChannelModel.h; sourceTree = "<group>"; };
+		558D17081D895170008FC971 /* ZYHChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHChannelModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,7 @@
 			children = (
 				484A90621D86FF5A002E36B4 /* Controller */,
 				484A90691D870024002E36B4 /* View */,
+				558D17051D89514A008FC971 /* Model */,
 				4814C67F1D885ECE00B8A9DB /* Network */,
 				558D17011D894DB4008FC971 /* Utils */,
 				484A90401D86FBA7002E36B4 /* AppDelegate.h */,
@@ -238,6 +242,23 @@
 				558D17031D894DF2008FC971 /* UIColor+hexColor.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		558D17051D89514A008FC971 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				558D17061D89514A008FC971 /* Home */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		558D17061D89514A008FC971 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				558D17071D895170008FC971 /* ZYHChannelModel.h */,
+				558D17081D895170008FC971 /* ZYHChannelModel.m */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		A84CEA446997E84AB91439B3 /* Pods */ = {
@@ -421,6 +442,7 @@
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
 				484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */,
 				4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */,
+				558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */,
 				5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */,
 				484A903F1D86FBA7002E36B4 /* main.m in Sources */,
 			);
