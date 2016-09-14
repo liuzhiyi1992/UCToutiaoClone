@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "UCTNetworkManager.h"
 
-const NSTimeInterval REQ_TIMEOUT_INTERVAL = 20;
+const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
 static UCTNetwork *_uctNetwork = nil;
 
 @interface UCTNetwork ()
@@ -29,6 +29,7 @@ static UCTNetwork *_uctNetwork = nil;
 }
 
 - (void)configureSessionManager {
+    _delegate = [NSClassFromString(UCTNetworkDelegateClassString) class];
     [_afHTTPSessionManager.requestSerializer setTimeoutInterval:REQ_TIMEOUT_INTERVAL];
 }
 
