@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UCTCollectionViewCell.h"
 
-@interface ZYHChannelItemCell : UICollectionViewCell
+@class ZYHChannelModel;
+@interface ZYHChannelItemCell : UCTCollectionViewCell
 + (NSString *)cellReuseIdentifier;
+- (void)updateCellWithChannel:(ZYHChannelModel *)channel;
+- (void)changeCellSelect:(BOOL)select;
++ (NSDictionary *)attributeForTitleLabel;
 @end

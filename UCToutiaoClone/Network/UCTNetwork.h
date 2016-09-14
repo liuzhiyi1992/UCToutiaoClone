@@ -7,9 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
+@class UCTNetworkManager;
+
+#define UCTNetworkDelegateClassString @"UCTNetworkManager"
+#define NETWORK_REQUEST_TIMEOUT_INTERVAL 20
+//NSString const * UCTNetworkDelegateClassString = @"UCTNetworkManager";
+
+typedef NS_ENUM(NSUInteger, UCTNetworkResponseStatus) {
+    UCTNetworkResponseSucceed = 0,
+    UCTNetworkResponseFail = 1
+};
+typedef void(^UCTNetworkResponseHandler)(UCTNetworkResponseStatus status, NSDictionary *resultDict);
+
+@protocol UCTNetworkDelegate <NSObject>
++ (NSDictionary *)uctNetworkAppendDefaultParam:(NSDictionary *)requestDict;
++ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
+@end
 
 @interface UCTNetwork : NSObject
-+ (NSURLSessionTask *)getWithUrlString:(NSString *)basicUrlString
+@property (weak, nonatomic) id<UCTNetworkDelegate> delegate;
++ (NSURLSessionTask *)getWithUrlString:(NSString *)urlString
                              parameters:(NSDictionary *)parameters
-                               complete:(void(^)())complete;
+                        responseHandler:(UCTNetworkResponseHandler)responseHandler;
 @end

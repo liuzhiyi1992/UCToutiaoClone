@@ -11,6 +11,7 @@
 #import "ZYHChannelItemCell.h"
 #import "Masonry.h"
 #import "ZYHPageTableViewController.h"
+#import "ZYHChannelModel.h"
 
 #define NAV_COLLECTION_VIEW_HEIGHT 40
 #define NAV_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -29,6 +30,7 @@
     [self setupCustomNavView];
     [self setupNavChannelBar];
     [self setupMainScrollView];
+    [self queryChannelData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,13 +107,16 @@
     [_mainScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
 }
 
-- (void)queryCategoryData {
+- (void)queryChannelData {
     
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    ZYHChannelItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier] forIndexPath:indexPath];
+    ZYHChannelModel *model = _navChannelList[indexPath.row];
+    [cell updateCellWithChannel:model];
+    return cell;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -125,6 +130,10 @@
 //- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
 //    return 0;
 //}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    [self tapToSelectCategoryWithIndexPath:indexPath animated:YES isProactive:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
