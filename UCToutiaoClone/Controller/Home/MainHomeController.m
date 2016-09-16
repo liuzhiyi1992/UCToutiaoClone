@@ -169,10 +169,7 @@
 
 - (void)updateSliderBarWithCell:(ZYHChannelItemCell *)cell animated:(BOOL)animated {
     CGRect convertRect = [cell convertRect:cell.titleLabel.frame toView:_navChannelview];
-    CGFloat animateDuration = CHANNEL_SLIDER_ANIMATE_DURATION;
-    if (!animated) {
-        animateDuration = 0.f;
-    }
+    CGFloat animateDuration = animated ? CHANNEL_SLIDER_ANIMATE_DURATION : 0.f;
     [UIView animateWithDuration:animateDuration animations:^{
         [self updateSliderBarLocation:CGRectMake(CGRectGetMinX(convertRect), [self sliderBarLocationY], CGRectGetWidth(convertRect), CHANNEL_SLIDER_BAR_HEIGHT)];
     }];
