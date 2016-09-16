@@ -14,12 +14,12 @@
 #import "ZYHChannelModel.h"
 #import "NewsService.h"
 
-#define NAV_SLIDER_ANIMATE_DURATION 0.5f
-#define NAV_COLLECTION_VIEW_HEIGHT 40
-#define NAV_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
-#define NAV_COLLECTION_VIEW_CELL_SIZE CGSizeMake(50, NAV_COLLECTION_VIEW_HEIGHT)
+#define CHANNEL_SLIDER_ANIMATE_DURATION 0.5f
+#define CHANNEL_COLLECTION_VIEW_HEIGHT 40
+#define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
+#define CHANNEL_COLLECTION_VIEW_CELL_SIZE CGSizeMake(50, CHANNEL_COLLECTION_VIEW_HEIGHT)
 
-#define NAV_SLIDER_BAR_HEIGHT 4.f
+#define CHANNEL_SLIDER_BAR_HEIGHT 4.f
 
 
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
@@ -69,17 +69,17 @@
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
     [layout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    layout.itemSize = NAV_COLLECTION_VIEW_CELL_SIZE;
+    layout.itemSize = CHANNEL_COLLECTION_VIEW_CELL_SIZE;
     self.navChannelview = [[ZYNavChannelView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     [_navChannelview registerClass:[ZYHChannelItemCell class] forCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier]];
     [_navChannelview setShowsHorizontalScrollIndicator:NO];
     _navChannelview.delegate = self;
     _navChannelview.dataSource = self;
-    _navChannelview.contentInset = NAV_COLLECTION_VIEW_CONTENT_INSET;
+    _navChannelview.contentInset = CHANNEL_COLLECTION_VIEW_CONTENT_INSET;
     [self.view addSubview:_navChannelview];
     
     [_navChannelview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@NAV_COLLECTION_VIEW_HEIGHT);
+        make.height.equalTo(@CHANNEL_COLLECTION_VIEW_HEIGHT);
         make.top.equalTo(_mainNavView.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
@@ -169,17 +169,17 @@
 
 - (void)updateSliderBarWithCell:(ZYHChannelItemCell *)cell animated:(BOOL)animated {
     CGRect convertRect = [cell convertRect:cell.titleLabel.frame toView:_navChannelview];
-    CGFloat animateDuration = NAV_SLIDER_ANIMATE_DURATION;
+    CGFloat animateDuration = CHANNEL_SLIDER_ANIMATE_DURATION;
     if (!animated) {
         animateDuration = 0.f;
     }
     [UIView animateWithDuration:animateDuration animations:^{
-        [self updateSliderBarLocation:CGRectMake(CGRectGetMinX(convertRect), [self sliderBarLocationY], CGRectGetWidth(convertRect), NAV_SLIDER_BAR_HEIGHT)];
+        [self updateSliderBarLocation:CGRectMake(CGRectGetMinX(convertRect), [self sliderBarLocationY], CGRectGetWidth(convertRect), CHANNEL_SLIDER_BAR_HEIGHT)];
     }];
 }
 
 - (CGFloat)sliderBarLocationY {
-    return CGRectGetHeight(_navChannelview.frame) - NAV_SLIDER_BAR_HEIGHT;
+    return CGRectGetHeight(_navChannelview.frame) - CHANNEL_SLIDER_BAR_HEIGHT;
 }
 
 - (void)updateSliderBarLocation:(CGRect)locationRect {
