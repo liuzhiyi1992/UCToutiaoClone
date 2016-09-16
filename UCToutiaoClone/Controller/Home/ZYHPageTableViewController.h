@@ -10,4 +10,5 @@
 
 @interface ZYHPageTableViewController : UIViewController
 @property (copy, nonatomic) NSString *channelId;
+- (void)freshData;
 @end

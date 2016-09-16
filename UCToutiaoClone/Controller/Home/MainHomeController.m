@@ -230,6 +230,40 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
     return NO;
 }
 
+- (void)handleFreshCategoryPageDataWithPageIndexList:(NSArray *)pageIndexList {
+    BOOL canNotFresh = NO;
+    for (NSNumber *previousNumber in _preloadPageIndexList) {
+        if ([self validPage:previousNumber.integerValue]) {
+            //有效page
+            for (NSNumber *currentNumber in pageIndexList) {
+                if ([previousNumber isEqualToNumber:currentNumber]) {
+                    //包含，不需释放
+                    canNotFresh = YES;
+                    break;
+                } else {
+                    //继续寻找
+                    canNotFresh = NO;
+                    continue;
+                }
+            }
+            if (!canNotFresh) {
+                //不包含，fresh
+                [self freshTableViewDataWithPage:[previousNumber integerValue]];
+            }
+        } else {
+            //无效page不处理
+            continue;
+        }
+    }
+}
+
+- (void)freshTableViewDataWithPage:(NSInteger)page {
+    ZYHPageTableViewController *viewController =  [[self childViewControllers] objectAtIndex:page];
+    if (viewController) {
+        [viewController freshData];
+    }
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZYHChannelItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier] forIndexPath:indexPath];
     ZYHChannelModel *model = _navChannelList[indexPath.row];
@@ -272,6 +306,14 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentPage inSection:0];
     [self tapToChangeChannel:indexPath animated:YES isProactive:NO];
     [self generatorHomeTableViewWithPage:currentPage];
+}
+
+- (void)setPreloadPageIndexList:(NSArray *)preloadPageIndexList {
+    //fresh
+    if (OPEN_PAGE_RECOVER_MECHANISM) {
+        [self handleFreshCategoryPageDataWithPageIndexList:preloadPageIndexList];
+    }
+    _preloadPageIndexList = [preloadPageIndexList copy];
 }
 
 @end

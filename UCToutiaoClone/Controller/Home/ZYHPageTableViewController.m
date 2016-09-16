@@ -21,6 +21,10 @@
     
 }
 
+- (void)freshData {
+    NSLog(@"fresh Data");
+}
+
 - (void)setChannelId:(NSString *)channelId {
     NSLog(@"load page");
 }
