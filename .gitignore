@@ -12,3 +12,7 @@ UCToutiaoClone.xcworkspace/xcuserdata/zhiyi.xcuserdatad/UserInterfaceState.xcuse
 *.xcbkptlist
 
 Pods/Pods.xcodeproj/xcuserdata/lzy.xcuserdatad/xcschemes/xcschememanagement.plist
+
+*.xcbkptlist
+
+UCToutiaoClone.xcworkspace/xcuserdata/lzy.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist

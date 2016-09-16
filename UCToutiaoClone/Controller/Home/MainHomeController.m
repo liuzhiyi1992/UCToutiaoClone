@@ -168,7 +168,7 @@
     [cell changeCellSelect:YES];
     ZYHChannelModel *currentModel = _navChannelList[indexPath.row];
     currentModel.isSelected = YES;
-    //scroll navBar
+    //scroll channelBar
     [_navChannelview scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
     //update selection
     self.selectedChannelIndexPath = indexPath;
@@ -225,7 +225,13 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
+    if ([scrollView isEqual:_mainScrollView]) {
+        CGFloat scrollContentOffsetX = scrollView.contentOffset.x;
+        int currentPage = [[NSString stringWithFormat:@"%.0f", (scrollContentOffsetX / [[UIScreen mainScreen] bounds].size.width)] intValue];
+        if (currentPage != _currentPage) {
+            self.currentPage = currentPage;
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -234,7 +240,7 @@
 
 - (void)setCurrentPage:(NSInteger)currentPage {
     _currentPage = currentPage;
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:currentPage inSection:0];
     [self tapToChangeChannel:indexPath animated:YES isProactive:NO];
     [self generatorHomeTableViewWithPage:currentPage];
 }
