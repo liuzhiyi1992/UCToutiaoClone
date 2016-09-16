@@ -29,6 +29,7 @@
 }
 
 + (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response {
+    NSLog(@"\nurl: %@", [response.URL absoluteString]);
     //数据有效化 合法化
     return resultData;
 }

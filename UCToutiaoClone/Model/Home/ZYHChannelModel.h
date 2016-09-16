@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface ZYHChannelModel : NSObject
-@property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) NSString *channelId;
+@property (copy, nonatomic) NSString *channelName;
+@property (assign, nonatomic) BOOL isDefault;
+@property (assign, nonatomic) BOOL isFixed;
 @property (assign, nonatomic) BOOL isSelected;
+- (instancetype)initWithChannelDict:(NSDictionary *)channelDict;
 @end

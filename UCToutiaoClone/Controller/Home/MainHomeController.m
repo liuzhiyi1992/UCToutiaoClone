@@ -112,14 +112,20 @@
     [NewsService queryNavChannelWithcompletion:^(UCTNetworkResponseStatus status, NSArray *channelList) {
         if (status == UCTNetworkResponseSucceed) {
             NSLog(@"");
+            [self packageChannelDataWithChannelList:channelList];
         } else {
             NSLog(@"");
         }
     }];
 }
 
-- (void)packageChannelDataWthResultDict:(NSDictionary *)resultDict {
-    
+- (void)packageChannelDataWithChannelList:(NSArray *)channelList {
+    NSMutableArray *mutArray = [NSMutableArray array];
+    for (NSDictionary *channel in channelList) {
+        ZYHChannelModel *model = [[ZYHChannelModel alloc] initWithChannelDict:channel];
+        [mutArray addObject:model];
+    }
+    self.navChannelList = [mutArray copy];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -9,5 +9,18 @@
 #import "ZYHChannelModel.h"
 
 @implementation ZYHChannelModel
+- (instancetype)initWithChannelDict:(NSDictionary *)channelDict {
+    self = [super init];
+    if (self) {
+        [self packageDataWithDict:channelDict];
+    }
+    return self;
+}
 
+- (void)packageDataWithDict:(NSDictionary *)dict {
+    self.channelId = dict[@"id"];
+    self.channelName = dict[@"name"];
+    self.isDefault = dict[@"is_default"];
+    self.isFixed = dict[@"is_fixed"];
+}
 @end
