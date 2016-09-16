@@ -14,15 +14,22 @@
 #import "ZYHChannelModel.h"
 #import "NewsService.h"
 
+#define NAV_SLIDER_ANIMATE_DURATION 0.5f
 #define NAV_COLLECTION_VIEW_HEIGHT 40
 #define NAV_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
-#define NAV_COLLECTION_VIEW_CELL_SIZE CGSizeMake(80, NAV_COLLECTION_VIEW_HEIGHT)
+#define NAV_COLLECTION_VIEW_CELL_SIZE CGSizeMake(50, NAV_COLLECTION_VIEW_HEIGHT)
 
-@interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+#define NAV_SLIDER_BAR_HEIGHT 4.f
+
+
+@interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) ZYNavChannelView *navChannelview;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIView *mainNavView;
+@property (strong, nonatomic) UIView *sliderBar;
 @property (strong, nonatomic) NSArray *navChannelList;
+@property (assign, nonatomic) NSInteger currentPage;
+@property (strong, nonatomic) NSIndexPath *selectedChannelIndexPath;
 @end
 
 @implementation MainHomeController
@@ -82,7 +89,6 @@
 - (void)setupMainScrollView {
     self.mainScrollView = [[UIScrollView alloc] init];
     [self.view addSubview:_mainScrollView];
-//    [_mainScrollView setBounces:NO];
     [_mainScrollView setPagingEnabled:YES];
     [_mainScrollView setShowsHorizontalScrollIndicator:NO];
     [_mainScrollView setDelegate:self];
@@ -126,6 +132,62 @@
         [mutArray addObject:model];
     }
     self.navChannelList = [mutArray copy];
+    [_navChannelview reloadData];
+    [_navChannelview layoutIfNeeded];
+    [self defaultToSelectfirstPage];
+}
+
+- (void)defaultToSelectfirstPage {
+    self.currentPage = 0;
+}
+
+- (void)tapToChangeChannel:(NSIndexPath *)indexPath animated:(BOOL)animated isProactive:(BOOL)isProactive {
+    //previous cell
+    if (_selectedChannelIndexPath) {
+        ZYHChannelItemCell *previousCell = (ZYHChannelItemCell *)[_navChannelview cellForItemAtIndexPath:_selectedChannelIndexPath];
+        [previousCell changeCellSelect:NO];
+        ZYHChannelModel *previousModel = _navChannelList[_selectedChannelIndexPath.row];
+        previousModel.isSelected = NO;
+    }
+    //current cell
+    ZYHChannelItemCell *cell = (ZYHChannelItemCell *)[_navChannelview cellForItemAtIndexPath:indexPath];
+    [cell changeCellSelect:YES];
+    ZYHChannelModel *currentModel = _navChannelList[indexPath.row];
+    currentModel.isSelected = YES;
+    //scroll navBar
+    [_navChannelview scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+    //update selection
+    self.selectedChannelIndexPath = indexPath;
+    //update sliderBar
+    [self updateSliderBarWithCell:cell animated:animated];
+    //scroll Page
+    if (isProactive) {
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        [_mainScrollView setContentOffset:CGPointMake(indexPath.row * screenWidth, 0) animated:NO];
+    }
+}
+
+- (void)updateSliderBarWithCell:(ZYHChannelItemCell *)cell animated:(BOOL)animated {
+    CGRect convertRect = [cell convertRect:cell.titleLabel.frame toView:_navChannelview];
+    CGFloat animateDuration = NAV_SLIDER_ANIMATE_DURATION;
+    if (!animated) {
+        animateDuration = 0.f;
+    }
+    [UIView animateWithDuration:animateDuration animations:^{
+        [self updateSliderBarLocation:CGRectMake(CGRectGetMinX(convertRect), [self sliderBarLocationY], CGRectGetWidth(convertRect), NAV_SLIDER_BAR_HEIGHT)];
+    }];
+}
+
+- (CGFloat)sliderBarLocationY {
+    return CGRectGetHeight(_navChannelview.frame) - NAV_SLIDER_BAR_HEIGHT;
+}
+
+- (void)updateSliderBarLocation:(CGRect)locationRect {
+    [_sliderBar setFrame:locationRect];
+}
+
+- (void)generatorHomeTableViewWithPage:(NSInteger)page {
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -148,11 +210,22 @@
 //}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self tapToSelectCategoryWithIndexPath:indexPath animated:YES isProactive:YES];
+    [self tapToChangeChannel:indexPath animated:YES isProactive:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)setCurrentPage:(NSInteger)currentPage {
+    _currentPage = currentPage;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self tapToChangeChannel:indexPath animated:YES isProactive:NO];
+    [self generatorHomeTableViewWithPage:currentPage];
 }
 
 @end

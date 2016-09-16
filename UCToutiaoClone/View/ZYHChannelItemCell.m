@@ -11,12 +11,11 @@
 #import "Masonry.h"
 #import "ZYHChannelModel.h"
 
-#define TITLE_FONT_SIZE 14.f
+#define TITLE_FONT_SIZE 12.f
 #define TITLE_COLOR_NORMAL [UIColor hexColor:@"aaaaaa"]
 #define TITLE_COLOR_SELECTED [UIColor hexColor:@"761f22"]
 
 @interface ZYHChannelItemCell ()
-@property (strong, nonatomic) UILabel *titleLabel;
 @end
 
 @implementation ZYHChannelItemCell
@@ -49,7 +48,7 @@
 }
 
 - (void)updateCellWithChannel:(ZYHChannelModel *)channel {
-    [_titleLabel setText:[channel title]];
+    [_titleLabel setText:channel.channelName];
     [self changeCellSelect:channel.isSelected];
 }
 

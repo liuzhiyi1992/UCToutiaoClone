@@ -11,6 +11,7 @@
 
 @class ZYHChannelModel;
 @interface ZYHChannelItemCell : UCTCollectionViewCell
+@property (strong, nonatomic) UILabel *titleLabel;
 + (NSString *)cellReuseIdentifier;
 - (void)updateCellWithChannel:(ZYHChannelModel *)channel;
 - (void)changeCellSelect:(BOOL)select;
