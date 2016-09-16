@@ -13,13 +13,14 @@
 #import "ZYHPageTableViewController.h"
 #import "ZYHChannelModel.h"
 #import "NewsService.h"
+#import "UIColor+hexColor.h"
 
-#define CHANNEL_SLIDER_ANIMATE_DURATION 0.5f
+#define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
 #define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
 #define CHANNEL_COLLECTION_VIEW_CELL_SIZE CGSizeMake(50, CHANNEL_COLLECTION_VIEW_HEIGHT)
-
-#define CHANNEL_SLIDER_BAR_HEIGHT 4.f
+#define CHANNEL_SLIDER_BAR_HEIGHT 2.f
+#define CHANNEL_SLIDER_BAR_COLOR [UIColor hexColor:@"761f22"]
 
 
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
@@ -84,6 +85,9 @@
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
+    
+    //sliderBar
+    [self setupSliderBar];
 }
 
 - (void)setupMainScrollView {
@@ -107,11 +111,20 @@
     for (int i = 0; i < _navChannelList.count; i ++) {
         ZYHPageTableViewController *tableVC = [[ZYHPageTableViewController alloc] init];
         [self addChildViewController:tableVC];
-        [tableVC.view setBackgroundColor:[UIColor greenColor]];
+        double colorR = (arc4random() % 255)/255.0;
+        double colorG = (arc4random() % 255)/255.0;
+        double colorB = (arc4random() % 255)/255.0;
+        [tableVC.view setBackgroundColor:[UIColor colorWithRed:colorR green:colorG blue:colorB alpha:1.f]];
          [_mainScrollView addSubview:tableVC.view];
         [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _mainScrollView.frame.size.width, _mainScrollView.frame.size.height)];
     }
     [_mainScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
+}
+
+- (void)setupSliderBar {
+    self.sliderBar = [[UIView alloc] init];
+    [_sliderBar setBackgroundColor:CHANNEL_SLIDER_BAR_COLOR];
+    [self.navChannelview addSubview:_sliderBar];
 }
 
 - (void)queryChannelData {
@@ -134,6 +147,7 @@
     self.navChannelList = [mutArray copy];
     [_navChannelview reloadData];
     [_navChannelview layoutIfNeeded];
+    [self setupHomeTableViewControllers];
     [self defaultToSelectfirstPage];
 }
 
