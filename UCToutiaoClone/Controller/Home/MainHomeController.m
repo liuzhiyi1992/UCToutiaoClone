@@ -15,6 +15,8 @@
 #import "NewsService.h"
 #import "UIColor+hexColor.h"
 
+const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
+const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
 #define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -29,6 +31,7 @@
 @property (strong, nonatomic) UIView *mainNavView;
 @property (strong, nonatomic) UIView *sliderBar;
 @property (strong, nonatomic) NSArray *navChannelList;
+@property (strong, nonatomic) NSArray *preloadPageIndexList;
 @property (assign, nonatomic) NSInteger currentPage;
 @property (strong, nonatomic) NSIndexPath *selectedChannelIndexPath;
 @end
@@ -93,6 +96,7 @@
 - (void)setupMainScrollView {
     self.mainScrollView = [[UIScrollView alloc] init];
     [self.view addSubview:_mainScrollView];
+    [_mainScrollView setBounces:NO];
     [_mainScrollView setPagingEnabled:YES];
     [_mainScrollView setShowsHorizontalScrollIndicator:NO];
     [_mainScrollView setDelegate:self];
@@ -198,7 +202,32 @@
 }
 
 - (void)generatorHomeTableViewWithPage:(NSInteger)page {
-    
+    //同时加载前后两页(页面VC内部做重复加载避免)
+    NSMutableArray *loadedPageArray = [NSMutableArray array];
+    [self loadPageDataWithPage:page];
+    [loadedPageArray addObject:@(page)];
+    for (int i = 0; i < PRELOAD_PAGE_NUMBER/2; i ++) {
+        [self loadPageDataWithPage:page + (i+1)];
+        [loadedPageArray addObject:@(page + (i+1))];
+        [self loadPageDataWithPage:page - (i+1)];
+        [loadedPageArray addObject:@(page - (i+1))];
+    }
+    self.preloadPageIndexList = [loadedPageArray copy];
+}
+
+- (void)loadPageDataWithPage:(NSInteger)page {
+    if ([self validPage:page]) {
+        ZYHChannelModel *model = [_navChannelList objectAtIndex:page];
+        ZYHPageTableViewController *viewController = [[self childViewControllers] objectAtIndex:page];
+        [viewController setChannelId:model.channelId];
+    }
+}
+
+- (BOOL)validPage:(NSInteger)page {
+    if (page >= 0 && page < _navChannelList.count) {
+        return YES;
+    }
+    return NO;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

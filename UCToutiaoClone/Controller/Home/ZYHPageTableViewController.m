@@ -21,5 +21,8 @@
     
 }
 
+- (void)setChannelId:(NSString *)channelId {
+    NSLog(@"load page");
+}
 
 @end

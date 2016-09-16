@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZYHPageTableViewController : UIViewController
-
+@property (copy, nonatomic) NSString *channelId;
 @end

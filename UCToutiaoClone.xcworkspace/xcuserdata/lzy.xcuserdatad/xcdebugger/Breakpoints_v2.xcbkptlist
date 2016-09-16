@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UCToutiaoClone/Controller/Home/MainHomeController.m"
-            timestampString = "495736507.057208"
+            timestampString = "495737288.633079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "-tapToChangeChannel:animated:isProactive:"
             landmarkType = "5">
          </BreakpointContent>
