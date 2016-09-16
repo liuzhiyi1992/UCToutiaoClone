@@ -118,6 +118,10 @@
     }];
 }
 
+- (void)packageChannelDataWthResultDict:(NSDictionary *)resultDict {
+    
+}
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZYHChannelItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier] forIndexPath:indexPath];
     ZYHChannelModel *model = _navChannelList[indexPath.row];
