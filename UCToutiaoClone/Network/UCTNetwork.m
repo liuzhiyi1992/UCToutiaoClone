@@ -9,6 +9,8 @@
 #import "UCTNetwork.h"
 #import "AFNetworking.h"
 #import "UCTNetworkManager.h"
+#import "objc/runtime.h"
+#import "NetworkManager.h"
 
 const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
 static UCTNetwork *_uctNetwork = nil;
@@ -36,7 +38,8 @@ static UCTNetwork *_uctNetwork = nil;
 + (NSURLSessionTask *)getWithUrlString:(NSString *)urlString
                              parameters:(NSDictionary *)parameters
                         responseHandler:(UCTNetworkResponseHandler)responseHandler {
-    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
+//    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
+    NSDictionary *requestParam = [NetworkManager addDefaultParameters:parameters];
     NSURLSessionTask *task = [[UCTNetwork shareInstance].afHTTPSessionManager GET:urlString
                                                                        parameters:requestParam
                                                                          progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -73,3 +76,62 @@ static UCTNetwork *_uctNetwork = nil;
     });
 }
 @end
+
+#pragma mark - Runtime Injection
+
+__asm(
+      ".section        __DATA,__objc_classrefs,regular,no_dead_strip\n"
+#if	TARGET_RT_64_BIT
+      ".align          3\n"
+      "L_OBJC_CLASS_NetworkManager:\n"
+      ".quad           _OBJC_CLASS_$_NetworkManager\n"
+#else
+      ".align          2\n"
+      "_OBJC_CLASS_NetworkManager:\n"
+      ".long           _OBJC_CLASS_$_NetworkManager\n"
+#endif
+      ".weak_reference _OBJC_CLASS_$_NetworkManager\n"
+      );
+
+
+// Constructors are called after all classes have been loaded.
+__attribute__((constructor)) static void ZYNetworkManagerPatchEntry(void) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        @autoreleasepool {
+
+            // >= iOS9.
+//            if (objc_getClass("NetworkManager")) {
+//                return;
+//            }
+
+            Class *stackViewClassLocation = NULL;
+
+#if TARGET_CPU_ARM
+            __asm("movw %0, :lower16:(_OBJC_CLASS_NetworkManager-(LPC0+4))\n"
+                  "movt %0, :upper16:(_OBJC_CLASS_NetworkManager-(LPC0+4))\n"
+                  "LPC0: add %0, pc" : "=r"(stackViewClassLocation));
+#elif TARGET_CPU_ARM64
+            __asm("adrp %0, L_OBJC_CLASS_NetworkManager@PAGE\n"
+                  "add  %0, %0, L_OBJC_CLASS_NetworkManager@PAGEOFF" : "=r"(stackViewClassLocation));
+#elif TARGET_CPU_X86_64
+            __asm("leaq L_OBJC_CLASS_NetworkManager(%%rip), %0" : "=r"(stackViewClassLocation));
+#elif TARGET_CPU_X86
+            void *pc = NULL;
+            __asm("calll L0\n"
+                  "L0: popl %0\n"
+                  "leal _OBJC_CLASS_NetworkManager-L0(%0), %1" : "=r"(pc), "=r"(stackViewClassLocation));
+#else
+#error Unsupported CPU
+#endif
+
+//            if (stackViewClassLocation && !*stackViewClassLocation) {
+                Class class = objc_allocateClassPair(UCTNetworkManager.class, @"NetworkManager".UTF8String, 0);
+                if (class) {
+                    objc_registerClassPair(class);
+                    *stackViewClassLocation = class;
+                }
+//            }
+        }
+    });
+}

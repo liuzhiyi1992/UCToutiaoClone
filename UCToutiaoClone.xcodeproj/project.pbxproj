@@ -10,6 +10,7 @@
 		4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */; };
 		4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C6821D885F1500B8A9DB /* UCTNetwork.m */; };
 		483F93041D8994EE00F978DC /* NewsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F93031D8994EE00F978DC /* NewsService.m */; };
+		4846E2E51D8D791C000B746E /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4846E2E41D8D791C000B746E /* NetworkManager.m */; };
 		484A903F1D86FBA7002E36B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A903E1D86FBA7002E36B4 /* main.m */; };
 		484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90411D86FBA7002E36B4 /* AppDelegate.m */; };
 		484A90451D86FBA7002E36B4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90441D86FBA7002E36B4 /* ViewController.m */; };
@@ -48,6 +49,8 @@
 		4814C6821D885F1500B8A9DB /* UCTNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNetwork.m; sourceTree = "<group>"; };
 		483F93021D8994EE00F978DC /* NewsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsService.h; sourceTree = "<group>"; };
 		483F93031D8994EE00F978DC /* NewsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsService.m; sourceTree = "<group>"; };
+		4846E2E31D8D791C000B746E /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		4846E2E41D8D791C000B746E /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		484A903A1D86FBA7002E36B4 /* UCToutiaoClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UCToutiaoClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		484A903E1D86FBA7002E36B4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		484A90401D86FBA7002E36B4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				4814C6821D885F1500B8A9DB /* UCTNetwork.m */,
 				558D16FB1D892CE3008FC971 /* UCTNetworkManager.h */,
 				558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */,
+				4846E2E31D8D791C000B746E /* NetworkManager.h */,
+				4846E2E41D8D791C000B746E /* NetworkManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4846E2E51D8D791C000B746E /* NetworkManager.m in Sources */,
 				5528879F1D87FF160035B4A8 /* SingleImgNewsTableViewCell.m in Sources */,
 				558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */,
 				4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */,
