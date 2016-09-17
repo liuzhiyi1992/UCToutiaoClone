@@ -10,10 +10,16 @@
 #import "AFNetworking.h"
 #import "UCTNetworkManager.h"
 #import "objc/runtime.h"
+#import <objc/message.h>
 #import "NetworkManager.h"
+#import <objc/objc.h>
 
 const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
 static UCTNetwork *_uctNetwork = nil;
+static Class _zyNetworkManagerClass = nil;
+
+id (*objc_msgSendAddParam)(id self, SEL _cmd, NSDictionary *param) = (void *)objc_msgSend;
+id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, NSURLResponse *response) = (void *)objc_msgSend;
 
 @interface UCTNetwork ()
 @property (strong, nonatomic) AFHTTPSessionManager *afHTTPSessionManager;
@@ -31,15 +37,35 @@ static UCTNetwork *_uctNetwork = nil;
 }
 
 - (void)configureSessionManager {
-    _delegate = [NSClassFromString(UCTNetworkDelegateClassString) class];
+//    _delegate = [NSClassFromString(UCTNetworkDelegateClassString) class];
     [_afHTTPSessionManager.requestSerializer setTimeoutInterval:REQ_TIMEOUT_INTERVAL];
 }
 
 + (NSURLSessionTask *)getWithUrlString:(NSString *)urlString
                              parameters:(NSDictionary *)parameters
                         responseHandler:(UCTNetworkResponseHandler)responseHandler {
+    
+    
+    
+    
+#if !OBJC_OLD_DISPATCH_PROTOTYPES
+    typedef void (*IMP)(id, SEL, ...);
+#else
+    typedef id (*IMP)(id, SEL, ...);
+#endif
+    
+    
+    
+    Class dyClazz = [[UCTNetwork shareInstance] dynamicClass];
+    SEL addDefaultParamSEL = NSSelectorFromString(@"addDefaultParameters:");
+    NSDictionary *requestParam = objc_msgSendAddParam(dyClazz, addDefaultParamSEL, parameters);
+//    IMP parmImp = [dyClazz methodForSelector:addDefaultParamSEL];
+//    id requestParam = parmImp(dyClazz, addDefaultParamSEL, parameters);
+    
+    
+    
+    
 //    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
-    NSDictionary *requestParam = [NetworkManager addDefaultParameters:parameters];
     NSURLSessionTask *task = [[UCTNetwork shareInstance].afHTTPSessionManager GET:urlString
                                                                        parameters:requestParam
                                                                          progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -75,10 +101,21 @@ static UCTNetwork *_uctNetwork = nil;
         responseHandler ? responseHandler(status, correctDict) : nil;
     });
 }
+
+- (Class)dynamicClass {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _zyNetworkManagerClass = objc_allocateClassPair(NSClassFromString(UCTNetworkManagerClassString), @"ZYNetworkManager".UTF8String, 0);
+        if (_zyNetworkManagerClass) {
+            objc_registerClassPair(_zyNetworkManagerClass);
+        }
+    });
+    return _zyNetworkManagerClass;
+}
 @end
 
-#pragma mark - Runtime Injection
 
+#pragma mark - Runtime Injection
 __asm(
       ".section        __DATA,__objc_classrefs,regular,no_dead_strip\n"
 #if	TARGET_RT_64_BIT
@@ -99,14 +136,7 @@ __attribute__((constructor)) static void ZYNetworkManagerPatchEntry(void) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
-
-            // >= iOS9.
-//            if (objc_getClass("NetworkManager")) {
-//                return;
-//            }
-
             Class *stackViewClassLocation = NULL;
-
 #if TARGET_CPU_ARM
             __asm("movw %0, :lower16:(_OBJC_CLASS_NetworkManager-(LPC0+4))\n"
                   "movt %0, :upper16:(_OBJC_CLASS_NetworkManager-(LPC0+4))\n"
@@ -124,14 +154,11 @@ __attribute__((constructor)) static void ZYNetworkManagerPatchEntry(void) {
 #else
 #error Unsupported CPU
 #endif
-
-//            if (stackViewClassLocation && !*stackViewClassLocation) {
-                Class class = objc_allocateClassPair(UCTNetworkManager.class, @"NetworkManager".UTF8String, 0);
-                if (class) {
-                    objc_registerClassPair(class);
-                    *stackViewClassLocation = class;
-                }
-//            }
+            Class class = objc_allocateClassPair(NSClassFromString(UCTNetworkManagerClassString), @"ZYNetworkManager".UTF8String, 0);
+            if (class) {
+                objc_registerClassPair(class);
+                *stackViewClassLocation = class;
+            }
         }
     });
 }

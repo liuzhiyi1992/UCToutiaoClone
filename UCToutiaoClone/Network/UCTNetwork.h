@@ -10,6 +10,7 @@
 @class UCTNetworkManager;
 
 #define UCTNetworkDelegateClassString @"UCTNetworkManager"
+#define UCTNetworkManagerClassString @"UCTNetworkManager"
 #define NETWORK_REQUEST_TIMEOUT_INTERVAL 20
 //NSString const * UCTNetworkDelegateClassString = @"UCTNetworkManager";
 
