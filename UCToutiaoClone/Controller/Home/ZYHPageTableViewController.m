@@ -9,11 +9,14 @@
 #import "ZYHPageTableViewController.h"
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
+#import "NewsService.h"
 
 @interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImageView *bgPlaceholderView;
 @property (strong, nonatomic) NSArray *dataList;
+@property (assign, nonatomic) BOOL hadLoadData;
+@property (assign, nonatomic) int page;
 @end
 
 @implementation ZYHPageTableViewController
@@ -47,10 +50,29 @@
     }];
 }
 
+- (void)loadNewData {
+    [self queryDataWithChannelId:_channelId];
+}
+
+- (void)loadMoreData {
+    
+}
+
+- (void)queryDataWithChannelId:(NSString *)channelId {
+    [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSArray *newsList) {
+        if (status == UCTNetworkResponseSucceed) {
+            NSLog(@"");
+        } else {
+            NSLog(@"");
+        }
+    }];
+}
+
 - (void)freshData {
     NSLog(@"fresh Data");
 }
 
+#pragma - mark Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataList.count;
 }
@@ -64,6 +86,10 @@
 }
 
 - (void)setChannelId:(NSString *)channelId {
+    _channelId = channelId;
+    if (!_hadLoadData) {//缓存
+        [self loadNewData];
+    }
     NSLog(@"load page");
 }
 
