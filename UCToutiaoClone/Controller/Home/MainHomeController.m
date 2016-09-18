@@ -17,6 +17,7 @@
 
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
+const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
 #define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -175,7 +176,9 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
     NSMutableArray *mutArray = [NSMutableArray array];
     for (NSDictionary *channel in channelList) {
         ZYHChannelModel *model = [[ZYHChannelModel alloc] initWithChannelDict:channel];
-        [mutArray addObject:model];
+        if (model.isDefault || !ONLY_LOAD_DEFAULT_CHANNEL) {
+            [mutArray addObject:model];
+        }
     }
     self.navChannelList = [mutArray copy];
     [_navChannelview reloadData];
