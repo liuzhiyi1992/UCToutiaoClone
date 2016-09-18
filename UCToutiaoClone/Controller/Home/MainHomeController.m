@@ -30,6 +30,7 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIView *mainNavView;
 @property (strong, nonatomic) UIView *sliderBar;
+@property (strong, nonatomic) UIView *networkMaskView;
 @property (strong, nonatomic) NSArray *navChannelList;
 @property (strong, nonatomic) NSArray *preloadPageIndexList;
 @property (assign, nonatomic) NSInteger currentPage;
@@ -42,6 +43,7 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
     [self setupCustomNavView];
     [self setupNavChannelBar];
     [self setupMainScrollView];
+    [self setupNetworkMaksView];
     [self queryChannelData];
 }
 
@@ -131,11 +133,38 @@ const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
     [self.navChannelview addSubview:_sliderBar];
 }
 
+- (void)setupNetworkMaksView {
+    self.networkMaskView = [[UIView alloc] init];
+    [_networkMaskView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:_networkMaskView];
+    
+    [_networkMaskView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_mainNavView.mas_bottom);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+}
+
+- (void)showNetworkMaskView {
+    [self.view bringSubviewToFront:_networkMaskView];
+    [_networkMaskView setAlpha:1.f];
+}
+
+- (void)hideNetworkView {
+    [UIView animateWithDuration:1.f animations:^{
+        [_networkMaskView setAlpha:0.f];
+    }];
+}
+
 - (void)queryChannelData {
+    __weak __typeof(&*self)weakSelf = self;
+    [self showNetworkMaskView];
     [NewsService queryNavChannelWithcompletion:^(UCTNetworkResponseStatus status, NSArray *channelList) {
         if (status == UCTNetworkResponseSucceed) {
             NSLog(@"");
-            [self packageChannelDataWithChannelList:channelList];
+            [weakSelf packageChannelDataWithChannelList:channelList];
+            [weakSelf hideNetworkView];
         } else {
             NSLog(@"");
         }
