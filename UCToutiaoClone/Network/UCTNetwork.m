@@ -36,7 +36,6 @@ id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, 
 }
 
 - (void)configureSessionManager {
-//    _delegate = [NSClassFromString(UCTNetworkDelegateClassString) class];
     [_afHTTPSessionManager.requestSerializer setTimeoutInterval:REQ_TIMEOUT_INTERVAL];
 }
 
@@ -44,26 +43,9 @@ id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, 
                              parameters:(NSDictionary *)parameters
                         responseHandler:(UCTNetworkResponseHandler)responseHandler {
     
-    
-    
-    
-#if !OBJC_OLD_DISPATCH_PROTOTYPES
-    typedef void (*IMP)(id, SEL, ...);
-#else
-    typedef id (*IMP)(id, SEL, ...);
-#endif
-    
-    
-    
     Class dyClazz = [[UCTNetwork shareInstance] dynamicClass];
     SEL addDefaultParamSEL = NSSelectorFromString(@"addDefaultParameters:");
     NSDictionary *requestParam = objc_msgSendAddParam(dyClazz, addDefaultParamSEL, parameters);
-//    IMP parmImp = [dyClazz methodForSelector:addDefaultParamSEL];
-//    id requestParam = parmImp(dyClazz, addDefaultParamSEL, parameters);
-    
-    
-    
-    
 //    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
     NSURLSessionTask *task = [[UCTNetwork shareInstance].afHTTPSessionManager GET:urlString
                                                                        parameters:requestParam
