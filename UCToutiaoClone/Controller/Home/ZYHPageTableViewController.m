@@ -8,9 +8,11 @@
 
 #import "ZYHPageTableViewController.h"
 #import "Masonry.h"
+#import "UIColor+hexColor.h"
 
 @interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) UIImageView *bgPlaceholderView;
 @property (strong, nonatomic) NSArray *dataList;
 @end
 
@@ -32,13 +34,13 @@
     self.tableView = [[UITableView alloc] init];
     [_tableView setDelegate:self];
     [_tableView setDataSource:self];
-    [_tableView setBackgroundColor:[UIColor whiteColor]];
+    [_tableView setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
     UIImage *bgPlaceholderImage = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"channelPagePlaceholder.png"]];
-    UIImageView *bgPlaceholderView = [[UIImageView alloc] initWithImage:bgPlaceholderImage];
-    [self.tableView addSubview:bgPlaceholderView];
+    self.bgPlaceholderView = [[UIImageView alloc] initWithImage:bgPlaceholderImage];
+    [self.tableView addSubview:_bgPlaceholderView];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
