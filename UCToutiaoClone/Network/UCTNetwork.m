@@ -8,14 +8,19 @@
 
 #import "UCTNetwork.h"
 #import "AFNetworking.h"
-#import "UCTNetworkManager.h"
 #import "objc/runtime.h"
 #import <objc/message.h>
 #import <objc/objc.h>
 
-const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
+
 static UCTNetwork *_uctNetwork = nil;
 static Class _zyNetworkManagerClass = nil;
+
+const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
+
+#define SEL_addDefaultParameters NSSelectorFromString(@"addDefaultParameters:")
+#define SEL_verifyResultData NSSelectorFromString(@"verifyResultData:response:")
+
 
 id (*objc_msgSendAddParam)(id self, SEL _cmd, NSDictionary *param) = (void *)objc_msgSend;
 id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, NSURLResponse *response) = (void *)objc_msgSend;
@@ -43,10 +48,8 @@ id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, 
                              parameters:(NSDictionary *)parameters
                         responseHandler:(UCTNetworkResponseHandler)responseHandler {
     
-    Class dyClazz = [[UCTNetwork shareInstance] dynamicClass];
-    SEL addDefaultParamSEL = NSSelectorFromString(@"addDefaultParameters:");
-    NSDictionary *requestParam = objc_msgSendAddParam(dyClazz, addDefaultParamSEL, parameters);
-//    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
+    Class managerClazz = [[UCTNetwork shareInstance] managerClass];
+    NSDictionary *requestParam = objc_msgSendAddParam(managerClazz, SEL_addDefaultParameters, parameters);
     NSURLSessionTask *task = [[UCTNetwork shareInstance].afHTTPSessionManager GET:urlString
                                                                        parameters:requestParam
                                                                          progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -61,7 +64,9 @@ id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, 
 + (NSURLSessionTask *)postWithUrlString:(NSString *)urlString
                             parameters:(NSDictionary *)parameters
                        responseHandler:(UCTNetworkResponseHandler)responseHandler {
-    NSDictionary *requestParam = [UCTNetworkManager addDefaultParameters:parameters];
+    
+    Class managerClazz = [[UCTNetwork shareInstance] managerClass];
+    NSDictionary *requestParam = objc_msgSendAddParam(managerClazz, SEL_addDefaultParameters, parameters);
     NSURLSessionTask *task = [[UCTNetwork shareInstance].afHTTPSessionManager POST:urlString
                                                                         parameters:requestParam
                                                                           progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -78,12 +83,13 @@ id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, 
                                jsonResult:(NSDictionary *)jsonResult
                                      task:(NSURLSessionTask *)task {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSDictionary *correctDict = [UCTNetworkManager verifyResultData:jsonResult response:task.response];
+        Class managerClazz = [[UCTNetwork shareInstance] managerClass];
+        NSDictionary *correctDict = objc_msgSendVerifyResultData(managerClazz, SEL_verifyResultData, jsonResult, task.response);
         responseHandler ? responseHandler(status, correctDict) : nil;
     });
 }
 
-- (Class)dynamicClass {
+- (Class)managerClass {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _zyNetworkManagerClass = objc_allocateClassPair(NSClassFromString(UCTNetworkManagerClassString), @"ZYNetworkManager".UTF8String, 0);
@@ -117,6 +123,7 @@ __attribute__((constructor)) static void ZYNetworkManagerPatchEntry(void) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         @autoreleasepool {
+            return;
             Class *stackViewClassLocation = NULL;
 #if TARGET_CPU_ARM
             __asm("movw %0, :lower16:(_OBJC_CLASS_NetworkManager-(LPC0+4))\n"

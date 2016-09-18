@@ -7,13 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@class UCTNetworkManager;
 
-#define UCTNetworkDelegateClassString @"UCTNetworkManager"
 #define UCTNetworkManagerClassString @"UCTNetworkManager"
 #define NETWORK_REQUEST_TIMEOUT_INTERVAL 20
-//NSString const * UCTNetworkDelegateClassString = @"UCTNetworkManager";
 
+@class UCTNetworkManager;
 typedef NS_ENUM(NSUInteger, UCTNetworkResponseStatus) {
     UCTNetworkResponseSucceed = 0,
     UCTNetworkResponseFail = 1
