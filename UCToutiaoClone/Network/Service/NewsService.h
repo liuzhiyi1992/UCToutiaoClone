@@ -12,5 +12,5 @@
 @interface NewsService : NSObject
 + (void)queryNavChannelWithcompletion:(void(^)(UCTNetworkResponseStatus status, NSArray *channelList))completion;
 
-+ (void)queryNewsWithChannelId:(NSString *)channelId completion:(void(^)(UCTNetworkResponseStatus status, NSArray *newsList))completion;
++ (void)queryNewsWithChannelId:(NSString *)channelId completion:(void(^)(UCTNetworkResponseStatus status, NSDictionary *dataDict))completion;
 @end

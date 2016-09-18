@@ -59,9 +59,11 @@
 }
 
 - (void)queryDataWithChannelId:(NSString *)channelId {
-    [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSArray *newsList) {
+    [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
         if (status == UCTNetworkResponseSucceed) {
-            NSLog(@"");
+            NSArray *articlesIdList = [dataDict objectForKey:@"items"];
+            NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
+            NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
         } else {
             NSLog(@"");
         }
