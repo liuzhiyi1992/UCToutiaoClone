@@ -28,7 +28,7 @@
  * 数据有效化 合法化
  */
 + (NSDictionary *)zyNetworkVerifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response {
-    NSLog(@"\nurl: %@", [response.URL absoluteString]);
+    NSLog(@"\nreqUrl: %@", [response.URL absoluteString]);
     return resultData;
 }
 @end
