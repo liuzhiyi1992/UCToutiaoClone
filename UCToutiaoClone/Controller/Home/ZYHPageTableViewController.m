@@ -7,6 +7,12 @@
 //
 
 #import "ZYHPageTableViewController.h"
+#import "Masonry.h"
+
+@interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSArray *dataList;
+@end
 
 @implementation ZYHPageTableViewController
 - (instancetype)init {
@@ -17,12 +23,42 @@
     return self;
 }
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setupTableView];
+}
+
 - (void)setupTableView {
+    self.tableView = [[UITableView alloc] init];
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    [_tableView setBackgroundColor:[UIColor whiteColor]];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
     
+    UIImage *bgPlaceholderImage = [UIImage imageWithContentsOfFile:[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"channelPagePlaceholder.png"]];
+    UIImageView *bgPlaceholderView = [[UIImageView alloc] initWithImage:bgPlaceholderImage];
+    [self.tableView addSubview:bgPlaceholderView];
+    
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)freshData {
     NSLog(@"fresh Data");
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _dataList.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40.f;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return nil;
 }
 
 - (void)setChannelId:(NSString *)channelId {
