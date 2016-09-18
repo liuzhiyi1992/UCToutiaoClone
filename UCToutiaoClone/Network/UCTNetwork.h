@@ -19,8 +19,8 @@ typedef NS_ENUM(NSUInteger, UCTNetworkResponseStatus) {
 typedef void(^UCTNetworkResponseHandler)(UCTNetworkResponseStatus status, NSDictionary *resultDict);
 
 @protocol UCTNetworkDelegate <NSObject>
-+ (NSDictionary *)uctNetworkAppendDefaultParam:(NSDictionary *)requestDict;
-+ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
++ (NSDictionary *)zyNetworkAppendDefaultParam:(NSDictionary *)requestDict;
++ (NSDictionary *)zyNetworkVerifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
 @end
 
 @interface UCTNetwork : NSObject

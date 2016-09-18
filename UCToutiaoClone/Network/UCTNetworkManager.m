@@ -14,7 +14,7 @@
 
 @implementation UCTNetworkManager
 //stats params
-+ (NSDictionary *)addDefaultParameters:(NSDictionary *)undressedParam {
++ (NSDictionary *)zyNetworkAppendDefaultParam:(NSDictionary *)undressedParam {
     NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithDictionary:undressedParam];
     [mutDict setValue:@"1.5.0.805" forKey:@"ve"];
     [mutDict setValue:@"iphone" forKey:@"fe"];
@@ -28,15 +28,9 @@
     return mutDict;
 }
 
-+ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response {
++ (NSDictionary *)zyNetworkVerifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response {
     NSLog(@"\nurl: %@", [response.URL absoluteString]);
     //数据有效化 合法化
     return resultData;
-}
-
-+ (NSDictionary *)uctNetworkAppendDefaultParam:(NSDictionary *)requestDict {
-    NSMutableDictionary *mutDict = [NSMutableDictionary dictionaryWithDictionary:requestDict];
-    //stats params
-    return mutDict;
 }
 @end

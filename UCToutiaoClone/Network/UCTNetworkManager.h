@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UCTNetwork.h"
 
-@interface UCTNetworkManager : NSObject
-+ (NSDictionary *)addDefaultParameters:(NSDictionary *)parameters;
-+ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
+@interface UCTNetworkManager : NSObject <UCTNetworkDelegate>
++ (NSDictionary *)zyNetworkAppendDefaultParam:(NSDictionary *)parameters;
++ (NSDictionary *)zyNetworkVerifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
 @end

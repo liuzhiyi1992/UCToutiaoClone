@@ -18,9 +18,8 @@ static Class _zyNetworkManagerClass = nil;
 
 const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
 
-#define SEL_addDefaultParameters NSSelectorFromString(@"addDefaultParameters:")
-#define SEL_verifyResultData NSSelectorFromString(@"verifyResultData:response:")
-
+#define SEL_addDefaultParameters NSSelectorFromString(@"zyNetworkAppendDefaultParam:")
+#define SEL_verifyResultData NSSelectorFromString(@"zyNetworkVerifyResultData:response:")
 
 id (*objc_msgSendAddParam)(id self, SEL _cmd, NSDictionary *param) = (void *)objc_msgSend;
 id (*objc_msgSendVerifyResultData)(id self, SEL _cmd, NSDictionary *resultData, NSURLResponse *response) = (void *)objc_msgSend;
