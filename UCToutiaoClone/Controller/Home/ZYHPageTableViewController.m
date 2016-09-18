@@ -10,11 +10,16 @@
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
 #import "NewsService.h"
+#import "ZYHArticleModel.h"
+
+#define ARTICLE_MAP_SPECIALS @"specials"
+#define ARTICLE_MAP_ARTICLES @"articles"
 
 @interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImageView *bgPlaceholderView;
 @property (strong, nonatomic) NSArray *dataList;
+@property (strong, nonatomic) NSArray *articlesIdList;
 @property (assign, nonatomic) BOOL hadLoadData;
 @property (assign, nonatomic) int page;
 @end
@@ -58,10 +63,15 @@
     
 }
 
+- (void)freshData {
+    NSLog(@"fresh Data");
+}
+
 - (void)queryDataWithChannelId:(NSString *)channelId {
     [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
         if (status == UCTNetworkResponseSucceed) {
-            NSArray *articlesIdList = [dataDict objectForKey:@"items"];
+            //数据先放model解析出来
+            self.articlesIdList = [dataDict objectForKey:@"items"];
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
         } else {
@@ -70,8 +80,26 @@
     }];
 }
 
-- (void)freshData {
-    NSLog(@"fresh Data");
+- (void)packageArticlesDataWithArticlesIdList:(NSArray *)articlesIdList
+                                 articlesDict:(NSDictionary *)articlesDict
+                                 specialsDict:(NSDictionary *)specialsDict {
+    for (NSDictionary *articlesIdDict in articlesIdList) {
+//        ZYHArticleModel *model = [[ZYHArticleModel alloc] init];
+        NSString *articleMapString = [articlesIdDict objectForKey:@"map"];
+        NSString *articleId = [articlesIdDict objectForKey:@"id"];
+        if ([ARTICLE_MAP_ARTICLES isEqualToString:articleMapString]) {
+            [self packageArticleModelWithArticleDict:[articlesDict objectForKey:articleId]];
+        } else if ([ARTICLE_MAP_SPECIALS isEqualToString:articleMapString]) {
+            [self packageArticleModelWithArticleDict:[specialsDict objectForKey:articleId]];
+        } else {
+            continue;
+        }
+    }
+}
+
+- (ZYHArticleModel *)packageArticleModelWithArticleDict:(NSDictionary *)articleDict {
+    ZYHArticleModel *model = [[ZYHArticleModel alloc] initWithDataDict:articleDict];
+    return nil;
 }
 
 #pragma - mark Delegate
