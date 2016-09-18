@@ -163,7 +163,6 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self showNetworkMaskView];
     [NewsService queryNavChannelWithcompletion:^(UCTNetworkResponseStatus status, NSArray *channelList) {
         if (status == UCTNetworkResponseSucceed) {
-            NSLog(@"");
             [weakSelf packageChannelDataWithChannelList:channelList];
             [weakSelf hideNetworkView];
         } else {

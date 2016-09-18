@@ -11,6 +11,9 @@
 #import "UIColor+hexColor.h"
 #import "NewsService.h"
 #import "ZYHArticleModel.h"
+#import "objc/runtime.h"
+
+const char kHomeTableViewCellClass;
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -76,6 +79,7 @@
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
             [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
+            [weakSelf.tableView reloadData];
         } else {
             NSLog(@"");
         }
@@ -107,6 +111,14 @@
     return model;
 }
 
+- (NSString *)analysisCellClassNameWithDataDict:(NSDictionary *)dataDict {
+    return objc_getAssociatedObject(dataDict, &kHomeTableViewCellClass);
+}
+
+- (void)attachCellClassName:(NSString *)className dataDict:(NSDictionary *)dataDict {
+    objc_setAssociatedObject(dataDict, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 #pragma - mark Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _dataList.count;
@@ -117,6 +129,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    NSDictionary *dataDict = [_dataList objectAtIndex:indexPath.row];
+    Class clazz = NSClassFromString([self analysisCellClassNameWithDataDict:dataDict]);
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@""];
+//    if (nil == cell) {
+        cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+    if ([cell respondsToSelector:@selector(updateCellWithDataDict:)]) {
+        [cell performSelector:@selector(updateCellWithDataDict:) withObject:dataDict afterDelay:0.f];
+    }
+#pragma clang diagnostic pop
+    return cell;
+    
+    
+    
     return nil;
 }
 
