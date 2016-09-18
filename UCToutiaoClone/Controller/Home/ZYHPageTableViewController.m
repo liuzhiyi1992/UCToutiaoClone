@@ -12,11 +12,14 @@
 #import "NewsService.h"
 #import "ZYHArticleModel.h"
 #import "objc/runtime.h"
+#import "objc/message.h"
 
 const char kHomeTableViewCellClass;
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
+
+id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 @interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
@@ -129,15 +132,14 @@ const char kHomeTableViewCellClass;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
     NSDictionary *dataDict = [_dataList objectAtIndex:indexPath.row];
     Class clazz = NSClassFromString([self analysisCellClassNameWithDataDict:dataDict]);
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@""];
-//    if (nil == cell) {
-        cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-//    }
+    NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"getCellIdentifier"));
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (nil == cell) {
+        cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([cell respondsToSelector:@selector(updateCellWithDataDict:)]) {
