@@ -15,6 +15,7 @@
 @property (copy, nonatomic) NSString *urlString;
 @property (strong, nonatomic) NSArray *thumbnails;
 @property (strong, nonatomic) NSArray *images;
+@property (copy, nonatomic) NSString *opMark;
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSArray *category;
 @property (copy, nonatomic) NSString *grabTime;

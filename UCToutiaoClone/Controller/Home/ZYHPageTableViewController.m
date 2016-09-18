@@ -68,12 +68,14 @@
 }
 
 - (void)queryDataWithChannelId:(NSString *)channelId {
+    __weak __typeof(&*self)weakSelf = self;
     [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
         if (status == UCTNetworkResponseSucceed) {
             //数据先放model解析出来
-            self.articlesIdList = [dataDict objectForKey:@"items"];
+            weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
+            [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
         } else {
             NSLog(@"");
         }
@@ -83,23 +85,26 @@
 - (void)packageArticlesDataWithArticlesIdList:(NSArray *)articlesIdList
                                  articlesDict:(NSDictionary *)articlesDict
                                  specialsDict:(NSDictionary *)specialsDict {
+    NSMutableArray *mutArray = [NSMutableArray array];
     for (NSDictionary *articlesIdDict in articlesIdList) {
-//        ZYHArticleModel *model = [[ZYHArticleModel alloc] init];
         NSString *articleMapString = [articlesIdDict objectForKey:@"map"];
         NSString *articleId = [articlesIdDict objectForKey:@"id"];
         if ([ARTICLE_MAP_ARTICLES isEqualToString:articleMapString]) {
-            [self packageArticleModelWithArticleDict:[articlesDict objectForKey:articleId]];
+            ZYHArticleModel *model = [self packageArticleModelWithArticleDict:[articlesDict objectForKey:articleId]];
+            [mutArray addObject:model];
         } else if ([ARTICLE_MAP_SPECIALS isEqualToString:articleMapString]) {
-            [self packageArticleModelWithArticleDict:[specialsDict objectForKey:articleId]];
+            ZYHArticleModel *model = [self packageArticleModelWithArticleDict:[specialsDict objectForKey:articleId]];
+            [mutArray addObject:model];
         } else {
             continue;
         }
     }
+    self.dataList = [mutArray copy];
 }
 
 - (ZYHArticleModel *)packageArticleModelWithArticleDict:(NSDictionary *)articleDict {
     ZYHArticleModel *model = [[ZYHArticleModel alloc] initWithDataDict:articleDict];
-    return nil;
+    return model;
 }
 
 #pragma - mark Delegate
