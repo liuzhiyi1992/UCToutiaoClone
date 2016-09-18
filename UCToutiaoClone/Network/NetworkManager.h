@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NetworkManager : NSObject
-+ (NSDictionary *)addDefaultParameters:(NSDictionary *)parameters;
-+ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
+//+ (NSDictionary *)addDefaultParameters:(NSDictionary *)parameters;
+//+ (NSDictionary *)verifyResultData:(NSDictionary *)resultData response:(NSURLResponse *)response;
 @end

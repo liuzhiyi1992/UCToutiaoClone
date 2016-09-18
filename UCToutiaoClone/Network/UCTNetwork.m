@@ -11,7 +11,6 @@
 #import "UCTNetworkManager.h"
 #import "objc/runtime.h"
 #import <objc/message.h>
-#import "NetworkManager.h"
 #import <objc/objc.h>
 
 const NSTimeInterval REQ_TIMEOUT_INTERVAL = NETWORK_REQUEST_TIMEOUT_INTERVAL;
