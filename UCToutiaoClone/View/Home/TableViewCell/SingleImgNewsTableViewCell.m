@@ -56,6 +56,8 @@
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
+    [_titleLabel setText:model.articleTitle];
+    //todo 图片
     NSLog(@"update了cell");
 }
 

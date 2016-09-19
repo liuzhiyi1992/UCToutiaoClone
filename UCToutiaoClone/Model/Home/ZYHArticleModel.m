@@ -39,9 +39,11 @@
         [self attachCellClassName:@"ThreeImgNewsTableViewCell" model:self];
     } else if (nil == _thumbnails) {//thumbnails == 0
         //special cell
+        
     } else {
         //todo 以后检测，可能是视频cell
         //single title cell
+        
 //        [self attachCellClassName:@"ThreeImgNewsTableViewCell" model:self];
     }
 }

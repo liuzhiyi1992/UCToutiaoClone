@@ -9,6 +9,11 @@
 #import "ThreeImgNewsTableViewCell.h"
 #import "ZYHArticleModel.h"
 
+//todo 组装
+@interface ThreeImgNewsTableViewCell ()
+@property (strong, nonatomic) UILabel *titleLabel;
+@end
+
 @implementation ThreeImgNewsTableViewCell
 + (NSString *)cellReuseIdentifier {
     return @"ThreeImgNewsTableViewCell";
