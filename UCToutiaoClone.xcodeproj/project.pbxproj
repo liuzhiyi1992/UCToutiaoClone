@@ -29,6 +29,7 @@
 		558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FF1D894CBC008FC971 /* UCTCollectionViewCell.m */; };
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
 		558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17081D895170008FC971 /* ZYHChannelModel.m */; };
+		55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		558D17031D894DF2008FC971 /* UIColor+hexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+hexColor.m"; sourceTree = "<group>"; };
 		558D17071D895170008FC971 /* ZYHChannelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHChannelModel.h; sourceTree = "<group>"; };
 		558D17081D895170008FC971 /* ZYHChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHChannelModel.m; sourceTree = "<group>"; };
+		55B83A4A1D8FCFCD00626DFF /* UCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTTableViewCell.h; sourceTree = "<group>"; };
+		55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +239,8 @@
 				5528879E1D87FF150035B4A8 /* SingleImgNewsTableViewCell.m */,
 				552887A01D87FF590035B4A8 /* ThreeImgNewsTableViewCell.h */,
 				552887A11D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m */,
+				55B83A4A1D8FCFCD00626DFF /* UCTTableViewCell.h */,
+				55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 				554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */,
 				552887A21D87FF590035B4A8 /* ThreeImgNewsTableViewCell.m in Sources */,
 				558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */,
+				55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */,
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
 				484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */,
 				483F93041D8994EE00F978DC /* NewsService.m in Sources */,
