@@ -100,8 +100,12 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
             ZYHArticleModel *model = [self packageArticleModelWithArticleDict:[articlesDict objectForKey:articleId]];
             [mutArray addObject:model];
         } else if ([ARTICLE_MAP_SPECIALS isEqualToString:articleMapString]) {
-            ZYHArticleModel *model = [self packageArticleModelWithArticleDict:[specialsDict objectForKey:articleId]];
-            [mutArray addObject:model];
+            NSDictionary *specialArticleDict = [specialsDict objectForKey:articleId];
+            NSArray *specialArticleList =  [specialArticleDict objectForKey:@"articles"];
+            [mutArray addObject:[self packageArticleModelWithArticleDict:specialArticleDict]];
+            for (NSDictionary *articleDict in specialArticleList) {
+                [mutArray addObject:[self packageArticleModelWithArticleDict:articleDict]];
+            }
         } else {
             continue;
         }
