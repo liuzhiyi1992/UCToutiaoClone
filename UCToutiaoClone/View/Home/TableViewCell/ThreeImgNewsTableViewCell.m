@@ -27,7 +27,7 @@
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
-    NSLog(@"");
+    NSLog(@"update了cell");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

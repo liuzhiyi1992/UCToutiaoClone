@@ -27,6 +27,7 @@
     self.thumbnails = dict[@"thumbnails"];
     self.images = dict[@"images"];
     self.opMark = dict[@"op_mark"];
+    self.sourceName = dict[@"source_name"];
     self.category = dict[@"category"];
     self.grabTime = [dict[@"grab_time"] stringValue];
     self.tags = dict[@"tags"];
@@ -36,6 +37,12 @@
         [self attachCellClassName:@"SingleImgNewsTableViewCell" model:self];
     } else if (_thumbnails.count >= 3){
         [self attachCellClassName:@"ThreeImgNewsTableViewCell" model:self];
+    } else if (nil == _thumbnails) {//thumbnails == 0
+        //special cell
+    } else {
+        //todo 以后检测，可能是视频cell
+        //single title cell
+//        [self attachCellClassName:@"ThreeImgNewsTableViewCell" model:self];
     }
 }
 
