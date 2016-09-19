@@ -21,6 +21,11 @@ const char kHomeTableViewCellClass;
 
 id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 
+@interface UITableViewCell ()
+- (void)updateCellWithModel:(ZYHArticleModel *)model;
+@end
+
+
 @interface ZYHPageTableViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImageView *bgPlaceholderView;
@@ -82,7 +87,7 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
             [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
-            //[weakSelf.tableView reloadData];
+            [weakSelf.tableView reloadData];
         } else {
             NSLog(@"");
         }
@@ -102,7 +107,8 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
         } else if ([ARTICLE_MAP_SPECIALS isEqualToString:articleMapString]) {
             NSDictionary *specialArticleDict = [specialsDict objectForKey:articleId];
             NSArray *specialArticleList =  [specialArticleDict objectForKey:@"articles"];
-            [mutArray addObject:[self packageArticleModelWithArticleDict:specialArticleDict]];
+            ZYHArticleModel *specialModel = [self packageArticleModelWithArticleDict:specialArticleDict];
+            [mutArray addObject:specialModel];
             for (NSDictionary *articleDict in specialArticleList) {
                 [mutArray addObject:[self packageArticleModelWithArticleDict:articleDict]];
             }
@@ -138,7 +144,8 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
     Class clazz = NSClassFromString([self analysisCellClassNameWithModel:model]);
-    NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"getCellIdentifier"));
+    NSLog(@"clazz名字%@", clazz);
+    NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"cellReuseIdentifier"));
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (nil == cell) {
         cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
@@ -146,15 +153,13 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    if ([cell respondsToSelector:@selector(updateCellWithDataDict:)]) {
-        [cell performSelector:@selector(updateCellWithDataDict:) withObject:model afterDelay:0.f];
+    if ([cell respondsToSelector:@selector(updateCellWithModel:)]) {
+//        [cell performSelector:@selector(updateCellWithModel:) withObject:model afterDelay:0.f];
+//        [cell performSelector:@selector(updateCellWithModel:) withObject:model afterDelay:0.f];
+        [cell updateCellWithModel:model];
     }
 #pragma clang diagnostic pop
     return cell;
-    
-    
-    
-    return nil;
 }
 
 - (void)setChannelId:(NSString *)channelId {
