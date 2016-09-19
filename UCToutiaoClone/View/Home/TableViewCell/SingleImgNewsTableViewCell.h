@@ -10,5 +10,4 @@
 
 @class ZYHArticleModel;
 @interface SingleImgNewsTableViewCell : UCTNewsTableViewCell
-- (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end
