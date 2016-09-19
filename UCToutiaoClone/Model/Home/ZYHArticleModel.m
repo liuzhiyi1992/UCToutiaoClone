@@ -7,6 +7,8 @@
 //
 
 #import "ZYHArticleModel.h"
+#import "ZYHPageTableViewController.h"
+#import "objc/runtime.h"
 
 @implementation ZYHArticleModel
 - (instancetype)initWithDataDict:(NSDictionary *)dict {
@@ -29,5 +31,10 @@
     self.grabTime = [dict[@"grab_time"] stringValue];
     self.tags = dict[@"tags"];
     //todo site_logo(字典)
+    //todo 决定cell class
+}
+
+- (void)attachCellClassName:(NSString *)className dataDict:(NSDictionary *)dataDict {
+    objc_setAssociatedObject(dataDict, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 @end

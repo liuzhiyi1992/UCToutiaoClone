@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern const char kHomeTableViewCellClass;
 @interface ZYHPageTableViewController : UIViewController
 @property (copy, nonatomic) NSString *channelId;
 - (void)freshData;
