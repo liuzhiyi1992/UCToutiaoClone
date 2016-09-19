@@ -4,4 +4,5 @@ target 'UCToutiaoClone' do
     pod 'SVProgressHUD'
     pod 'MJRefresh'
     pod 'Masonry'
+    pod 'SDWebImage', '~> 3.7.5'
 end
