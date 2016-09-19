@@ -8,6 +8,7 @@
 
 #import "UCTTableViewCell.h"
 
+@class ZYHArticleModel;
 @interface SingleImgNewsTableViewCell : UCTTableViewCell
-- (void)updateCellWithDataDict:(NSDictionary *)dataDict;
+- (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end

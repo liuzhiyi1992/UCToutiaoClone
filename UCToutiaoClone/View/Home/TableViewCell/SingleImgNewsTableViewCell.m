@@ -8,6 +8,7 @@
 
 #import "SingleImgNewsTableViewCell.h"
 #import "Masonry.h"
+#import "ZYHArticleModel.h"
 
 #define TITLE_LABEL_FONT_SIZE 14.f
 #define LEADING_MARGIN 10
@@ -54,7 +55,7 @@
     }];
 }
 
-- (void)updateCellWithDataDict:(NSDictionary *)dataDict {
+- (void)updateCellWithModel:(ZYHArticleModel *)model {
     NSLog(@"");
 }
 

@@ -32,9 +32,14 @@
     self.tags = dict[@"tags"];
     //todo site_logo(字典)
     //todo 决定cell class
+    if (_thumbnails.count == 1) {
+        [self attachCellClassName:@"SingleImgNewsTableViewCell" model:self];
+    } else if (_thumbnails.count >= 3){
+        [self attachCellClassName:@"ThreeImgNewsTableViewCell" model:self];
+    }
 }
 
-- (void)attachCellClassName:(NSString *)className dataDict:(NSDictionary *)dataDict {
-    objc_setAssociatedObject(dataDict, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)attachCellClassName:(NSString *)className model:(id)model {
+    objc_setAssociatedObject(model, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 @end

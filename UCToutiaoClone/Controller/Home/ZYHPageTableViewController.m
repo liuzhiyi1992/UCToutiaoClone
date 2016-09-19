@@ -118,8 +118,8 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
     return model;
 }
 
-- (NSString *)analysisCellClassNameWithDataDict:(NSDictionary *)dataDict {
-    return objc_getAssociatedObject(dataDict, &kHomeTableViewCellClass);
+- (NSString *)analysisCellClassNameWithModel:(ZYHArticleModel *)model {
+    return objc_getAssociatedObject(model, &kHomeTableViewCellClass);
 }
 
 - (void)attachCellClassName:(NSString *)className dataDict:(NSDictionary *)dataDict {
@@ -136,8 +136,8 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *dataDict = [_dataList objectAtIndex:indexPath.row];
-    Class clazz = NSClassFromString([self analysisCellClassNameWithDataDict:dataDict]);
+    ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
+    Class clazz = NSClassFromString([self analysisCellClassNameWithModel:model]);
     NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"getCellIdentifier"));
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (nil == cell) {
@@ -147,7 +147,7 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
     if ([cell respondsToSelector:@selector(updateCellWithDataDict:)]) {
-        [cell performSelector:@selector(updateCellWithDataDict:) withObject:dataDict afterDelay:0.f];
+        [cell performSelector:@selector(updateCellWithDataDict:) withObject:model afterDelay:0.f];
     }
 #pragma clang diagnostic pop
     return cell;

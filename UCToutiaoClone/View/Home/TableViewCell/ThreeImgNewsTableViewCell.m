@@ -7,6 +7,7 @@
 //
 
 #import "ThreeImgNewsTableViewCell.h"
+#import "ZYHArticleModel.h"
 
 @implementation ThreeImgNewsTableViewCell
 + (NSString *)cellReuseIdentifier {
@@ -25,7 +26,7 @@
     
 }
 
-- (void)updateCellWithDataDict:(NSDictionary *)dataDict {
+- (void)updateCellWithModel:(ZYHArticleModel *)model {
     NSLog(@"");
 }
 
