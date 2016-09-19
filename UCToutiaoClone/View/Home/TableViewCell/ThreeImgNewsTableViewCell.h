@@ -6,8 +6,8 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "UCTTableViewCell.h"
 
-@interface ThreeImgNewsTableViewCell : UITableViewCell
-
+@interface ThreeImgNewsTableViewCell : UCTTableViewCell
+- (void)updateCellWithDataDict:(NSDictionary *)dataDict;
 @end

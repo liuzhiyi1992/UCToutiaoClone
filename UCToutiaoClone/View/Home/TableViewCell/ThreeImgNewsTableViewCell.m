@@ -9,10 +9,24 @@
 #import "ThreeImgNewsTableViewCell.h"
 
 @implementation ThreeImgNewsTableViewCell
++ (NSString *)cellReuseIdentifier {
+    return @"ThreeImgNewsTableViewCell";
+}
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (void)setupCell {
+    
+}
+
+- (void)updateCellWithDataDict:(NSDictionary *)dataDict {
+    NSLog(@"");
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

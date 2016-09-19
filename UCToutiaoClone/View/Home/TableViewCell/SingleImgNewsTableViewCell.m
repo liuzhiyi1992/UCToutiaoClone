@@ -7,13 +7,57 @@
 //
 
 #import "SingleImgNewsTableViewCell.h"
+#import "Masonry.h"
+
+#define TITLE_LABEL_FONT_SIZE 14.f
+#define LEADING_MARGIN 10
+#define TRAILING_MARGIN 6
+#define MARGIN_LABEL_2_IMAGEVIEW 8
+
+@interface SingleImgNewsTableViewCell ()
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIImageView *mainImageView;
+@property (strong, nonatomic) UILabel *tagLabel;
+@end
 
 @implementation SingleImgNewsTableViewCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
++ (NSString *)cellReuseIdentifier {
+    return @"SingleImgNewsTableViewCell";
 }
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self setupCell];
+    }
+    return self;
+}
+
+- (void)setupCell {
+    self.titleLabel = [[UILabel alloc] init];
+    [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
+    [self.contentView addSubview:_titleLabel];
+    
+    self.mainImageView = [[UIImageView alloc] init];
+    [self.contentView addSubview:_mainImageView];
+    
+    [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.contentView).offset(LEADING_MARGIN);
+        make.top.equalTo(self.contentView).offset(LEADING_MARGIN);
+    }];
+    
+    [_mainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.greaterThanOrEqualTo(_titleLabel).offset(MARGIN_LABEL_2_IMAGEVIEW);
+        make.trailing.equalTo(self.contentView).offset(TRAILING_MARGIN);
+        make.top.equalTo(self.contentView).offset(TRAILING_MARGIN);
+        make.bottom.equalTo(self.contentView).offset(TRAILING_MARGIN);
+    }];
+}
+
+- (void)updateCellWithDataDict:(NSDictionary *)dataDict {
+    NSLog(@"");
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
