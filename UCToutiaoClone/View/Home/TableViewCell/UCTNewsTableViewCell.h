@@ -1,14 +1,14 @@
 //
-//  SingleImgNewsTableViewCell.h
+//  UCTNewsTableViewCell.h
 //  UCToutiaoClone
 //
-//  Created by zhiyi on 16/9/13.
+//  Created by zhiyi on 16/9/19.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "UCTNewsTableViewCell.h"
+#import "UCTTableViewCell.h"
 
 @class ZYHArticleModel;
-@interface SingleImgNewsTableViewCell : UCTNewsTableViewCell
+@interface UCTNewsTableViewCell : UCTTableViewCell
 - (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end

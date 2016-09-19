@@ -6,9 +6,9 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "UCTTableViewCell.h"
+#import "UCTNewsTableViewCell.h"
 
 @class ZYHArticleModel;
-@interface ThreeImgNewsTableViewCell : UCTTableViewCell
+@interface ThreeImgNewsTableViewCell : UCTNewsTableViewCell
 - (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end
