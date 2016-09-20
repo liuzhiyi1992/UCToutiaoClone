@@ -8,10 +8,16 @@
 
 #import "ThreeImgNewsTableViewCell.h"
 #import "ZYHArticleModel.h"
+#import "Masonry.h"
 
 //todo 组装
 @interface ThreeImgNewsTableViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) NSArray *imageViewList;
+@property (strong, nonatomic) UIImageView *leftImageView;
+@property (strong, nonatomic) UIImageView *centerImageView;
+@property (strong, nonatomic) UIImageView *rightImageView;
+@property (strong, nonatomic) UILabel *sourceLabel;
 @end
 
 @implementation ThreeImgNewsTableViewCell
@@ -28,6 +34,23 @@
 }
 
 - (void)setupCell {
+    self.leftImageView = [[UIImageView alloc] init];
+    self.centerImageView = [[UIImageView alloc] init];
+    self.rightImageView = [[UIImageView alloc] init];
+    
+    [_imageViewList[0] mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [_imageViewList[1] mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    [_imageViewList[2] mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+    }];
+    
+    
     
 }
 

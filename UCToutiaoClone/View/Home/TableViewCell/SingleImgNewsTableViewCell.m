@@ -9,6 +9,7 @@
 #import "SingleImgNewsTableViewCell.h"
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
+#import "UIImageView+WebCache.h"
 
 #define TITLE_LABEL_FONT_SIZE 14.f
 #define LEADING_MARGIN 10
@@ -18,7 +19,7 @@
 @interface SingleImgNewsTableViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
-@property (strong, nonatomic) UILabel *tagLabel;
+@property (strong, nonatomic) UILabel *sourceLabel;
 @end
 
 @implementation SingleImgNewsTableViewCell
@@ -57,8 +58,10 @@
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
     [_titleLabel setText:model.articleTitle];
-    //todo 图片
-    NSLog(@"update了cell");
+    if (model.thumbnails.count > 0) {
+        NSString *urlString = model.thumbnails.firstObject;
+        [_mainImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
+    }
 }
 
 
