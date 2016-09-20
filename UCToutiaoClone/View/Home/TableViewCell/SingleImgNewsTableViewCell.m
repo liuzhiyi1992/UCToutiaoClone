@@ -38,7 +38,6 @@
 }
 
 - (void)setupCell {
-    [self setBackgroundColor:[UIColor greenColor]];
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
     [_titleLabel setNumberOfLines:2];

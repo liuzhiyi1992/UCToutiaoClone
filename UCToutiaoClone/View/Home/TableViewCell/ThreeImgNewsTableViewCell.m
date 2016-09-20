@@ -9,6 +9,7 @@
 #import "ThreeImgNewsTableViewCell.h"
 #import "ZYHArticleModel.h"
 #import "Masonry.h"
+#import "UIImageView+WebCache.h"
 
 #define TOP_BOTTOM_MARGIN_TITLE 10
 #define BOTTOM_MARGIN_CELL 10
@@ -18,6 +19,8 @@
 
 #define FONT_SIZE_TITLE 12.f
 #define FONT_SIZE_SOURCE_LABEL 8.f
+
+#define HEIGHT_IMAGEVIEW 205.f
 
 //todo 组装
 @interface ThreeImgNewsTableViewCell ()
@@ -43,7 +46,6 @@
 }
 
 - (void)setupCell {
-    [self setBackgroundColor:[UIColor redColor]];
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_TITLE]];
     [self.contentView addSubview:_titleLabel];
@@ -65,31 +67,30 @@
     }];
     
     [_leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@HEIGHT_IMAGEVIEW);
         make.width.equalTo(_leftImageView.mas_height);
         make.top.equalTo(_titleLabel.mas_bottom).offset(TOP_BOTTOM_MARGIN_TITLE);
         make.leading.equalTo(self.contentView).offset(LEADING_IMAGE_VIEW);
-        make.trailing.equalTo(_centerImageView).offset(GAP_IMAGE_VIEW);
+        make.trailing.equalTo(_centerImageView.mas_leading).offset(GAP_IMAGE_VIEW);
     }];
-    
+
     [_centerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(_leftImageView);
         make.height.equalTo(_leftImageView);
         make.top.equalTo(_leftImageView);
-//        make.bottom.equalTo(_leftImageView);
-        make.trailing.equalTo(_rightImageView).offset(GAP_IMAGE_VIEW);
+        make.trailing.equalTo(_rightImageView.mas_leading).offset(GAP_IMAGE_VIEW);
     }];
     
     [_rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(_leftImageView);
         make.height.equalTo(_leftImageView);
         make.top.equalTo(_leftImageView);
-//        make.bottom.equalTo(_leftImageView);
-        make.trailing.equalTo(self.contentView).offset(LEADING_IMAGE_VIEW);
+        make.trailing.equalTo(self.contentView).offset(-LEADING_IMAGE_VIEW);
     }];
     
     [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN_CELL);
-        make.top.equalTo(_leftImageView).offset(8);
+        make.top.equalTo(_leftImageView.mas_bottom).offset(8);
         make.leading.equalTo(_titleLabel);
     }];
     
@@ -98,7 +99,19 @@
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
-    NSLog(@"update了cell");
+    //title
+    [_titleLabel setText:model.articleTitle];
+    //images
+    NSArray *thumbnailsList = model.thumbnails;
+    NSAssert((thumbnailsList.count >= 3),
+             @"ERROR - thumbnails less than 3");
+    if (thumbnailsList.count >= 3) {
+        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailsList[0][@"url"]]];
+        [_centerImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailsList[1][@"url"]]];
+        [_rightImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailsList[2][@"url"]]];
+    }
+    //_sourceLabel
+    [_sourceLabel setText:@"source"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
