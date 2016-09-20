@@ -16,7 +16,7 @@
 #define TRAILING_MARGIN 4
 #define MARGIN_LABEL_2_IMAGEVIEW 8
 #define WIDTH_HEIGHT_SCALE_IMAGEVIEW 1.46
-#define HEIGHT_IMAGEVIEW 180
+#define HEIGHT_IMAGEVIEW 120
 
 @interface SingleImgNewsTableViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;

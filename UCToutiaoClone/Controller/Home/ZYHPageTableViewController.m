@@ -31,6 +31,7 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 @property (strong, nonatomic) UIImageView *bgPlaceholderView;
 @property (strong, nonatomic) NSArray *dataList;
 @property (strong, nonatomic) NSArray *articlesIdList;
+@property (strong, nonatomic) NSMutableDictionary *templateCellDict;
 @property (assign, nonatomic) BOOL hadLoadData;
 @property (assign, nonatomic) int page;
 @end
@@ -138,13 +139,33 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 180.f;
+    @autoreleasepool {
+        ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
+        Class clazz = NSClassFromString([self analysisCellClassNameWithModel:model]);
+        NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"cellReuseIdentifier"));
+        UITableViewCell *cell = [self.templateCellDict objectForKey:identifier];
+        if (nil == cell) {
+            cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [self.templateCellDict setObject:cell forKey:identifier];
+        }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+        if ([cell respondsToSelector:@selector(updateCellWithModel:)]) {
+            [cell updateCellWithModel:model];
+        }
+#pragma clang diagnostic pop
+        NSLayoutConstraint *calculateCellConstraint = [NSLayoutConstraint constraintWithItem:cell.contentView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:[[UIScreen mainScreen] bounds].size.width];
+        [cell.contentView addConstraint:calculateCellConstraint];
+        CGSize cellSize = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        [cell.contentView removeConstraint:calculateCellConstraint];
+        return cellSize.height;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
     Class clazz = NSClassFromString([self analysisCellClassNameWithModel:model]);
-    NSLog(@"clazz名字%@", clazz);
     NSString *identifier = objc_msgSendGetCellIdentifier(clazz, NSSelectorFromString(@"cellReuseIdentifier"));
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (nil == cell) {
