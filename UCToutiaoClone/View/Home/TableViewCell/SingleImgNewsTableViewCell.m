@@ -13,8 +13,10 @@
 
 #define TITLE_LABEL_FONT_SIZE 14.f
 #define LEADING_MARGIN 10
-#define TRAILING_MARGIN 6
+#define TRAILING_MARGIN 4
 #define MARGIN_LABEL_2_IMAGEVIEW 8
+#define WIDTH_HEIGHT_SCALE_IMAGEVIEW 1.46
+#define HEIGHT_IMAGEVIEW 180
 
 @interface SingleImgNewsTableViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
@@ -36,8 +38,10 @@
 }
 
 - (void)setupCell {
+    [self setBackgroundColor:[UIColor greenColor]];
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
+    [_titleLabel setNumberOfLines:2];
     [self.contentView addSubview:_titleLabel];
     
     self.mainImageView = [[UIImageView alloc] init];
@@ -49,14 +53,17 @@
     }];
     
     [_mainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.greaterThanOrEqualTo(_titleLabel).offset(MARGIN_LABEL_2_IMAGEVIEW);
-        make.trailing.equalTo(self.contentView).offset(TRAILING_MARGIN);
+        make.leading.greaterThanOrEqualTo(_titleLabel.mas_trailing).offset(MARGIN_LABEL_2_IMAGEVIEW);
+        make.trailing.equalTo(self.contentView).offset(-TRAILING_MARGIN);
         make.top.equalTo(self.contentView).offset(TRAILING_MARGIN);
-        make.bottom.equalTo(self.contentView).offset(TRAILING_MARGIN);
+        make.bottom.equalTo(self.contentView).offset(-TRAILING_MARGIN);
+        make.height.equalTo(@HEIGHT_IMAGEVIEW);
+        make.width.equalTo(_mainImageView.mas_height).multipliedBy(WIDTH_HEIGHT_SCALE_IMAGEVIEW);
     }];
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
+    //todo 根据cell的宽高比决定cell样式
     [_titleLabel setText:model.articleTitle];
     if (model.thumbnails.count > 0) {
         NSDictionary *thumbnailDict = model.thumbnails.firstObject;

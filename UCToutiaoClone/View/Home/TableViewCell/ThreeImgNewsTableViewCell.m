@@ -43,6 +43,7 @@
 }
 
 - (void)setupCell {
+    [self setBackgroundColor:[UIColor redColor]];
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_TITLE]];
     [self.contentView addSubview:_titleLabel];
