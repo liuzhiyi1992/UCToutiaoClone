@@ -8,6 +8,5 @@
 
 #import "UCTNewsTableViewCell.h"
 
-@class ZYHArticleModel;
 @interface SingleImgNewsTableViewCell : UCTNewsTableViewCell
 @end

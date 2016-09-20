@@ -59,7 +59,8 @@
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
     [_titleLabel setText:model.articleTitle];
     if (model.thumbnails.count > 0) {
-        NSString *urlString = model.thumbnails.firstObject;
+        NSDictionary *thumbnailDict = model.thumbnails.firstObject;
+        NSString *urlString = thumbnailDict[@"url"];
         [_mainImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
     }
 }
