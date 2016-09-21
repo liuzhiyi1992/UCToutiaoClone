@@ -17,8 +17,8 @@
 #define LEADING_TITLE_LABEL 8
 #define GAP_IMAGE_VIEW 1
 
-#define FONT_SIZE_TITLE 14.f
-#define FONT_SIZE_SOURCE_LABEL 10.f
+#define TITLE_LABEL_FONT_SIZE 14.f
+#define SOURCE_LABEL_FONT_SIZE 11.f
 
 #define HEIGHT_IMAGEVIEW 205.f
 
@@ -47,11 +47,11 @@
 
 - (void)setupCell {
     self.titleLabel = [[UILabel alloc] init];
-    [_titleLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_TITLE]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
     [self.contentView addSubview:_titleLabel];
     
     self.sourceLabel = [[UILabel alloc] init];
-    [_sourceLabel setFont:[UIFont systemFontOfSize:FONT_SIZE_SOURCE_LABEL]];
+    [_sourceLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
     [self.contentView addSubview:_sourceLabel];
     
     self.leftImageView = [[UIImageView alloc] init];
