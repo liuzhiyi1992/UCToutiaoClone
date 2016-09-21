@@ -104,13 +104,12 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [_mainScrollView setPagingEnabled:YES];
     [_mainScrollView setShowsHorizontalScrollIndicator:NO];
     [_mainScrollView setDelegate:self];
-    [_mainScrollView setBackgroundColor:[UIColor redColor]];
     
     [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_navChannelview.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.bottom.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-44);
     }];
 }
 

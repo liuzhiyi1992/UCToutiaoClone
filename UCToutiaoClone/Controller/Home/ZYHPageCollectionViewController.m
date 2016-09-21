@@ -15,6 +15,7 @@
 #import "ZYHPageTableViewController.h"
 #import "NewsService.h"
 #import "ZYHArticleModel.h"
+#import "UIColor+hexColor.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -38,13 +39,14 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
     layout = [[UICollectionViewFlowLayout alloc] init];
     [(UICollectionViewFlowLayout *)layout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    [(UICollectionViewFlowLayout *)layout setMinimumLineSpacing:0];
+    [(UICollectionViewFlowLayout *)layout setMinimumLineSpacing:2];
     return [super initWithCollectionViewLayout:layout];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // self.clearsSelectionOnViewWillAppear = NO;
+    [self.collectionView setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
     
     // Register cell classes
     [self.collectionView registerClass:[SingleImgNewsTableViewCell class] forCellWithReuseIdentifier:[SingleImgNewsTableViewCell cellReuseIdentifier]];
