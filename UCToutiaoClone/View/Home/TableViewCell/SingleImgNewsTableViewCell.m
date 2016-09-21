@@ -15,8 +15,9 @@
 #define LEADING_MARGIN 10
 #define TRAILING_MARGIN 4
 #define MARGIN_LABEL_2_IMAGEVIEW 8
-#define WIDTH_HEIGHT_SCALE_IMAGEVIEW 1.46
-#define HEIGHT_IMAGEVIEW 120
+#define WIDTH_HEIGHT_SCALE_IMAGEVIEW 1.36
+#define WIDTH_SCREEN_SCALE_IMAGEVIEW 2.59
+#define WIDTH_IMAGEVIEW ([[UIScreen mainScreen] bounds].size.width / WIDTH_SCREEN_SCALE_IMAGEVIEW)
 
 @interface SingleImgNewsTableViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
@@ -56,8 +57,8 @@
         make.trailing.equalTo(self.contentView).offset(-TRAILING_MARGIN);
         make.top.equalTo(self.contentView).offset(TRAILING_MARGIN);
         make.bottom.equalTo(self.contentView).offset(-TRAILING_MARGIN);
-        make.height.equalTo(@HEIGHT_IMAGEVIEW);
-        make.width.equalTo(_mainImageView.mas_height).multipliedBy(WIDTH_HEIGHT_SCALE_IMAGEVIEW);
+        make.width.equalTo(@WIDTH_IMAGEVIEW);
+        make.height.equalTo(_mainImageView.mas_width).multipliedBy(1/WIDTH_HEIGHT_SCALE_IMAGEVIEW);
     }];
 }
 
