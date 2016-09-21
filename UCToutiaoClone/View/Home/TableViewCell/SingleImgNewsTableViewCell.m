@@ -29,6 +29,7 @@
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
 @property (strong, nonatomic) UILabel *sourceLabel;
+@property (strong, nonatomic) UILabel *timeLabel;
 @end
 
 @implementation SingleImgNewsTableViewCell
@@ -67,6 +68,11 @@
     [_sourceLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
     [self.contentView addSubview:_sourceLabel];
     
+    self.timeLabel = [[UILabel alloc] init];
+    [_timeLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
+    [_timeLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
+    [self.contentView addSubview:_timeLabel];
+    
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(LEADING_MARGIN);
         make.top.equalTo(self.contentView).offset(LEADING_MARGIN);
@@ -86,6 +92,11 @@
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
+    
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(_sourceLabel.mas_trailing).offset(5);
+        make.top.equalTo(_sourceLabel);
+    }];
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
@@ -98,6 +109,7 @@
     }
     
     [_sourceLabel setText:model.sourceName];
+    [_timeLabel setText:model.publicTimeString];
 }
 
 
