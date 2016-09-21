@@ -41,7 +41,6 @@
 }
 
 - (void)setupCell {
-    [self setBackgroundColor:[UIColor yellowColor]];
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_FONT_SIZE]];
     [self.contentView addSubview:_titleLabel];
@@ -58,6 +57,7 @@
     
     [colorBlock mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(_titleLabel.mas_height);
+        make.width.equalTo(@3);
         make.leading.equalTo(self.contentView).offset(2);
         make.centerY.equalTo(self.contentView);
     }];
