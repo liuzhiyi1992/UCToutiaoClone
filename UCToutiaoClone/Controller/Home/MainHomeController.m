@@ -14,6 +14,7 @@
 #import "ZYHChannelModel.h"
 #import "NewsService.h"
 #import "UIColor+hexColor.h"
+#import "ZYHPageCollectionViewController.h"
 
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
@@ -116,7 +117,8 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 - (void)setupHomeTableViewControllers {
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     for (int i = 0; i < _navChannelList.count; i ++) {
-        ZYHPageTableViewController *tableVC = [[ZYHPageTableViewController alloc] init];
+        ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+//        ZYHPageTableViewController *tableVC = [[ZYHPageTableViewController alloc] init];
         [self addChildViewController:tableVC];
         double colorR = (arc4random() % 255)/255.0;
         double colorG = (arc4random() % 255)/255.0;
@@ -124,6 +126,8 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
         [tableVC.view setBackgroundColor:[UIColor colorWithRed:colorR green:colorG blue:colorB alpha:1.f]];
          [_mainScrollView addSubview:tableVC.view];
         [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _mainScrollView.frame.size.width, _mainScrollView.frame.size.height)];
+        
+        
     }
     [_mainScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
 }

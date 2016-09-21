@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UCTTableViewCell : UITableViewCell
+@interface UCTTableViewCell : UICollectionViewCell
 + (NSString *)cellReuseIdentifier;
 @end

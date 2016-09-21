@@ -37,13 +37,13 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
 @end
 
 @implementation ZYHPageTableViewController
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupTableView];
-    }
-    return self;
-}
+//- (instancetype)init {
+//    self = [super init];
+//    if (self) {
+//        [self setupTableView];
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
