@@ -11,7 +11,7 @@
 #import "Masonry.h"
 #import "ZYHChannelModel.h"
 
-#define TITLE_FONT_SIZE 17.f
+#define TITLE_FONT_SIZE 16.f
 #define TITLE_COLOR_NORMAL [UIColor hexColor:@"777777"]
 #define TITLE_COLOR_SELECTED [UIColor hexColor:@"777777"]
 

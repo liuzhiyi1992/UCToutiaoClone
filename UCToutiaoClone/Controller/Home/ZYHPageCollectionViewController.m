@@ -16,6 +16,8 @@
 #import "NewsService.h"
 #import "ZYHArticleModel.h"
 #import "UIColor+hexColor.h"
+#import "UIScrollView+MJRefresh.h"
+#import "MJRefreshHeader.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -75,6 +77,12 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)freshData {
     NSLog(@"fresh Data");
+}
+
+- (void)setupMJ {
+    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [self loadNewData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
