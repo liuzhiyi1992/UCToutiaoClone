@@ -9,6 +9,7 @@
 #import "ZYHArticleModel.h"
 #import "ZYHPageTableViewController.h"
 #import "objc/runtime.h"
+#import "ZYHArticleDateFormatter.h"
 
 @implementation ZYHArticleModel
 - (instancetype)initWithDataDict:(NSDictionary *)dict {
@@ -31,6 +32,7 @@
     self.category = dict[@"category"];
     self.grabTime = [dict[@"grab_time"] stringValue];
     self.tags = dict[@"tags"];
+    self.publicTimeString = [ZYHArticleDateFormatter publicTimeStringByDate:[NSDate dateWithTimeIntervalSince1970:[dict[@"publish_time"] intValue]]];
     //todo site_logo(字典)
     //todo 决定cell class
     if (_thumbnails.count == 1) {

@@ -20,5 +20,6 @@
 @property (strong, nonatomic) NSArray *tags;
 @property (strong, nonatomic) NSArray *category;
 @property (copy, nonatomic) NSString *grabTime;
+@property (copy, nonatomic) NSString *publicTimeString;//publish_time
 - (instancetype)initWithDataDict:(NSDictionary *)dict;
 @end
