@@ -17,7 +17,7 @@
 #define TITLE_LABEL_FONT_COLOR [UIColor hexColor:@"3F4449"]
 #define SOURCE_LABEL_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
 
-#define LEADING_MARGIN 8
+#define LEADING_MARGIN 12
 #define TOP_MARGIN 15
 #define BOTTOM_MARGIN 10
 
