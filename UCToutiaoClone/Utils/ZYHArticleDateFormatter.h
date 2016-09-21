@@ -10,5 +10,5 @@
 
 @interface ZYHArticleDateFormatter : NSObject
 + (NSDateFormatter *)shareFormatter;
-+ (NSString *)publicTimeStringByTimeInterval:(int)timeInterval;
++ (NSString *)publicTimeStringByTimeInterval:(NSTimeInterval)timeInterval;
 @end

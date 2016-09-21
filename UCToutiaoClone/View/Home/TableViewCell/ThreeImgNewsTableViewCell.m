@@ -33,6 +33,7 @@
 @property (strong, nonatomic) UIImageView *centerImageView;
 @property (strong, nonatomic) UIImageView *rightImageView;
 @property (strong, nonatomic) UILabel *sourceLabel;
+@property (strong, nonatomic) UILabel *timeLabel;
 @end
 
 @implementation ThreeImgNewsTableViewCell
@@ -74,6 +75,11 @@
     [self.contentView addSubview:_centerImageView];
     [self.contentView addSubview:_rightImageView];
     
+    self.timeLabel = [[UILabel alloc] init];
+    [_timeLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
+    [_timeLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
+    [self.contentView addSubview:_timeLabel];
+    
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(LEADING_TITLE_LABEL);
         make.trailing.equalTo(self.contentView).offset(LEADING_TITLE_LABEL);
@@ -108,8 +114,10 @@
         make.leading.equalTo(_titleLabel);
     }];
     
-    
-    
+    [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(_sourceLabel.mas_trailing).offset(5);
+        make.top.equalTo(_sourceLabel);
+    }];
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
@@ -126,6 +134,8 @@
     }
     //_sourceLabel
     [_sourceLabel setText:model.sourceName];
+    //timeLabel
+    [_timeLabel setText:model.publicTimeString];
 }
 
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {

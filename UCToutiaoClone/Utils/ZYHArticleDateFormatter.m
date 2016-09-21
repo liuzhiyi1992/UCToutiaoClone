@@ -18,13 +18,15 @@ static NSDateFormatter *_zyhArticleDateFormatter;
     return _zyhArticleDateFormatter;
 }
 
-+ (NSString *)publicTimeStringByTimeInterval:(int)timeInterval {
++ (NSString *)publicTimeStringByTimeInterval:(NSTimeInterval)timeInterval {
+    timeInterval = timeInterval / 1000;
     NSDateFormatter *formatter = [self shareFormatter];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     NSString *timeString;
-    if ((NSTimeIntervalSince1970 - timeInterval) < 600) {//刚刚
+    int timeDiff = ([[NSDate date] timeIntervalSince1970] - timeInterval);
+    if (timeDiff < 600) {//刚刚
         timeString = @"刚刚";
-    } else if ((NSTimeIntervalSince1970 - timeInterval) < 3600) {//分钟
+    } else if (timeDiff < 3600) {//分钟
         //todo 检查下耗时点
         [formatter setDateFormat:@"m分钟前"];
         timeString = [formatter stringFromDate:date];

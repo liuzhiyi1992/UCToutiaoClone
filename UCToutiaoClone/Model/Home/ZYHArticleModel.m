@@ -32,7 +32,7 @@
     self.category = dict[@"category"];
     self.grabTime = [dict[@"grab_time"] stringValue];
     self.tags = dict[@"tags"];
-    self.publicTimeString = [ZYHArticleDateFormatter publicTimeStringByTimeInterval:[dict[@"publish_time"] intValue]];
+    self.publicTimeString = [ZYHArticleDateFormatter publicTimeStringByTimeInterval:[dict[@"publish_time"] doubleValue]];
     //todo site_logo(字典)
     //todo 决定cell class
     if (_thumbnails.count == 1) {
