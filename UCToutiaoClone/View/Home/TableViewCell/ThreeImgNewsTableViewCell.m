@@ -10,17 +10,20 @@
 #import "ZYHArticleModel.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
+#import "UIColor+hexColor.h"
 
-#define TOP_BOTTOM_MARGIN_TITLE 10
+#define TOP_BOTTOM_MARGIN_TITLE 12
 #define BOTTOM_MARGIN_CELL 10
 #define LEADING_IMAGE_VIEW 5
-#define LEADING_TITLE_LABEL 8
+#define LEADING_TITLE_LABEL 12
 #define GAP_IMAGE_VIEW 1
+#define HEIGHT_IMAGEVIEW 205.f
 
 #define TITLE_LABEL_FONT_SIZE 14.f
 #define SOURCE_LABEL_FONT_SIZE 11.f
 
-#define HEIGHT_IMAGEVIEW 205.f
+#define TITLE_LABEL_FONT_COLOR [UIColor hexColor:@"3F4449"]
+#define SOURCE_LABEL_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
 
 //todo 组装
 @interface ThreeImgNewsTableViewCell ()
@@ -47,10 +50,12 @@
 
 - (void)setupCell {
     self.titleLabel = [[UILabel alloc] init];
+    [_titleLabel setTextColor:TITLE_LABEL_FONT_COLOR];
     [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
     [self.contentView addSubview:_titleLabel];
     
     self.sourceLabel = [[UILabel alloc] init];
+    [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
     [_sourceLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
     [self.contentView addSubview:_sourceLabel];
     
@@ -63,6 +68,7 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(LEADING_TITLE_LABEL);
+        make.trailing.equalTo(self.contentView).offset(LEADING_TITLE_LABEL);
         make.top.equalTo(self.contentView).offset(TOP_BOTTOM_MARGIN_TITLE);
     }];
     
@@ -111,7 +117,7 @@
         [_rightImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailsList[2][@"url"]]];
     }
     //_sourceLabel
-    [_sourceLabel setText:@"source"];
+    [_sourceLabel setText:model.sourceName];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

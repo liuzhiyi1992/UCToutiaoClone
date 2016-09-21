@@ -88,6 +88,7 @@ id (*objc_msgSendGetCellIdentifier)(id self, SEL _cmd) = (void *)objc_msgSend;
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
             [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
+            [weakSelf setHadLoadData:YES];
             [weakSelf.tableView reloadData];
         } else {
             NSLog(@"");
