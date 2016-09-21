@@ -20,7 +20,11 @@ static NSDateFormatter *_zyhArticleDateFormatter;
 
 + (NSString *)publicTimeStringByDate:(NSDate *)date {
     NSDateFormatter *formatter = [self shareFormatter];
-    [formatter setDateFormat:@"HH小时前"];
-    return [formatter stringFromDate:date];
+    [formatter setDateFormat:@"H"];
+    NSString *timeString = [formatter stringFromDate:date];
+    if (0 == [timeString intValue]) {
+        return @"刚刚";
+    }
+    return [NSString stringWithFormat:@"%@小时前", timeString];
 }
 @end
