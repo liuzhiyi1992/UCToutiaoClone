@@ -12,6 +12,6 @@
 #define SOURCE_LABEL_FONT [UIFont systemFontOfSize:10.f]
 
 @class ZYHArticleModel;
-@interface UCTNewsTableViewCell : UCTTableViewCell
+@interface UCTNewsCollectionViewCell : UCTTableViewCell
 - (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end

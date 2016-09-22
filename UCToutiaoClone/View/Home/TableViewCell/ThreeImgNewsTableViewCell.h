@@ -6,7 +6,7 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "UCTNewsTableViewCell.h"
+#import "UCTNewsCollectionViewCell.h"
 
-@interface ThreeImgNewsTableViewCell : UCTNewsTableViewCell
+@interface ThreeImgNewsTableViewCell : UCTNewsCollectionViewCell
 @end
