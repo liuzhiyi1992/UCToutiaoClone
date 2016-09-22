@@ -34,6 +34,8 @@
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
 		558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17081D895170008FC971 /* ZYHChannelModel.m */; };
 		55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */; };
+		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
+		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
 		55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
@@ -104,6 +106,10 @@
 		558D17081D895170008FC971 /* ZYHChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHChannelModel.m; sourceTree = "<group>"; };
 		55B83A4A1D8FCFCD00626DFF /* UCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTTableViewCell.h; sourceTree = "<group>"; };
 		55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTTableViewCell.m; sourceTree = "<group>"; };
+		55B873951D938F2F0041EE34 /* UCTHomeSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTHomeSearchBar.h; sourceTree = "<group>"; };
+		55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchBar.m; sourceTree = "<group>"; };
+		55B873981D9390010041EE34 /* UCTHomeSearchRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTHomeSearchRefreshView.h; sourceTree = "<group>"; };
+		55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchRefreshView.m; sourceTree = "<group>"; };
 		55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageCollectionViewController.h; sourceTree = "<group>"; };
 		55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +238,10 @@
 				552887921D87FCBD0035B4A8 /* TableViewCell */,
 				552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */,
 				552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */,
+				55B873951D938F2F0041EE34 /* UCTHomeSearchBar.h */,
+				55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */,
+				55B873981D9390010041EE34 /* UCTHomeSearchRefreshView.h */,
+				55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -512,6 +522,7 @@
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
 				558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */,
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
+				55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */,
 				554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */,
 				558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */,
 				484C3A6A1D92D2DC000D9161 /* ZYHArticleDateFormatter.m in Sources */,
@@ -525,6 +536,7 @@
 				553A45941D93844E0058FCDD /* UCTNewsCollectionViewCell.m in Sources */,
 				558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */,
 				55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */,
+				55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */,
 				5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */,
 				484A903F1D86FBA7002E36B4 /* main.m in Sources */,
 			);
