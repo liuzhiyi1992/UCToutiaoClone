@@ -270,41 +270,21 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    NSLog(@"%f", scrollView.contentOffset.y);
-    CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY < 0) {
-//        [scrollView setContentOffset:CGPointMake(0, offsetY)];
-//        NSLog(@"%f", scrollView.contentOffset.y);
-    }
-//    [scrollView setContentOffset:CGPointMake(0, 50)];
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    NSLog(@"zoom");
-}
-
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    NSLog(@"松手");
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY < -25) {
-        [self.collectionView setIsForbidSpringback:YES];
-        [self.collectionView setOffsetYBoundary:-25];
-        [self.collectionView setForbidAndAutoDistanceY:-50];
-        [self.collectionView setContentSize:CGSizeMake(self.collectionView.contentSize.width, self.collectionView.contentSize.height + 50)];
-//        [UIView animateWithDuration:2.f animations:^{
-//            CGRect scrollFrame = scrollView.bounds;
-//            scrollFrame.origin.y = -50;
-//            [scrollView setBounds:scrollFrame];
-//        }];
+        [UIView animateWithDuration:0.5f animations:^{
+            if (0 == scrollView.contentInset.top) {
+                [scrollView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+            } else {
+                [scrollView setContentOffset:CGPointMake(0, -50)];
+            }
+        }];
+    } else {
+        [UIView animateWithDuration:0.5f animations:^{
+            [scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        }];
     }
-}
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-//    CGPoint orifinalTargetContentOffset = CGPointMake(targetContentOffset->x, targetContentOffset->y);
-//    *targetContentOffset = CGPointMake(0, -50);
-    return;
-//    *targetContentOffset = [self  itemCenterOffsetWithOriginalTargetContentOffset:orifinalTargetContentOffset];//计算出想要其停止的位置
 }
 
 - (void)setChannelId:(NSString *)channelId {
