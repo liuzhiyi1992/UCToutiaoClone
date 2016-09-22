@@ -1,12 +1,12 @@
 //
-//  SingleTitleNewsTableViewCell.m
+//  SingleTitleNewsCollectionViewCell.m
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/19.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "SingleTitleNewsTableViewCell.h"
+#import "SingleTitleNewsCollectionViewCell.h"
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
 #import "UIColor+hexColor.h"
@@ -18,15 +18,15 @@
 #define TOP_MARGIN 15
 #define BOTTOM_MARGIN 10
 
-@interface SingleTitleNewsTableViewCell ()
+@interface SingleTitleNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
-@implementation SingleTitleNewsTableViewCell
+@implementation SingleTitleNewsCollectionViewCell
 + (NSString *)cellReuseIdentifier {
-    return @"SingleTitleNewsTableViewCell";
+    return @"SingleTitleNewsCollectionViewCell";
 }
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

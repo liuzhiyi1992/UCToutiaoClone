@@ -1,12 +1,12 @@
 //
-//  SpecialNewsTableViewCell.m
+//  SpecialNewsCollectionViewCell.m
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/20.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "SpecialNewsTableViewCell.h"
+#import "SpecialNewsCollectionViewCell.h"
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
 #import "UIColor+hexColor.h"
@@ -15,13 +15,13 @@
 #define TOP_BOTTOM_MARGIN 6
 
 //todo 样式：左边有条彩色线
-@interface SpecialNewsTableViewCell ()
+@interface SpecialNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @end
 
-@implementation SpecialNewsTableViewCell
+@implementation SpecialNewsCollectionViewCell
 + (NSString *)cellReuseIdentifier {
-    return @"SpecialNewsTableViewCell";
+    return @"SpecialNewsCollectionViewCell";
 }
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

@@ -1,12 +1,12 @@
 //
-//  ThreeImgNewsTableViewCell.m
+//  ThreeImgNewsCollectionViewCell.m
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/13.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "ThreeImgNewsTableViewCell.h"
+#import "ThreeImgNewsCollectionViewCell.h"
 #import "ZYHArticleModel.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
@@ -23,7 +23,7 @@
 #define SOURCE_LABEL_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
 
 //todo 组装
-@interface ThreeImgNewsTableViewCell ()
+@interface ThreeImgNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) NSArray *imageViewList;
 @property (strong, nonatomic) UIImageView *leftImageView;
@@ -33,9 +33,9 @@
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
-@implementation ThreeImgNewsTableViewCell
+@implementation ThreeImgNewsCollectionViewCell
 + (NSString *)cellReuseIdentifier {
-    return @"ThreeImgNewsTableViewCell";
+    return @"ThreeImgNewsCollectionViewCell";
 }
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

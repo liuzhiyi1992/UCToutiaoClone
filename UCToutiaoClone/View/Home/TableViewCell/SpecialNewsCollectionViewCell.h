@@ -1,5 +1,5 @@
 //
-//  SpecialNewsTableViewCell.h
+//  SpecialNewsCollectionViewCell.h
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/20.
@@ -8,6 +8,6 @@
 
 #import "UCTNewsCollectionViewCell.h"
 
-@interface SpecialNewsTableViewCell : UCTNewsCollectionViewCell
+@interface SpecialNewsCollectionViewCell : UCTNewsCollectionViewCell
 
 @end

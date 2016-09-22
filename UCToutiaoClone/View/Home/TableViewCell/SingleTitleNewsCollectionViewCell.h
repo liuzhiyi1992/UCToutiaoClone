@@ -1,5 +1,5 @@
 //
-//  SingleTitleNewsTableViewCell.h
+//  SingleTitleNewsCollectionViewCell.h
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/19.
@@ -8,5 +8,5 @@
 
 #import "UCTNewsCollectionViewCell.h"
 
-@interface SingleTitleNewsTableViewCell : UCTNewsCollectionViewCell
+@interface SingleTitleNewsCollectionViewCell : UCTNewsCollectionViewCell
 @end

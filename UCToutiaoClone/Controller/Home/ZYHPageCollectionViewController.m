@@ -7,10 +7,10 @@
 //
 
 #import "ZYHPageCollectionViewController.h"
-#import "SingleImgNewsTableViewCell.h"
-#import "ThreeImgNewsTableViewCell.h"
-#import "SingleTitleNewsTableViewCell.h"
-#import "SpecialNewsTableViewCell.h"
+#import "SingleImgNewsCollectionViewCell.h"
+#import "ThreeImgNewsCollectionViewCell.h"
+#import "SingleTitleNewsCollectionViewCell.h"
+#import "SpecialNewsCollectionViewCell.h"
 #import "objc/message.h"
 #import "ZYHPageTableViewController.h"
 #import "NewsService.h"
@@ -51,10 +51,10 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [self.collectionView setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
     
     // Register cell classes
-    [self.collectionView registerClass:[SingleImgNewsTableViewCell class] forCellWithReuseIdentifier:[SingleImgNewsTableViewCell cellReuseIdentifier]];
-    [self.collectionView registerClass:[ThreeImgNewsTableViewCell class] forCellWithReuseIdentifier:[ThreeImgNewsTableViewCell cellReuseIdentifier]];
-    [self.collectionView registerClass:[SingleTitleNewsTableViewCell class] forCellWithReuseIdentifier:[SingleTitleNewsTableViewCell cellReuseIdentifier]];
-    [self.collectionView registerClass:[SpecialNewsTableViewCell class] forCellWithReuseIdentifier:[SpecialNewsTableViewCell cellReuseIdentifier]];
+    [self.collectionView registerClass:[SingleImgNewsCollectionViewCell class] forCellWithReuseIdentifier:[SingleImgNewsCollectionViewCell cellReuseIdentifier]];
+    [self.collectionView registerClass:[ThreeImgNewsCollectionViewCell class] forCellWithReuseIdentifier:[ThreeImgNewsCollectionViewCell cellReuseIdentifier]];
+    [self.collectionView registerClass:[SingleTitleNewsCollectionViewCell class] forCellWithReuseIdentifier:[SingleTitleNewsCollectionViewCell cellReuseIdentifier]];
+    [self.collectionView registerClass:[SpecialNewsCollectionViewCell class] forCellWithReuseIdentifier:[SpecialNewsCollectionViewCell cellReuseIdentifier]];
     
     
     // Do any additional setup after loading the view.

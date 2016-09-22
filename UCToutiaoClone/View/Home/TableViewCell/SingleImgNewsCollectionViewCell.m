@@ -1,12 +1,12 @@
 //
-//  SingleImgNewsTableViewCell.m
+//  SingleImgNewsCollectionViewCell.m
 //  UCToutiaoClone
 //
 //  Created by zhiyi on 16/9/13.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "SingleImgNewsTableViewCell.h"
+#import "SingleImgNewsCollectionViewCell.h"
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
 #import "UIImageView+WebCache.h"
@@ -23,16 +23,16 @@
 #define WIDTH_SCREEN_SCALE_IMAGEVIEW 2.59
 #define WIDTH_IMAGEVIEW ([[UIScreen mainScreen] bounds].size.width / WIDTH_SCREEN_SCALE_IMAGEVIEW)
 
-@interface SingleImgNewsTableViewCell ()
+@interface SingleImgNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
 @property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
-@implementation SingleImgNewsTableViewCell
+@implementation SingleImgNewsCollectionViewCell
 + (NSString *)cellReuseIdentifier {
-    return @"SingleImgNewsTableViewCell";
+    return @"SingleImgNewsCollectionViewCell";
 }
 
 //- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
