@@ -36,6 +36,7 @@
 		55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */; };
 		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
+		55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */; };
 		55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
@@ -110,6 +111,8 @@
 		55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchBar.m; sourceTree = "<group>"; };
 		55B873981D9390010041EE34 /* UCTHomeSearchRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTHomeSearchRefreshView.h; sourceTree = "<group>"; };
 		55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchRefreshView.m; sourceTree = "<group>"; };
+		55B8739B1D93DD250041EE34 /* UICollectionView+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Bounds.h"; sourceTree = "<group>"; };
+		55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Bounds.m"; sourceTree = "<group>"; };
 		55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageCollectionViewController.h; sourceTree = "<group>"; };
 		55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -304,6 +307,8 @@
 				484C3A691D92D2DC000D9161 /* ZYHArticleDateFormatter.m */,
 				558D17021D894DF2008FC971 /* UIColor+hexColor.h */,
 				558D17031D894DF2008FC971 /* UIColor+hexColor.m */,
+				55B8739B1D93DD250041EE34 /* UICollectionView+Bounds.h */,
+				55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */,
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
 				55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */,
+				55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */,
 				554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */,
 				558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */,
 				484C3A6A1D92D2DC000D9161 /* ZYHArticleDateFormatter.m in Sources */,
