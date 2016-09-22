@@ -63,6 +63,7 @@
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(LEADING_MARGIN);
+        make.trailing.equalTo(self.contentView).offset(-LEADING_MARGIN);
         make.top.equalTo(self.contentView).offset(TOP_MARGIN);
     }];
     

@@ -55,7 +55,7 @@
     [placeHolderButton setTitle:TEXT_PLACEHOLDER forState:UIControlStateNormal];
     [placeHolderButton setTitleColor:TEXT_FONT_COLOR forState:UIControlStateNormal];
     [placeHolderButton.titleLabel setFont:TEXT_FONT];
-    [placeHolderButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+    [placeHolderButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 16, 0, 0)];
     [searchBar addSubview:placeHolderButton];
     
     [placeHolderButton mas_makeConstraints:^(MASConstraintMaker *make) {
