@@ -9,10 +9,4 @@
 #import "UCTNewsTableViewCell.h"
 
 @implementation UCTNewsTableViewCell
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
 @end

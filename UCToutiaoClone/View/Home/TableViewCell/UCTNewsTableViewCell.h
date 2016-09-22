@@ -8,6 +8,9 @@
 
 #import "UCTTableViewCell.h"
 
+#define TITLE_LABEL_FONT [UIFont boldSystemFontOfSize:14.f]
+#define SOURCE_LABEL_FONT [UIFont systemFontOfSize:10.f]
+
 @class ZYHArticleModel;
 @interface UCTNewsTableViewCell : UCTTableViewCell
 - (void)updateCellWithModel:(ZYHArticleModel *)model;

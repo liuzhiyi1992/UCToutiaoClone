@@ -11,9 +11,6 @@
 #import "ZYHArticleModel.h"
 #import "UIColor+hexColor.h"
 
-#define TITLE_LABEL_FONT_SIZE 14.f
-#define SOURCE_LABEL_FONT_SIZE 11.f
-
 #define TITLE_LABEL_FONT_COLOR [UIColor hexColor:@"3F4449"]
 #define SOURCE_LABEL_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
 
@@ -51,17 +48,17 @@
 - (void)setupCell {
     self.titleLabel = [[UILabel alloc] init];
     [_titleLabel setTextColor:TITLE_LABEL_FONT_COLOR];
-    [_titleLabel setFont:[UIFont systemFontOfSize:TITLE_LABEL_FONT_SIZE]];
+    [_titleLabel setFont:TITLE_LABEL_FONT];
     [self.contentView addSubview:_titleLabel];
     
     self.sourceLabel = [[UILabel alloc] init];
     [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
-    [_sourceLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
+    [_sourceLabel setFont:SOURCE_LABEL_FONT];
     [self.contentView addSubview:_sourceLabel];
     
     self.timeLabel = [[UILabel alloc] init];
     [_timeLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
-    [_timeLabel setFont:[UIFont systemFontOfSize:SOURCE_LABEL_FONT_SIZE]];
+    [_timeLabel setFont:SOURCE_LABEL_FONT];
     [self.contentView addSubview:_timeLabel];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
