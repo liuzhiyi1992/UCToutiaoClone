@@ -6,12 +6,12 @@
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "UCTTableViewCell.h"
+#import "UCTCollectionViewCell.h"
 
 #define TITLE_LABEL_FONT [UIFont boldSystemFontOfSize:14.f]
 #define SOURCE_LABEL_FONT [UIFont systemFontOfSize:10.f]
 
 @class ZYHArticleModel;
-@interface UCTNewsCollectionViewCell : UCTTableViewCell
+@interface UCTNewsCollectionViewCell : UCTCollectionViewCell
 - (void)updateCellWithModel:(ZYHArticleModel *)model;
 @end
