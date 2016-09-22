@@ -18,6 +18,8 @@
 #import "UIColor+hexColor.h"
 #import "UIScrollView+MJRefresh.h"
 #import "MJRefreshHeader.h"
+#import "UCTHomeSearchRefreshView.h"
+#import "Masonry.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -61,10 +63,37 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [self setupCollectionView];
 }
 
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self setupSearchRefreshView];
+//}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self setupSearchRefreshView];
+}
+
 - (void)setupCollectionView {
+//    [searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
+////        make.bottom.equalTo(self.collectionView.wa)
+//    }];
     
 //    self.collectionView.delegate = self;
 //    self.collectionView.dataSource = self;
+}
+
+- (void)setupSearchRefreshView {
+    UCTHomeSearchRefreshView *searchRefreshView = [[UCTHomeSearchRefreshView alloc] init];
+    CGFloat viewHeight = [searchRefreshView searchRefreshViewHeight];
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+//    [searchRefreshView setFrame:CGRectMake(0, -50, screenWidth, 50)];
+    
+    [self.collectionView addSubview:searchRefreshView];
+    [searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.collectionView).offset(-viewHeight);
+        make.leading.equalTo(self.collectionView);
+        make.width.equalTo(self.collectionView);
+    }];
 }
 
 - (void)loadNewData {
@@ -145,16 +174,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     return model;
 }
 
-#pragma mark <UICollectionViewDataSource>
-
-//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//#warning Incomplete implementation, return the number of sections
-//    return 0;
-//}
-
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of items
     return _dataList.count;
 }
 
@@ -175,7 +195,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     return cell;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - Delegate DataSource
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking

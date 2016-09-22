@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTHomeSearchRefreshView : UIView
-
+- (CGFloat)searchRefreshViewHeight;
 @end

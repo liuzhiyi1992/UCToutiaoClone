@@ -15,6 +15,8 @@
 #define SEARCH_BAR_HEIGHT 30
 #define SELF_HEIGHT (2*SEARCH_BAR_MARGIN_BOTTOM + SEARCH_BAR_HEIGHT)
 #define TEXT_PLACEHOLDER @"搜索文章、订阅号"
+#define TEXT_FONT [UIFont systemFontOfSize:12.f]
+#define TEXT_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
 
 @interface UCTHomeSearchRefreshView ()
 @end
@@ -30,20 +32,18 @@
 
 - (void)setup {
     [self setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
-    
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@SELF_HEIGHT);
-        make.width.equalTo(@([[UIScreen mainScreen] bounds].size.width));
     }];
     
     UIView *searchBar = [self createSearchBar];
+    [self addSubview:searchBar];
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@SEARCH_BAR_HEIGHT);
         make.leading.equalTo(self).offset(SEARCH_BAR_LEADING_TRAILNG);
         make.trailing.equalTo(self).offset(-SEARCH_BAR_LEADING_TRAILNG);
         make.bottom.equalTo(self).offset(-SEARCH_BAR_MARGIN_BOTTOM);
     }];
-    [self addSubview:searchBar];
 }
 
 - (UIView *)createSearchBar {
@@ -53,20 +53,23 @@
     UIButton *placeHolderButton = [[UIButton alloc] init];
     [placeHolderButton setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
     [placeHolderButton setTitle:TEXT_PLACEHOLDER forState:UIControlStateNormal];
-    [placeHolderButton.titleLabel setFont:[UIFont systemFontOfSize:10.f]];
+    [placeHolderButton setTitleColor:TEXT_FONT_COLOR forState:UIControlStateNormal];
+    [placeHolderButton.titleLabel setFont:TEXT_FONT];
+    [placeHolderButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
     [searchBar addSubview:placeHolderButton];
     
     [placeHolderButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(searchBar);
         make.center.equalTo(searchBar);
     }];
     return searchBar;
-    
-//    UIImageView *searchIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_search"]];
-//    UILabel *textLabel = [[UILabel alloc] init];
-//    [textLabel setText:TEXT_PLACEHOLDER];
-//    [textLabel setFont:[UIFont systemFontOfSize:10.f]];
-//    [searchBar addSubview:searchIcon];
-//    [searchIcon addSubview:textLabel];
+}
+
+- (CGFloat)searchRefreshViewHeight {
+    if (self.bounds.size.height <= 0) {
+        return SELF_HEIGHT;
+    }
+    return self.bounds.size.height;
 }
 
 @end
