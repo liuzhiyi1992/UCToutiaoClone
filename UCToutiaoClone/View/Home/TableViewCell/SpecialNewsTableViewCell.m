@@ -9,6 +9,7 @@
 #import "SpecialNewsTableViewCell.h"
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
+#import "UIColor+hexColor.h"
 
 #define TITLE_FONT_SIZE 12.f
 #define LEADING_CELL 10
@@ -46,7 +47,7 @@
     [self.contentView addSubview:_titleLabel];
     
     UIView *colorBlock = [[UIView alloc] init];
-    [colorBlock setBackgroundColor:[UIColor yellowColor]];
+    [colorBlock setBackgroundColor:[UIColor hexColor:@"F9B53A"]];
     [self.contentView addSubview:colorBlock];
     
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -58,7 +59,7 @@
     [colorBlock mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(_titleLabel.mas_height);
         make.width.equalTo(@3);
-        make.leading.equalTo(self.contentView).offset(2);
+        make.leading.equalTo(self.contentView).offset(3);
         make.centerY.equalTo(self.contentView);
     }];
 }
