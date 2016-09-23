@@ -272,7 +272,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY < -25) {
+    if (offsetY < -30) {
         [UIView animateWithDuration:0.5f animations:^{
             if (0 == scrollView.contentInset.top) {
                 [scrollView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
@@ -284,6 +284,21 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
         [UIView animateWithDuration:0.5f animations:^{
             [scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
         }];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!scrollView.tracking) {
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY < -30) {
+            [UIView animateWithDuration:0.5f animations:^{
+                if (0 == scrollView.contentInset.top) {
+                    [scrollView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
+                } else {
+                    [scrollView setContentOffset:CGPointMake(0, -50)];
+                }
+            }];
+        }
     }
 }
 
