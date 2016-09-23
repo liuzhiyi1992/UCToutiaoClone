@@ -116,7 +116,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)queryDataWithChannelId:(NSString *)channelId {
     __weak __typeof(&*self)weakSelf = self;
-    [NewsService queryNewsWithChannelId:channelId completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
+    [NewsService queryNewsWithChannelId:channelId method:@"new" recoid:@"" completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
         if (status == UCTNetworkResponseSucceed) {
             //数据先放model解析出来
             weakSelf.articlesIdList = [dataDict objectForKey:@"items"];

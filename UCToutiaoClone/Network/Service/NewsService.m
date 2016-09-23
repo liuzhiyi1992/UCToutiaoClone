@@ -32,10 +32,14 @@
     //iflow.uczzd.cn/iflow/api/v1/channels?app=ucnews-iflow&uc_param_str=dnnivebichfrmintcpgieiwidsudsvadpf&dn=&ve=1.5.0.805&bi=800&ch=tt_13&fr=iphone&mi=iPhone7,1&nt=2&cp=&gi=&ei=bTkwBeisrUb0JXE+5nOLXtHCaoVEGnZEcZ9GZSMD8qSqiUkx9w5kp+ipqOit7w==&wi=&ds=bTkwBRKsswSNIHuFlUfKYACkD2uGdSKto+sWoMV/uqjx7Q==&sv=release&pf=195
 }
 
-+ (void)queryNewsWithChannelId:(NSString *)channelId completion:(void (^)(UCTNetworkResponseStatus, NSDictionary *))completion {
++ (void)queryNewsWithChannelId:(NSString *)channelId
+                        method:(NSString *)method
+                        recoid:(NSString *)recoid
+                    completion:(void (^)(UCTNetworkResponseStatus, NSDictionary *))completion {
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
     [reqDict setValue:@"ucnews-iflow" forKey:@"app"];
-    [reqDict setValue:@"new" forKey:@"method"];//todo 首次进来用new，有记录用his
+    [reqDict setValue:recoid forKey:@"recoid"];
+    [reqDict setValue:method forKey:@"method"];//todo 首次进来用new，有记录用his
     [reqDict setValue:@"1" forKey:@"count"];
     [reqDict setValue:@"0" forKey:@"no_op"];
     [reqDict setValue:@"0" forKey:@"auto"];
