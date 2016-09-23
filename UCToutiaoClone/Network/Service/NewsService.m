@@ -35,7 +35,7 @@
 + (void)queryNewsWithChannelId:(NSString *)channelId completion:(void (^)(UCTNetworkResponseStatus, NSDictionary *))completion {
     NSMutableDictionary *reqDict = [NSMutableDictionary dictionary];
     [reqDict setValue:@"ucnews-iflow" forKey:@"app"];
-    [reqDict setValue:@"new" forKey:@"method"];
+    [reqDict setValue:@"new" forKey:@"method"];//todo 首次进来用new，有记录用his
     [reqDict setValue:@"1" forKey:@"count"];
     [reqDict setValue:@"0" forKey:@"no_op"];
     [reqDict setValue:@"0" forKey:@"auto"];
