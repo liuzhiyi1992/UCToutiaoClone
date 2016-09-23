@@ -33,6 +33,8 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 @interface ZYHPageCollectionViewController () <UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UIImageView *bgPlaceholderView;
+@property (strong, nonatomic) UCTHomeSearchRefreshView *searchRefreshView;
+@property (assign, nonatomic) CGFloat searchRefreshViewHeight;
 @property (strong, nonatomic) NSArray *dataList;
 @property (strong, nonatomic) NSArray *articlesIdList;
 @property (strong, nonatomic) NSMutableDictionary *templateCellDict;
@@ -65,7 +67,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self setupSearchRefreshView];
 }
 
 - (void)setupCollectionView {
@@ -73,15 +74,18 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)setupSearchRefreshView {
-    UCTHomeSearchRefreshView *searchRefreshView = [[UCTHomeSearchRefreshView alloc] init];
-    CGFloat viewHeight = [searchRefreshView searchRefreshViewHeight];
+    if ([_channelId isEqualToString:@"100"]) {
+        self.searchRefreshView = [[UCTHomeSearchRefreshView alloc] init];
+        CGFloat viewHeight = [_searchRefreshView searchRefreshViewHeight];
+        
+        [self.collectionView addSubview:_searchRefreshView];
+        [_searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.collectionView).offset(-viewHeight);
+            make.leading.equalTo(self.collectionView);
+            make.width.equalTo(self.collectionView);
+        }];
+    }
     
-    [self.collectionView addSubview:searchRefreshView];
-    [searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.collectionView).offset(-viewHeight);
-        make.leading.equalTo(self.collectionView);
-        make.width.equalTo(self.collectionView);
-    }];
 }
 
 - (void)loadNewData {
@@ -207,33 +211,38 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY < -30) {
-        [UIView animateWithDuration:0.5f animations:^{
-            if (0 == scrollView.contentInset.top) {
-                [scrollView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
-            } else {
-                [scrollView setContentOffset:CGPointMake(0, -50)];
-            }
-        }];
-    } else {
-        [UIView animateWithDuration:0.5f animations:^{
-            [scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-        }];
+    if (_searchRefreshView) {
+        self.searchRefreshViewHeight = [_searchRefreshView searchRefreshViewHeight];
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY < (-0.6 * _searchRefreshViewHeight)) {
+            [UIView animateWithDuration:0.5f animations:^{
+                if (0 == scrollView.contentInset.top) {
+                    [scrollView setContentInset:UIEdgeInsetsMake(_searchRefreshViewHeight, 0, 0, 0)];
+                } else {
+                    [scrollView setContentOffset:CGPointMake(0, -_searchRefreshViewHeight)];
+                }
+            }];
+        } else {
+            [UIView animateWithDuration:0.5f animations:^{
+                [scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+            }];
+        }
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (!scrollView.tracking) {
-        CGFloat offsetY = scrollView.contentOffset.y;
-        if (offsetY < -30) {
-            [UIView animateWithDuration:0.5f animations:^{
-                if (0 == scrollView.contentInset.top) {
-                    [scrollView setContentInset:UIEdgeInsetsMake(50, 0, 0, 0)];
-                } else {
-                    [scrollView setContentOffset:CGPointMake(0, -50)];
-                }
-            }];
+    if (_searchRefreshView) {
+        if (!scrollView.tracking) {
+            CGFloat offsetY = scrollView.contentOffset.y;
+            if (offsetY < (-0.6 * _searchRefreshViewHeight)) {
+                [UIView animateWithDuration:0.5f animations:^{
+                    if (0 == scrollView.contentInset.top) {
+                        [scrollView setContentInset:UIEdgeInsetsMake(_searchRefreshViewHeight, 0, 0, 0)];
+                    } else {
+                        [scrollView setContentOffset:CGPointMake(0, -_searchRefreshViewHeight)];
+                    }
+                }];
+            }
         }
     }
 }
@@ -248,7 +257,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     if (!_hadLoadData) {//缓存
         [self loadNewData];
     }
-    NSLog(@"load page");
+    [self setupSearchRefreshView];
 }
 
 

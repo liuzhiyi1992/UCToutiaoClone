@@ -18,7 +18,7 @@
 }
 
 - (void)packageDataWithDict:(NSDictionary *)dict {
-    self.channelId = dict[@"id"];
+    self.channelId = [dict[@"id"] stringValue];
     self.channelName = dict[@"name"];
     self.isDefault = [dict[@"is_default"] boolValue];
     self.isFixed = [dict[@"is_fixed"] boolValue];
