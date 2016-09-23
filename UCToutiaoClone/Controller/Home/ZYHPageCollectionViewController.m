@@ -50,7 +50,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // self.clearsSelectionOnViewWillAppear = NO;
     [self.collectionView setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
     
     // Register cell classes
@@ -64,29 +63,18 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [self setupCollectionView];
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    [self setupSearchRefreshView];
-//}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self setupSearchRefreshView];
 }
 
 - (void)setupCollectionView {
-//    [searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
-////        make.bottom.equalTo(self.collectionView.wa)
-//    }];
-    
-//    self.collectionView.delegate = self;
-//    self.collectionView.dataSource = self;
+
 }
 
 - (void)setupSearchRefreshView {
     UCTHomeSearchRefreshView *searchRefreshView = [[UCTHomeSearchRefreshView alloc] init];
     CGFloat viewHeight = [searchRefreshView searchRefreshViewHeight];
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     
     [self.collectionView addSubview:searchRefreshView];
     [searchRefreshView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,11 +100,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
         [self loadNewData];
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSString *)analysisCellClassNameWithModel:(ZYHArticleModel *)model {
@@ -174,6 +157,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     return model;
 }
 
+#pragma mark - Delegate DataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _dataList.count;
 }
@@ -195,56 +179,8 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     return cell;
 }
 
-#pragma mark - Delegate DataSource
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    [self.collectionView scrollRectToVisible:CGRectMake(0, -50, 300, 50) animated:YES];
-//    [UIView animateWithDuration:2.f animations:^{
-//        CGRect scrollFrame = collectionView.bounds;
-//        scrollFrame.origin.y = -50;
-//        [collectionView setBounds:scrollFrame];
-//    }];
-    
-    [UIView animateWithDuration:0.5 animations:^{
-        CGRect scrollFrame = collectionView.bounds;
-        scrollFrame.origin.y = -50;
-        [collectionView setBounds:scrollFrame];
-    } completion:^(BOOL finished) {
-        NSArray *subviews = self.collectionView.subviews;
-        NSLog(@"");
-    }];
-    NSLog(@"点击");
-//    [self.collectionView setContentOffset:CGPointMake(0, -50)];
 }
-
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     @autoreleasepool {
@@ -302,6 +238,11 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)setChannelId:(NSString *)channelId {
     _channelId = channelId;
     if (!_hadLoadData) {//缓存
@@ -309,5 +250,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
     NSLog(@"load page");
 }
+
+
 
 @end
