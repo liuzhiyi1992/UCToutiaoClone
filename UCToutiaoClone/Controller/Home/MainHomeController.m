@@ -19,6 +19,8 @@
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
+
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
 #define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -26,10 +28,13 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 #define CHANNEL_SLIDER_BAR_HEIGHT 2.f
 #define CHANNEL_SLIDER_BAR_COLOR [UIColor hexColor:@"F85368"]
 
+#define CUSTOM_NAV_HEIGHT 84
+#define HOME_PAGE_SCROLL_VIEW_HEIGHT (SCREEN_HEIGHT - CHANNEL_COLLECTION_VIEW_HEIGHT - 20 - 49)//tabBar49, statusBar20
+
 
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) ZYNavChannelView *navChannelview;
-//@property (strong, nonatomic) UIScrollView *mainScrollView;
+@property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIScrollView *homePageScrollView;
 @property (strong, nonatomic) UIView *mainNavView;
 @property (strong, nonatomic) UIView *sliderBar;
@@ -43,6 +48,8 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 @implementation MainHomeController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tabBarController.tabBar.translucent = NO;
+    [self setupMainScrollView];
     [self setupCustomNavView];
     [self setupNavChannelBar];
     [self setupPageScrollView];
@@ -60,14 +67,28 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+- (void)setupMainScrollView {
+    self.mainScrollView = [[UIScrollView alloc] init];
+    [_mainScrollView setBounces:NO];
+    [_mainScrollView setContentSize:CGSizeMake(0, CUSTOM_NAV_HEIGHT + CHANNEL_COLLECTION_VIEW_HEIGHT + HOME_PAGE_SCROLL_VIEW_HEIGHT)];
+    [self.view addSubview:_mainScrollView];
+    
+    [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(-20);//状态栏高20
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+}
+
 - (void)setupCustomNavView {
     self.mainNavView = [[UIView alloc] init];
     [_mainNavView setBackgroundColor:[UIColor grayColor]];
-    [self.view addSubview:_mainNavView];
+    [self.mainScrollView addSubview:_mainNavView];
     
     [_mainNavView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@64);
-        make.top.equalTo(self.view);
+        make.height.equalTo(@CUSTOM_NAV_HEIGHT);
+        make.top.equalTo(_mainScrollView);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
@@ -85,7 +106,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     _navChannelview.delegate = self;
     _navChannelview.dataSource = self;
     _navChannelview.contentInset = CHANNEL_COLLECTION_VIEW_CONTENT_INSET;
-    [self.view addSubview:_navChannelview];
+    [self.mainScrollView addSubview:_navChannelview];
     
     [_navChannelview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@CHANNEL_COLLECTION_VIEW_HEIGHT);
@@ -100,17 +121,18 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 - (void)setupPageScrollView {
     self.homePageScrollView = [[UIScrollView alloc] init];
-    [self.view addSubview:_homePageScrollView];
+    [_mainScrollView addSubview:_homePageScrollView];
     [_homePageScrollView setBounces:NO];
     [_homePageScrollView setPagingEnabled:YES];
     [_homePageScrollView setShowsHorizontalScrollIndicator:NO];
     [_homePageScrollView setDelegate:self];
     
     [_homePageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@HOME_PAGE_SCROLL_VIEW_HEIGHT);
         make.top.equalTo(_navChannelview.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.bottom.equalTo(self.view).offset(-44);
+//        make.bottom.equalTo(self.view).offset(-44);
     }];
 }
 
