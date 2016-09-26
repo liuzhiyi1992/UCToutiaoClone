@@ -15,6 +15,7 @@
 #import "NewsService.h"
 #import "UIColor+hexColor.h"
 #import "ZYHPageCollectionViewController.h"
+#import "UCTClipAnimatedView.h"
 
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
@@ -36,7 +37,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 @property (strong, nonatomic) ZYNavChannelView *navChannelview;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIScrollView *homePageScrollView;
-@property (strong, nonatomic) UIView *mainNavView;
+@property (strong, nonatomic) UCTClipAnimatedView *mainNavView;
 @property (strong, nonatomic) UIView *sliderBar;
 @property (strong, nonatomic) UIView *networkMaskView;
 @property (strong, nonatomic) NSArray *navChannelList;
@@ -69,7 +70,9 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 - (void)setupMainScrollView {
     self.mainScrollView = [[UIScrollView alloc] init];
+    [_mainScrollView setShowsVerticalScrollIndicator:NO];
     [_mainScrollView setBounces:NO];
+    [_mainScrollView setDelegate:self];
     [_mainScrollView setContentSize:CGSizeMake(0, CUSTOM_NAV_HEIGHT + CHANNEL_COLLECTION_VIEW_HEIGHT + HOME_PAGE_SCROLL_VIEW_HEIGHT)];
     [self.view addSubview:_mainScrollView];
     
@@ -82,8 +85,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 }
 
 - (void)setupCustomNavView {
-    self.mainNavView = [[UIView alloc] init];
-    [_mainNavView setBackgroundColor:[UIColor grayColor]];
+    self.mainNavView = [[UCTClipAnimatedView alloc] init];
     [self.mainScrollView addSubview:_mainNavView];
     
     [_mainNavView mas_makeConstraints:^(MASConstraintMaker *make) {
