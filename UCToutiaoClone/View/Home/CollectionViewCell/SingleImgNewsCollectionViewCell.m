@@ -56,9 +56,11 @@
     [_titleLabel setFont:TITLE_LABEL_FONT];
     [_titleLabel setTextColor:TITLE_LABEL_FONT_COLOR];
     [_titleLabel setNumberOfLines:2];
+    [_titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView addSubview:_titleLabel];
     
     self.mainImageView = [[UIImageView alloc] init];
+    self.mainImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_mainImageView];
     
     self.sourceLabel = [[UILabel alloc] init];
@@ -79,8 +81,9 @@
     [_mainImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.greaterThanOrEqualTo(_titleLabel.mas_trailing).offset(MARGIN_LABEL_2_IMAGEVIEW);
         make.trailing.equalTo(self.contentView).offset(-TRAILING_MARGIN);
-        make.top.equalTo(self.contentView).offset(TRAILING_MARGIN);
-        make.bottom.equalTo(self.contentView).offset(-TRAILING_MARGIN);
+        make.top.equalTo(self.contentView).offset(TRAILING_MARGIN).priority(900);
+        make.bottom.equalTo(self.contentView).offset(-TRAILING_MARGIN).priority(900);
+        make.centerY.equalTo(self.contentView);
         make.width.equalTo(@WIDTH_IMAGEVIEW);
         make.height.equalTo(_mainImageView.mas_width).multipliedBy(1/WIDTH_HEIGHT_SCALE_IMAGEVIEW);
     }];
