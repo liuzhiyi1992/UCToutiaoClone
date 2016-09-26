@@ -60,7 +60,6 @@
     [self.contentView addSubview:_titleLabel];
     
     self.mainImageView = [[UIImageView alloc] init];
-    self.mainImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_mainImageView];
     
     self.sourceLabel = [[UILabel alloc] init];
