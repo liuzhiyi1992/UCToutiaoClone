@@ -61,11 +61,24 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [self.collectionView registerClass:[SingleTitleNewsCollectionViewCell class] forCellWithReuseIdentifier:[SingleTitleNewsCollectionViewCell cellReuseIdentifier]];
     [self.collectionView registerClass:[SpecialNewsCollectionViewCell class] forCellWithReuseIdentifier:[SpecialNewsCollectionViewCell cellReuseIdentifier]];
     
-    
     [self setupCollectionView];
     [self setupMJ];
-    self.collectionView.scrollEnabled = NO;
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canScroll) name:@"canScroll" object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cannotScroll) name:@"cannotScroll" object:nil];
+//    [self.collectionView setCanCancelContentTouches:NO];
+//    self.collectionView.delaysContentTouches = NO;
 }
+
+//- (void)canScroll {
+//    NSLog(@"canScroll");
+//    self.collectionView.canCancelContentTouches = YES;
+//}
+//
+//- (void)cannotScroll {
+//    NSLog(@"cannotScroll");
+//    self.collectionView.canCancelContentTouches = NO;
+//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -263,6 +276,18 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y > 0) {
+        CGPoint currentContentOffset = _homePageScrollView.contentOffset;
+        NSLog(@"现在offset -- %f", currentContentOffset.y);
+        if (currentContentOffset.y < 44) {
+            [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
+                                                              currentContentOffset.y + scrollView.contentOffset.y)
+                                         animated:NO];
+            [scrollView setContentOffset:CGPointMake(0, 0)];
+        }
+    }
+    
+    
     if (_searchRefreshView) {
         if (!scrollView.tracking) {
             CGFloat offsetY = scrollView.contentOffset.y;

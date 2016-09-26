@@ -10,5 +10,6 @@
 
 @interface ZYHPageCollectionViewController : UICollectionViewController
 @property (copy, nonatomic) NSString *channelId;
+@property (strong, nonatomic) UIScrollView *homePageScrollView;//todo
 - (void)freshData;
 @end

@@ -142,6 +142,10 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     for (int i = 0; i < _navChannelList.count; i ++) {
         ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+        //todo
+        if (i == 0) {
+            tableVC.homePageScrollView = _mainScrollView;
+        }
         [self addChildViewController:tableVC];
          [_homePageScrollView addSubview:tableVC.view];
         [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _homePageScrollView.frame.size.width, _homePageScrollView.frame.size.height)];
@@ -346,6 +350,13 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
         if (currentPage != _currentPage) {
             self.currentPage = currentPage;
         }
+        //todo 临时
+    } else if ([scrollView isEqual:_mainScrollView]) {
+        CGFloat offsetY = scrollView.contentOffset.y;
+        if (offsetY > 40) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"canScroll" object:nil];
+        }
+        NSLog(@"offset%f", offsetY);
     }
 }
 
