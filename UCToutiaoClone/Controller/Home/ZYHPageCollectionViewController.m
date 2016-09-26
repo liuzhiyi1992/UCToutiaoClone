@@ -118,23 +118,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     objc_setAssociatedObject(dataDict, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-//- (void)queryDataWithChannelId:(NSString *)channelId {
-//    __weak __typeof(&*self)weakSelf = self;
-//    [NewsService queryNewsWithChannelId:channelId method:@"new" recoid:@"" completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
-//        if (status == UCTNetworkResponseSucceed) {
-//            //数据先放model解析出来
-//            weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
-//            NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
-//            NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
-//            [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
-//            [weakSelf setHadLoadData:YES];
-//            [weakSelf.collectionView reloadData];
-//        } else {
-//            NSLog(@"");
-//        }
-//    }];
-//}
-
 - (void)queryDataWithChannelId:(NSString *)channelId isAppend:(BOOL)isAppend {
     NSString *method = @"";
     NSString *recoid = @"";
