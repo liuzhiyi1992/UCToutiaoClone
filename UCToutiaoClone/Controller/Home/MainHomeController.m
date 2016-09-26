@@ -29,7 +29,8 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 @interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
 @property (strong, nonatomic) ZYNavChannelView *navChannelview;
-@property (strong, nonatomic) UIScrollView *mainScrollView;
+//@property (strong, nonatomic) UIScrollView *mainScrollView;
+@property (strong, nonatomic) UIScrollView *homePageScrollView;
 @property (strong, nonatomic) UIView *mainNavView;
 @property (strong, nonatomic) UIView *sliderBar;
 @property (strong, nonatomic) UIView *networkMaskView;
@@ -44,7 +45,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [super viewDidLoad];
     [self setupCustomNavView];
     [self setupNavChannelBar];
-    [self setupMainScrollView];
+    [self setupPageScrollView];
     [self setupNetworkMaksView];
     [self queryChannelData];
 }
@@ -97,15 +98,15 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self setupSliderBar];
 }
 
-- (void)setupMainScrollView {
-    self.mainScrollView = [[UIScrollView alloc] init];
-    [self.view addSubview:_mainScrollView];
-    [_mainScrollView setBounces:NO];
-    [_mainScrollView setPagingEnabled:YES];
-    [_mainScrollView setShowsHorizontalScrollIndicator:NO];
-    [_mainScrollView setDelegate:self];
+- (void)setupPageScrollView {
+    self.homePageScrollView = [[UIScrollView alloc] init];
+    [self.view addSubview:_homePageScrollView];
+    [_homePageScrollView setBounces:NO];
+    [_homePageScrollView setPagingEnabled:YES];
+    [_homePageScrollView setShowsHorizontalScrollIndicator:NO];
+    [_homePageScrollView setDelegate:self];
     
-    [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_homePageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_navChannelview.mas_bottom);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
@@ -118,10 +119,10 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     for (int i = 0; i < _navChannelList.count; i ++) {
         ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
         [self addChildViewController:tableVC];
-         [_mainScrollView addSubview:tableVC.view];
-        [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _mainScrollView.frame.size.width, _mainScrollView.frame.size.height)];
+         [_homePageScrollView addSubview:tableVC.view];
+        [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _homePageScrollView.frame.size.width, _homePageScrollView.frame.size.height)];
     }
-    [_mainScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
+    [_homePageScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
 }
 
 - (void)setupSliderBar {
@@ -208,7 +209,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     //scroll Page
     if (isProactive) {
         CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-        [_mainScrollView setContentOffset:CGPointMake(indexPath.row * screenWidth, 0) animated:NO];
+        [_homePageScrollView setContentOffset:CGPointMake(indexPath.row * screenWidth, 0) animated:NO];
     }
 }
 
@@ -315,7 +316,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if ([scrollView isEqual:_mainScrollView]) {
+    if ([scrollView isEqual:_homePageScrollView]) {
         CGFloat scrollContentOffsetX = scrollView.contentOffset.x;
         int currentPage = [[NSString stringWithFormat:@"%.0f", (scrollContentOffsetX / [[UIScreen mainScreen] bounds].size.width)] intValue];
         if (currentPage != _currentPage) {
