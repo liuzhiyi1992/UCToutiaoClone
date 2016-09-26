@@ -214,7 +214,8 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     if (_searchRefreshView) {
         self.searchRefreshViewHeight = [_searchRefreshView searchRefreshViewHeight];
         CGFloat offsetY = scrollView.contentOffset.y;
-        if (offsetY < (-0.6 * _searchRefreshViewHeight)) {
+        
+        if (offsetY < (-0.6 * _searchRefreshViewHeight) && offsetY > (-_searchRefreshViewHeight)) {
             [UIView animateWithDuration:0.5f animations:^{
                 if (0 == scrollView.contentInset.top) {
                     [scrollView setContentInset:UIEdgeInsetsMake(_searchRefreshViewHeight, 0, 0, 0)];
@@ -222,7 +223,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
                     [scrollView setContentOffset:CGPointMake(0, -_searchRefreshViewHeight)];
                 }
             }];
-        } else {
+        } else if (offsetY > (-0.6 * _searchRefreshViewHeight)) {
             [UIView animateWithDuration:0.5f animations:^{
                 [scrollView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
             }];
