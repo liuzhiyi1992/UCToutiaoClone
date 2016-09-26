@@ -86,7 +86,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
             make.width.equalTo(self.collectionView);
         }];
     }
-    
 }
 
 - (void)loadNewData {
@@ -131,6 +130,10 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     
     __weak __typeof(&*self)weakSelf = self;
     [NewsService queryNewsWithChannelId:channelId method:method recoid:recoid completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
+        [weakSelf endLoad];
+        if (0 == dataDict.count) {
+            [weakSelf canNotLoadMore];
+        }
         if (status == UCTNetworkResponseSucceed) {
             //数据先放model解析出来
             weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
@@ -177,6 +180,15 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 - (ZYHArticleModel *)packageArticleModelWithArticleDict:(NSDictionary *)articleDict {
     ZYHArticleModel *model = [[ZYHArticleModel alloc] initWithDataDict:articleDict];
     return model;
+}
+
+- (void)endLoad {
+    [self.collectionView.mj_header endRefreshing];
+    [self.collectionView.mj_footer endRefreshing];
+}
+
+- (void)canNotLoadMore {
+    [self.collectionView.mj_footer endRefreshingWithNoMoreData];
 }
 
 #pragma mark - Delegate DataSource
