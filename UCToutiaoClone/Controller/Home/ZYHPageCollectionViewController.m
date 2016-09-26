@@ -18,6 +18,7 @@
 #import "UIColor+hexColor.h"
 #import "UIScrollView+MJRefresh.h"
 #import "MJRefreshHeader.h"
+#import "MJRefreshAutoGifFooter.h"
 #import "UCTHomeSearchRefreshView.h"
 #import "Masonry.h"
 #import "UICollectionView+Bounds.h"
@@ -61,8 +62,8 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [self.collectionView registerClass:[SpecialNewsCollectionViewCell class] forCellWithReuseIdentifier:[SpecialNewsCollectionViewCell cellReuseIdentifier]];
     
     
-    // Do any additional setup after loading the view.
     [self setupCollectionView];
+    [self setupMJ];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,11 +90,11 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)loadNewData {
-    [self queryDataWithChannelId:_channelId];
+    [self queryDataWithChannelId:_channelId isAppend:NO];
 }
 
 - (void)loadMoreData {
-    
+    [self queryDataWithChannelId:_channelId isAppend:YES];
 }
 
 - (void)freshData {
@@ -101,8 +102,11 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)setupMJ {
-    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-        [self loadNewData];
+//    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+//        [self loadNewData];
+//    }];
+    self.collectionView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
     }];
 }
 
@@ -114,15 +118,42 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     objc_setAssociatedObject(dataDict, &kHomeTableViewCellClass, className, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)queryDataWithChannelId:(NSString *)channelId {
+//- (void)queryDataWithChannelId:(NSString *)channelId {
+//    __weak __typeof(&*self)weakSelf = self;
+//    [NewsService queryNewsWithChannelId:channelId method:@"new" recoid:@"" completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
+//        if (status == UCTNetworkResponseSucceed) {
+//            //数据先放model解析出来
+//            weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
+//            NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
+//            NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
+//            [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
+//            [weakSelf setHadLoadData:YES];
+//            [weakSelf.collectionView reloadData];
+//        } else {
+//            NSLog(@"");
+//        }
+//    }];
+//}
+
+- (void)queryDataWithChannelId:(NSString *)channelId isAppend:(BOOL)isAppend {
+    NSString *method = @"";
+    NSString *recoid = @"";
+    if (_dataList.count > 0) {
+        ZYHArticleModel *firstData = _dataList.firstObject;
+        recoid = firstData.recoid;
+        method = @"his";
+    } else {
+        method = @"new";
+    }
+    
     __weak __typeof(&*self)weakSelf = self;
-    [NewsService queryNewsWithChannelId:channelId method:@"new" recoid:@"" completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
+    [NewsService queryNewsWithChannelId:channelId method:method recoid:recoid completion:^(UCTNetworkResponseStatus status, NSDictionary *dataDict) {
         if (status == UCTNetworkResponseSucceed) {
             //数据先放model解析出来
             weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
             NSDictionary *specialsDict = [dataDict objectForKey:@"specials"];
-            [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict];
+            [weakSelf packageArticlesDataWithArticlesIdList:weakSelf.articlesIdList articlesDict:articlesDict specialsDict:specialsDict isAppend:isAppend];
             [weakSelf setHadLoadData:YES];
             [weakSelf.collectionView reloadData];
         } else {
@@ -133,8 +164,12 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)packageArticlesDataWithArticlesIdList:(NSArray *)articlesIdList
                                  articlesDict:(NSDictionary *)articlesDict
-                                 specialsDict:(NSDictionary *)specialsDict {
+                                 specialsDict:(NSDictionary *)specialsDict
+                                     isAppend:(BOOL)isAppend {
     NSMutableArray *mutArray = [NSMutableArray array];
+    if (isAppend) {
+        mutArray = [NSMutableArray arrayWithArray:_dataList];
+    }
     for (NSDictionary *articlesIdDict in articlesIdList) {
         NSString *articleMapString = [articlesIdDict objectForKey:@"map"];
         NSString *articleId = [articlesIdDict objectForKey:@"id"];
