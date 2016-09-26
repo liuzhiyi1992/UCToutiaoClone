@@ -64,6 +64,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     
     [self setupCollectionView];
     [self setupMJ];
+    self.collectionView.scrollEnabled = NO;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
