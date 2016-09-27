@@ -21,6 +21,9 @@ const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
+const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = 20;
+const CGFloat CUSTOM_NAV_HEIGHT = 84;
+
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
@@ -29,7 +32,6 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 #define CHANNEL_SLIDER_BAR_HEIGHT 2.f
 #define CHANNEL_SLIDER_BAR_COLOR [UIColor hexColor:@"F85368"]
 
-#define CUSTOM_NAV_HEIGHT 84
 #define HOME_PAGE_SCROLL_VIEW_HEIGHT (SCREEN_HEIGHT - CHANNEL_COLLECTION_VIEW_HEIGHT - 20 - 49)//tabBar49, statusBar20
 
 
@@ -89,7 +91,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self.mainScrollView addSubview:_mainNavView];
     
     [_mainNavView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@CUSTOM_NAV_HEIGHT);
+        make.height.equalTo(@(CUSTOM_NAV_HEIGHT));
         make.top.equalTo(_mainScrollView);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);

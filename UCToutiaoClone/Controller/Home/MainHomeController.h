@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+extern const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP;
+extern const CGFloat CUSTOM_NAV_HEIGHT;
 @interface MainHomeController : UIViewController
-
 @end

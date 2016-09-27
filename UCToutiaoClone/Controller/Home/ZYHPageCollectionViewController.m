@@ -22,6 +22,7 @@
 #import "UCTHomeSearchRefreshView.h"
 #import "Masonry.h"
 #import "UICollectionView+Bounds.h"
+#import "MainHomeController.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -277,10 +278,11 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     //联动首页mainScrollView 动作向上
+    CGFloat remainingHeight = 20;
+    CGFloat divideOffset = CUSTOM_NAV_HEIGHT - MAIN_SCROLLVIEW_OFFSET_TOP - remainingHeight;
     if (scrollView.contentOffset.y > 0) {
         CGPoint currentContentOffset = _homePageScrollView.contentOffset;
-        NSLog(@"现在offset -- %f", currentContentOffset.y);
-        if (currentContentOffset.y < 44) {
+        if (currentContentOffset.y < divideOffset) {
             [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
                                                               currentContentOffset.y + scrollView.contentOffset.y)
                                          animated:NO];
@@ -288,7 +290,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
         } else {
             [UIView animateWithDuration:0.5f animations:^{
                 [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
-                                                                  44)];
+                                                                  divideOffset)];
             }];
         }
     }
@@ -296,8 +298,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     //联动首页mainScrollView 动作向下
     if (scrollView.contentOffset.y < 0) {
         CGPoint currentContentOffset = _homePageScrollView.contentOffset;
-        NSLog(@"现在offset -- %f", currentContentOffset.y);
-        if (currentContentOffset.y > 0) {
+        if (currentContentOffset.y > -remainingHeight) {
             [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
                                                               currentContentOffset.y + scrollView.contentOffset.y)
                                          animated:NO];
@@ -305,7 +306,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
         } else {
             [UIView animateWithDuration:0.5f animations:^{
                 [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
-                                                                  0)];
+                                                                  -remainingHeight)];
             }];
         }
     }
