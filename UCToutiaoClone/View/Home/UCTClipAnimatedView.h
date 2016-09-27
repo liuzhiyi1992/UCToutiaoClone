@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTClipAnimatedView : UIView
-@property (strong, nonatomic) UIView *centerView;
 @end

@@ -8,8 +8,14 @@
 
 #import "UCTClipAnimatedView.h"
 #import "Masonry.h"
+#import "UIColor+hexColor.h"
+
+#define TEMPERATURE_LABEL_FONT [UIFont boldSystemFontOfSize:40.f]
+#define TEMPERATURE_LABEL_TEXT_COLOR [UIColor hexColor:@"3F444D"]
 
 @interface UCTClipAnimatedView ()
+@property (strong, nonatomic) UILabel *temperatureLabel;
+@property (strong, nonatomic) UIView *weatherView;
 @end
 
 @implementation UCTClipAnimatedView
@@ -23,17 +29,51 @@
 }
 
 - (void)setupView {
-    [self setBackgroundColor:[UIColor grayColor]];
-    self.centerView = [[UIView alloc] init];
-    [_centerView setBackgroundColor:[UIColor blueColor]];
-    [_centerView setFrame:CGRectMake(150, 20, 80, 80)];
-    [self addSubview:_centerView];
+    [self setBackgroundColor:[UIColor whiteColor]];
     
-//    [_centerView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self).offset(10);
-//        make.center.equalTo(self);
-//        make.leading.equalTo(self).offset(150);
-//    }];
+    self.weatherView = [[UIView alloc] init];
+    [self addSubview:_weatherView];
+    for (int i = 3; i > 0; i --) {
+        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"Cloud%d", i]];
+        UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
+        [_weatherView addSubview:tempImageView];
+        
+        [tempImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(_weatherView);
+            make.bottom.equalTo(_weatherView);
+            make.width.equalTo(_weatherView).multipliedBy(1.5);
+            make.height.equalTo(tempImageView.mas_width);
+        }];
+    }
+    
+    self.temperatureLabel = [[UILabel alloc] init];
+    [_temperatureLabel setFont:TEMPERATURE_LABEL_FONT];
+    [_temperatureLabel setTextColor:TEMPERATURE_LABEL_TEXT_COLOR];
+    [_temperatureLabel setText:@"35"];
+    [self addSubview:_temperatureLabel];
+    
+    UIView *dotView = [[UIView alloc] init];
+    [dotView setBackgroundColor:TEMPERATURE_LABEL_TEXT_COLOR];
+    [self addSubview:dotView];
+    
+    [_temperatureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.bottom.equalTo(self).offset(-10);
+    }];
+    
+    [dotView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@6);
+        make.width.equalTo(dotView.mas_height);
+        make.leading.equalTo(_temperatureLabel.mas_trailing).offset(5);
+        make.top.equalTo(_temperatureLabel).offset(5);
+    }];
+    
+    [_weatherView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.height.equalTo(@200);
+        make.bottom.equalTo(self);
+        make.leading.equalTo(self);
+        make.trailing.equalTo(self);
+    }];
 }
 
 @end

@@ -354,13 +354,6 @@ const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLA
         if (currentPage != _currentPage) {
             self.currentPage = currentPage;
         }
-        //todo 临时
-    } else if ([scrollView isEqual:_mainScrollView]) {
-        CGFloat offsetY = scrollView.contentOffset.y;
-        if (offsetY > 40) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"canScroll" object:nil];
-        }
-        NSLog(@"offset%f", offsetY);
     }
 }
 
