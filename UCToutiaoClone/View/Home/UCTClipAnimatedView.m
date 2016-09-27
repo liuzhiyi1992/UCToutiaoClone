@@ -57,7 +57,6 @@
     }];
     
     [_weatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.height.equalTo(@200);
         make.bottom.equalTo(self);
         make.leading.equalTo(self);
         make.trailing.equalTo(self);

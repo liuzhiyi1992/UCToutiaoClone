@@ -62,6 +62,11 @@ const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLA
     [self queryChannelData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"configureAnim" object:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
