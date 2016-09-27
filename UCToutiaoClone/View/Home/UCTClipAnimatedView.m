@@ -9,17 +9,17 @@
 #import "UCTClipAnimatedView.h"
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
+#import "UCTWeatherAnimatedView.h"
 
 #define TEMPERATURE_LABEL_FONT [UIFont boldSystemFontOfSize:40.f]
 #define TEMPERATURE_LABEL_TEXT_COLOR [UIColor hexColor:@"3F444D"]
 
 @interface UCTClipAnimatedView ()
 @property (strong, nonatomic) UILabel *temperatureLabel;
-@property (strong, nonatomic) UIView *weatherView;
+@property (strong, nonatomic) UCTWeatherAnimatedView *weatherView;
 @end
 
 @implementation UCTClipAnimatedView
-
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -31,20 +31,8 @@
 - (void)setupView {
     [self setBackgroundColor:[UIColor whiteColor]];
     
-    self.weatherView = [[UIView alloc] init];
+    self.weatherView = [[UCTWeatherAnimatedView alloc] init];
     [self addSubview:_weatherView];
-    for (int i = 3; i > 0; i --) {
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"Cloud%d", i]];
-        UIImageView *tempImageView = [[UIImageView alloc] initWithImage:image];
-        [_weatherView addSubview:tempImageView];
-        
-        [tempImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(_weatherView);
-            make.bottom.equalTo(_weatherView);
-            make.width.equalTo(_weatherView).multipliedBy(1.5);
-            make.height.equalTo(tempImageView.mas_width);
-        }];
-    }
     
     self.temperatureLabel = [[UILabel alloc] init];
     [_temperatureLabel setFont:TEMPERATURE_LABEL_FONT];
