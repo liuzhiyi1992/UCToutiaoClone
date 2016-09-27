@@ -276,6 +276,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    //联动首页mainScrollView 动作向上
     if (scrollView.contentOffset.y > 0) {
         CGPoint currentContentOffset = _homePageScrollView.contentOffset;
         NSLog(@"现在offset -- %f", currentContentOffset.y);
@@ -284,10 +285,32 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
                                                               currentContentOffset.y + scrollView.contentOffset.y)
                                          animated:NO];
             [scrollView setContentOffset:CGPointMake(0, 0)];
+        } else {
+            [UIView animateWithDuration:0.5f animations:^{
+                [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
+                                                                  44)];
+            }];
         }
     }
     
+    //联动首页mainScrollView 动作向下
+    if (scrollView.contentOffset.y < 0) {
+        CGPoint currentContentOffset = _homePageScrollView.contentOffset;
+        NSLog(@"现在offset -- %f", currentContentOffset.y);
+        if (currentContentOffset.y > 0) {
+            [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
+                                                              currentContentOffset.y + scrollView.contentOffset.y)
+                                         animated:NO];
+            [scrollView setContentOffset:CGPointMake(0, 0)];
+        } else {
+            [UIView animateWithDuration:0.5f animations:^{
+                [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
+                                                                  0)];
+            }];
+        }
+    }
     
+    //内嵌searchRefreshView 动作
     if (_searchRefreshView) {
         if (!scrollView.tracking) {
             CGFloat offsetY = scrollView.contentOffset.y;
