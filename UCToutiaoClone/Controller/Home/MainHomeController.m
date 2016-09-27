@@ -21,8 +21,10 @@ const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
-const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = 20;
-const CGFloat CUSTOM_NAV_HEIGHT = 84;
+
+const CGFloat CUSTOM_NAV_DISPLAY_HEIGHT = 64;//不包括状态栏
+const CGFloat CUSTOM_NAV_HEIGHT = 184;
+const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLAY_HEIGHT;
 
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
@@ -79,7 +81,7 @@ const CGFloat CUSTOM_NAV_HEIGHT = 84;
     [self.view addSubview:_mainScrollView];
     
     [_mainScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(-20);//状态栏高20
+        make.top.equalTo(self.view).offset(-MAIN_SCROLLVIEW_OFFSET_TOP);//mainScroll往上噻了多少
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.view);
