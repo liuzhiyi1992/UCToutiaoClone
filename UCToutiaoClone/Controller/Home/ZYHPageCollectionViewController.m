@@ -326,6 +326,9 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
             }
         }
     }
+    
+    //delegate
+    [_scrollDelegate pageScrollViewDidScroll2OffsetY:scrollView.contentOffset.y];
 }
 
 - (void)didReceiveMemoryWarning {
