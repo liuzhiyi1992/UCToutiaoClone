@@ -10,11 +10,12 @@
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
 #import "UCTWeatherAnimatedView.h"
+#import "MainHomeController.h"
 
 #define TEMPERATURE_LABEL_FONT [UIFont boldSystemFontOfSize:40.f]
 #define TEMPERATURE_LABEL_TEXT_COLOR [UIColor hexColor:@"3F444D"]
 
-@interface UCTClipAnimatedView ()
+@interface UCTClipAnimatedView () <MainHomeControllerScrollDelegate>
 @property (strong, nonatomic) UILabel *temperatureLabel;
 @property (strong, nonatomic) UCTWeatherAnimatedView *weatherView;
 @end
@@ -61,6 +62,10 @@
         make.leading.equalTo(self);
         make.trailing.equalTo(self);
     }];
+}
+
+- (void)mainHomeScrollViewDidScroll2OffsetY:(CGFloat)offsetY {
+    [_weatherView transformWithOffsetY:offsetY];
 }
 
 @end

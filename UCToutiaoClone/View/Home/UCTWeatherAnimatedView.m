@@ -9,6 +9,7 @@
 #import "UCTWeatherAnimatedView.h"
 #import "Masonry.h"
 #import <QuartzCore/CABase.h>
+#import "MainHomeController.h"
 
 @interface UCTWeatherAnimatedView ()
 @property (strong, nonatomic) NSArray *imageViewList;
@@ -50,7 +51,7 @@
 //    [firstAnim setAutoreverses:NO];
 //    firstAnim.fillMode = kCAFillModeForwards;
 //    firstAnim.removedOnCompletion = NO;
-    UIBezierPath *firstPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(firstImageView.center.x-15, firstImageView.center.y+2) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    UIBezierPath *firstPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(firstImageView.center.x-15, firstImageView.center.y-3) radius:3 startAngle:0 endAngle:2*M_PI clockwise:YES];
     firstAnim.path = firstPath.CGPath;
     [firstImageView.layer addAnimation:firstAnim forKey:@"position"];
     
@@ -58,7 +59,7 @@
     CAKeyframeAnimation *secondAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     secondAnim.duration = 6.f;
     secondAnim.repeatCount = HUGE_VALF;
-    UIBezierPath *secondPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(secondImageView.center.x+5, secondImageView.center.y-2) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    UIBezierPath *secondPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(secondImageView.center.x+5, secondImageView.center.y-5) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
     secondAnim.path = secondPath.CGPath;
     [secondImageView.layer addAnimation:secondAnim forKey:@"position"];
     
@@ -66,9 +67,17 @@
     CAKeyframeAnimation *thirdAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     thirdAnim.duration = 5.f;
     thirdAnim.repeatCount = HUGE_VALF;
-    UIBezierPath *thirdPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(thirdImageView.center.x, thirdImageView.center.y-8) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    UIBezierPath *thirdPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(thirdImageView.center.x, thirdImageView.center.y-10) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
     thirdAnim.path = thirdPath.CGPath;
     [thirdImageView.layer addAnimation:thirdAnim forKey:@"position"];
-    
+}
+
+- (void)transformWithOffsetY:(CGFloat)offsetY {
+    offsetY += 20;//除去状态栏
+    if (offsetY > 0) {
+        CGFloat scale = 1 - offsetY/150;
+        self.transform = CGAffineTransformMakeScale(scale, scale);
+        self.alpha = (CUSTOM_NAV_DISPLAY_HEIGHT-offsetY)/CUSTOM_NAV_DISPLAY_HEIGHT;
+    }
 }
 @end

@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTWeatherAnimatedView : UIView
+- (void)transformWithOffsetY:(CGFloat)offsetY;
 @end
