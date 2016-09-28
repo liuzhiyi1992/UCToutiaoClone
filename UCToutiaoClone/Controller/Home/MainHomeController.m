@@ -17,16 +17,17 @@
 #import "ZYHPageCollectionViewController.h"
 #import "UCTClipAnimatedView.h"
 
+#define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
 const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 
 const CGFloat CUSTOM_NAV_DISPLAY_HEIGHT = 64;//不包括状态栏
-const CGFloat CUSTOM_NAV_HEIGHT = 184;
+const CGFloat CUSTOM_NAV_HEIGHT = 184;//184
 const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLAY_HEIGHT;
 
-#define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 #define CHANNEL_SLIDER_ANIMATE_DURATION 0.2f
 #define CHANNEL_COLLECTION_VIEW_HEIGHT 40
 #define CHANNEL_COLLECTION_VIEW_CONTENT_INSET UIEdgeInsetsMake(0, 12, 0, 12)
@@ -95,6 +96,7 @@ const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLA
 
 - (void)setupCustomNavView {
     self.mainNavView = [[UCTClipAnimatedView alloc] init];
+    self.scrollDelegate = (UCTClipAnimatedView<MainHomeControllerScrollDelegate> *)_mainNavView;
     [self.mainScrollView addSubview:_mainNavView];
     
     [_mainNavView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -359,6 +361,9 @@ const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP = CUSTOM_NAV_HEIGHT - CUSTOM_NAV_DISPLA
         if (currentPage != _currentPage) {
             self.currentPage = currentPage;
         }
+    } else if ([scrollView isEqual:_mainScrollView]) {
+        CGFloat scrollContentOffsetY = scrollView.contentOffset.y;
+        [_scrollDelegate mainHomeScrollViewDidScroll2OffsetY:scrollContentOffsetY];
     }
 }
 

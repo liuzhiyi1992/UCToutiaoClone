@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+
 extern const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP;
 extern const CGFloat CUSTOM_NAV_HEIGHT;
+extern const CGFloat CUSTOM_NAV_DISPLAY_HEIGHT;
+
+@protocol MainHomeControllerScrollDelegate <NSObject>
+- (void)mainHomeScrollViewDidScroll2OffsetY:(CGFloat)offsetY;
+@end
+
 @interface MainHomeController : UIViewController
+@property (weak, nonatomic) id<MainHomeControllerScrollDelegate> scrollDelegate;
 @end
