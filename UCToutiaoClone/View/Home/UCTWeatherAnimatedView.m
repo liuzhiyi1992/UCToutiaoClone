@@ -48,9 +48,6 @@
     CAKeyframeAnimation *firstAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     firstAnim.duration = 7.f;
     firstAnim.repeatCount = HUGE_VALF;
-//    [firstAnim setAutoreverses:NO];
-//    firstAnim.fillMode = kCAFillModeForwards;
-//    firstAnim.removedOnCompletion = NO;
     UIBezierPath *firstPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(firstImageView.center.x-15, firstImageView.center.y-3) radius:3 startAngle:0 endAngle:2*M_PI clockwise:YES];
     firstAnim.path = firstPath.CGPath;
     [firstImageView.layer addAnimation:firstAnim forKey:@"position"];
@@ -75,7 +72,7 @@
 - (void)transformWithOffsetY:(CGFloat)offsetY {
     offsetY += 20;//除去状态栏
     if (offsetY > 0) {
-        CGFloat scale = 1 - offsetY/150;
+        CGFloat scale = 1 - offsetY/120;
         self.transform = CGAffineTransformMakeScale(scale, scale);
         self.alpha = (CUSTOM_NAV_DISPLAY_HEIGHT-offsetY)/CUSTOM_NAV_DISPLAY_HEIGHT;
     }
