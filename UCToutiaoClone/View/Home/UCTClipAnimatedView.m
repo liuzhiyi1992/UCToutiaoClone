@@ -11,6 +11,7 @@
 #import "UIColor+hexColor.h"
 #import "UCTWeatherAnimatedView.h"
 #import "MainHomeController.h"
+#import "ZYHPageCollectionViewController.h"
 
 #define TEMPERATURE_LABEL_FONT [UIFont boldSystemFontOfSize:40.f]
 #define TEMPERATURE_LABEL_TEXT_COLOR [UIColor hexColor:@"3F444D"]
@@ -58,14 +59,18 @@
     }];
     
     [_weatherView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self);
+        make.centerY.equalTo(self);
         make.leading.equalTo(self);
         make.trailing.equalTo(self);
     }];
 }
 
 - (void)mainHomeScrollViewDidScroll2OffsetY:(CGFloat)offsetY {
-    [_weatherView transformWithOffsetY:offsetY];
+    [_weatherView transformWithHomeScrollOffsetY:offsetY];
+}
+
+- (void)pageScrollViewDidScroll2OffsetY:(CGFloat)offsetY {
+    [_weatherView transformWithPageScrollOffsetY:offsetY];
 }
 
 @end

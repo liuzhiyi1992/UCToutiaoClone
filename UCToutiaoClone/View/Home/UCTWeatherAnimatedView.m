@@ -35,9 +35,9 @@
         
         [tempImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.bottom.equalTo(self);
             make.width.equalTo(self).multipliedBy(1.5);
             make.height.equalTo(tempImageView.mas_width);
+            make.centerY.equalTo(self).offset(-0.25*[[UIScreen mainScreen] bounds].size.width);
         }];
     }
     self.imageViewList = [mutArray copy];
@@ -69,12 +69,19 @@
     [thirdImageView.layer addAnimation:thirdAnim forKey:@"position"];
 }
 
-- (void)transformWithOffsetY:(CGFloat)offsetY {
+- (void)transformWithHomeScrollOffsetY:(CGFloat)offsetY {
     offsetY += 20;//除去状态栏
     if (offsetY > 0) {
-        CGFloat scale = 1 - offsetY/120;
-        self.transform = CGAffineTransformMakeScale(scale, scale);
+        CGFloat scale = 1 - offsetY/150;
+        self.transform = CGAffineTransformMakeScale(scale, 1);
         self.alpha = (CUSTOM_NAV_DISPLAY_HEIGHT-offsetY)/CUSTOM_NAV_DISPLAY_HEIGHT;
+    }
+}
+
+- (void)transformWithPageScrollOffsetY:(CGFloat)offsetY {
+    if (offsetY < 0) {
+        CGFloat scale = 1 + -offsetY/250;
+        self.transform = CGAffineTransformMakeScale(scale, 1);
     }
 }
 @end

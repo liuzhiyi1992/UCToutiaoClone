@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTWeatherAnimatedView : UIView
-- (void)transformWithOffsetY:(CGFloat)offsetY;
+- (void)transformWithHomeScrollOffsetY:(CGFloat)offsetY;
+- (void)transformWithPageScrollOffsetY:(CGFloat)offsetY;
 @end
