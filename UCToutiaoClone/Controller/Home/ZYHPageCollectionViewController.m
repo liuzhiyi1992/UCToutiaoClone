@@ -138,7 +138,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     if (_dataList.count > 0) {
         ZYHArticleModel *firstData = _dataList.firstObject;
         recoid = firstData.recoid;
-        method = @"his";
+        method = @"new";
     } else {
         method = @"new";
     }

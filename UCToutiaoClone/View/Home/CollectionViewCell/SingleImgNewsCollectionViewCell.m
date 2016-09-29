@@ -27,7 +27,6 @@
 @interface SingleImgNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
-@property (strong, nonatomic) UIButton *opMark;
 @property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
@@ -65,10 +64,9 @@
     [self.contentView addSubview:_mainImageView];
     
     self.opMark = [[UIButton alloc] init];
-    [_opMark setTitleColor:TITLE_LABEL_FONT_COLOR forState:UIControlStateNormal];
-    [_opMark.titleLabel setFont:SOURCE_LABEL_FONT];
-    
-    [self.contentView addSubview:_opMark];
+    [self.opMark setTitleColor:TITLE_LABEL_FONT_COLOR forState:UIControlStateNormal];
+    [self.opMark.titleLabel setFont:SOURCE_LABEL_FONT];
+    [self.contentView addSubview:self.opMark];
     
     self.sourceLabel = [[UILabel alloc] init];
     [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
@@ -95,15 +93,17 @@
         make.height.equalTo(_mainImageView.mas_width).multipliedBy(1/WIDTH_HEIGHT_SCALE_IMAGEVIEW);
     }];
     
-    [_opMark mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(_titleLabel);
+    [self.opMark mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(_titleLabel);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
+//    self.opMarkWidthConstraint = [NSLayoutConstraint constraintWithItem:_opMark attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:0.f];
+//    [self.contentView addConstraint:self.opMarkWidthConstraint];
     
     [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(_titleLabel).priority(900);
-        make.leading.equalTo(_opMark.mas_trailing);
+        make.leading.equalTo(_titleLabel).priority(700);
+//        make.leading.equalTo(self.opMark.mas_trailing);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
@@ -115,7 +115,7 @@
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
-    //todo 根据cell的宽高比决定cell样式
+    //todo 根据图片的宽高比决定cell样式
     [_titleLabel setText:model.articleTitle];
     if (model.thumbnails.count > 0) {
         NSDictionary *thumbnailDict = model.thumbnails.firstObject;
@@ -125,13 +125,39 @@
     
     [_sourceLabel setText:model.sourceName];
     [_timeLabel setText:model.publicTimeString];
+    
+    //opMark
+    if (self.footerIconHConstraints) {
+        [self.contentView removeConstraints:self.footerIconHConstraints];
+    }
     if (model.opMark.length > 0) {
-        [_opMark setTitle:model.opMark forState:UIControlStateNormal];
-        [_opMark sd_setImageWithURL:[NSURL URLWithString:model.opMarkIconUrl] forState:UIControlStateNormal];
+        [self.opMark setHidden:NO];
+        [self.opMark setTitle:model.opMark forState:UIControlStateNormal];
+        [self.opMark sd_setImageWithURL:[NSURL URLWithString:model.opMarkIconUrl] forState:UIControlStateNormal];
+        
+        //layout sourceLabel & opMark
+        CGSize opMarkSize = [self opMarkSizeWithString:model.opMark];
+        [self.opMark setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [_sourceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        NSDictionary *views = @{@"opMark":self.opMark, @"sourceLabel":_sourceLabel};
+        //todo sourceLabel不一定有
+        NSString *hConstraintString = [NSString stringWithFormat:@"H:|-%d-[opMark(%f)]-10-[sourceLabel]|", LEADING_MARGIN, opMarkSize.width];
+        NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:hConstraintString options:NSLayoutFormatAlignAllCenterY metrics:nil views:views];
+        NSLayoutConstraint *opMarkHeightConstraint = [NSLayoutConstraint constraintWithItem:self.opMark attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:opMarkSize.height];
+        NSMutableArray *mutArray = [NSMutableArray arrayWithArray:hConstraints];
+        [mutArray addObject:opMarkHeightConstraint];
+        self.footerIconHConstraints = [mutArray copy];
+        [self.contentView addConstraints:self.footerIconHConstraints];
+    } else {
+        [self.opMark setHidden:YES];
     }
 }
 
-
+- (CGSize)opMarkSizeWithString:(NSString *)string {
+    CGSize textSize = [string sizeWithAttributes:@{NSFontAttributeName:SOURCE_LABEL_FONT}];
+    CGFloat imageWidth = textSize.height;
+    return CGSizeMake(textSize.width + imageWidth + OP_MARK_IMAGE_TITLE_MARGIN, textSize.height);
+}
 //- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 //    [super setSelected:selected animated:animated];
 //
