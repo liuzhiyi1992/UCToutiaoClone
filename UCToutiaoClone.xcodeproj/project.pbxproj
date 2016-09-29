@@ -22,6 +22,7 @@
 		552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */; };
 		5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887981D87FD750035B4A8 /* MainHomeController.m */; };
 		5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */; };
+		5538EA1B1D9D128D00717199 /* UCTWeatherAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5538EA1A1D9D128D00717199 /* UCTWeatherAnimatedView.m */; };
 		553A45901D93844E0058FCDD /* SingleImgNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A45871D93844E0058FCDD /* SingleImgNewsCollectionViewCell.m */; };
 		553A45911D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A45891D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.m */; };
 		553A45921D93844E0058FCDD /* SpecialNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A458B1D93844E0058FCDD /* SpecialNewsCollectionViewCell.m */; };
@@ -34,7 +35,6 @@
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
 		558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17081D895170008FC971 /* ZYHChannelModel.m */; };
 		55967F261D9922DB0034E1D8 /* UCTClipAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55967F251D9922DB0034E1D8 /* UCTClipAnimatedView.m */; };
-		55B4DD6F1D9A62FB000BE687 /* UCTWeatherAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B4DD6E1D9A62FB000BE687 /* UCTWeatherAnimatedView.m */; };
 		55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */; };
 		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
@@ -86,6 +86,8 @@
 		552887981D87FD750035B4A8 /* MainHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHomeController.m; sourceTree = "<group>"; };
 		552887991D87FD750035B4A8 /* ZYHPageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageTableViewController.h; sourceTree = "<group>"; };
 		5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageTableViewController.m; sourceTree = "<group>"; };
+		5538EA191D9D128D00717199 /* UCTWeatherAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTWeatherAnimatedView.h; sourceTree = "<group>"; };
+		5538EA1A1D9D128D00717199 /* UCTWeatherAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTWeatherAnimatedView.m; sourceTree = "<group>"; };
 		553A45861D93844E0058FCDD /* SingleImgNewsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleImgNewsCollectionViewCell.h; sourceTree = "<group>"; };
 		553A45871D93844E0058FCDD /* SingleImgNewsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleImgNewsCollectionViewCell.m; sourceTree = "<group>"; };
 		553A45881D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTitleNewsCollectionViewCell.h; sourceTree = "<group>"; };
@@ -109,8 +111,6 @@
 		558D17081D895170008FC971 /* ZYHChannelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHChannelModel.m; sourceTree = "<group>"; };
 		55967F241D9922DB0034E1D8 /* UCTClipAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTClipAnimatedView.h; sourceTree = "<group>"; };
 		55967F251D9922DB0034E1D8 /* UCTClipAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTClipAnimatedView.m; sourceTree = "<group>"; };
-		55B4DD6D1D9A62FB000BE687 /* UCTWeatherAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTWeatherAnimatedView.h; sourceTree = "<group>"; };
-		55B4DD6E1D9A62FB000BE687 /* UCTWeatherAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTWeatherAnimatedView.m; sourceTree = "<group>"; };
 		55B83A4A1D8FCFCD00626DFF /* UCTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTTableViewCell.h; sourceTree = "<group>"; };
 		55B83A4B1D8FCFCD00626DFF /* UCTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTTableViewCell.m; sourceTree = "<group>"; };
 		55B873951D938F2F0041EE34 /* UCTHomeSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTHomeSearchBar.h; sourceTree = "<group>"; };
@@ -245,6 +245,7 @@
 			children = (
 				552887911D87FCBD0035B4A8 /* CollectionViewCell */,
 				552887921D87FCBD0035B4A8 /* TableViewCell */,
+				5538EA181D9D127200717199 /* WeatherAnimatedView */,
 				552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */,
 				552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */,
 				55B873951D938F2F0041EE34 /* UCTHomeSearchBar.h */,
@@ -253,8 +254,6 @@
 				55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */,
 				55967F241D9922DB0034E1D8 /* UCTClipAnimatedView.h */,
 				55967F251D9922DB0034E1D8 /* UCTClipAnimatedView.m */,
-				55B4DD6D1D9A62FB000BE687 /* UCTWeatherAnimatedView.h */,
-				55B4DD6E1D9A62FB000BE687 /* UCTWeatherAnimatedView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -300,6 +299,15 @@
 				55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		5538EA181D9D127200717199 /* WeatherAnimatedView */ = {
+			isa = PBXGroup;
+			children = (
+				5538EA191D9D128D00717199 /* UCTWeatherAnimatedView.h */,
+				5538EA1A1D9D128D00717199 /* UCTWeatherAnimatedView.m */,
+			);
+			path = WeatherAnimatedView;
 			sourceTree = "<group>";
 		};
 		554B63D41D8E75C9003C3797 /* Resource */ = {
@@ -530,7 +538,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4846E2E51D8D791C000B746E /* NetworkManager.m in Sources */,
-				55B4DD6F1D9A62FB000BE687 /* UCTWeatherAnimatedView.m in Sources */,
+				5538EA1B1D9D128D00717199 /* UCTWeatherAnimatedView.m in Sources */,
 				558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */,
 				553A45901D93844E0058FCDD /* SingleImgNewsCollectionViewCell.m in Sources */,
 				4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */,

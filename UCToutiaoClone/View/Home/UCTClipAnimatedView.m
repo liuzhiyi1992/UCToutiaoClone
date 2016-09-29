@@ -48,7 +48,7 @@
     
     [_temperatureLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.bottom.equalTo(self).offset(-10);
+        make.bottom.equalTo(self).offset(-12);
     }];
     
     [dotView mas_makeConstraints:^(MASConstraintMaker *make) {
