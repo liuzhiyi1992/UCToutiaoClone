@@ -28,6 +28,7 @@
     self.thumbnails = dict[@"thumbnails"];
     self.images = dict[@"images"];
     self.opMark = dict[@"op_mark"];
+    self.opMarkIconUrl = dict[@"op_mark_iurl"];
     self.sourceName = dict[@"source_name"];
     self.category = dict[@"category"];
     self.grabTime = [dict[@"grab_time"] stringValue];

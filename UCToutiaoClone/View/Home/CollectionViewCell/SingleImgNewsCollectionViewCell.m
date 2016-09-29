@@ -10,6 +10,7 @@
 #import "Masonry.h"
 #import "ZYHArticleModel.h"
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "UIColor+hexColor.h"
 
 #define TITLE_LABEL_FONT_COLOR [UIColor hexColor:@"3F4449"]
@@ -26,6 +27,7 @@
 @interface SingleImgNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
+@property (strong, nonatomic) UIButton *opMark;
 @property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
@@ -62,6 +64,12 @@
     self.mainImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:_mainImageView];
     
+    self.opMark = [[UIButton alloc] init];
+    [_opMark setTitleColor:TITLE_LABEL_FONT_COLOR forState:UIControlStateNormal];
+    [_opMark.titleLabel setFont:SOURCE_LABEL_FONT];
+    
+    [self.contentView addSubview:_opMark];
+    
     self.sourceLabel = [[UILabel alloc] init];
     [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
     [_sourceLabel setFont:SOURCE_LABEL_FONT];
@@ -87,8 +95,15 @@
         make.height.equalTo(_mainImageView.mas_width).multipliedBy(1/WIDTH_HEIGHT_SCALE_IMAGEVIEW);
     }];
     
-    [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_opMark mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(_titleLabel);
+        make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
+        make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
+    }];
+    
+    [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(_titleLabel).priority(900);
+        make.leading.equalTo(_opMark.mas_trailing);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
@@ -110,6 +125,10 @@
     
     [_sourceLabel setText:model.sourceName];
     [_timeLabel setText:model.publicTimeString];
+    if (model.opMark.length > 0) {
+        [_opMark setTitle:model.opMark forState:UIControlStateNormal];
+        [_opMark sd_setImageWithURL:[NSURL URLWithString:model.opMarkIconUrl] forState:UIControlStateNormal];
+    }
 }
 
 
