@@ -16,6 +16,7 @@
 #import "UIColor+hexColor.h"
 #import "ZYHPageCollectionViewController.h"
 #import "UCTClipAnimatedView.h"
+#import "UCTWeatherAnimatedView.h"
 
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
@@ -63,7 +64,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"configureAnim" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_BEGIN_WEATHER_ANIMATION object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

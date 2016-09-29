@@ -11,6 +11,8 @@
 #import <QuartzCore/CABase.h>
 #import "MainHomeController.h"
 
+NSString * const NOTIFICATION_NAME_BEGIN_WEATHER_ANIMATION = @"NOTIFICATION_NAME_BEGIN_WEATHER_ANIMATION";
+
 @interface UCTWeatherAnimatedView ()
 @property (strong, nonatomic) NSArray *imageViewList;
 @end
@@ -20,7 +22,7 @@
     self = [super init];
     if (self) {
         [self setupView];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureAnim) name:@"configureAnim" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureAnim) name:NOTIFICATION_NAME_BEGIN_WEATHER_ANIMATION object:nil];
     }
     return self;
 }
