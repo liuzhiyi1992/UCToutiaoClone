@@ -60,6 +60,10 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self setupPageScrollView];
     [self setupNetworkMaksView];
     [self queryChannelData];
+    
+    
+    self.navigationController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"自定" image:[UIImage imageNamed:@"icon_search"] selectedImage:[UIImage imageNamed:@"icon_search"]];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

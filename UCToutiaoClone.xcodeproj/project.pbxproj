@@ -40,6 +40,8 @@
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
 		55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */; };
 		55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */; };
+		55F8C15A1D9E5EB4008149DD /* UCTAnimTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1591D9E5EB4008149DD /* UCTAnimTabBarItem.m */; };
+		55F8C15D1D9E5EF3008149DD /* UCTHomeTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */; };
 		55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
@@ -122,6 +124,10 @@
 		55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Bounds.m"; sourceTree = "<group>"; };
 		55F8C1541D9E3FDB008149DD /* UCTOPMarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTOPMarkView.h; sourceTree = "<group>"; };
 		55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTOPMarkView.m; sourceTree = "<group>"; };
+		55F8C1581D9E5EB4008149DD /* UCTAnimTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTAnimTabBarItem.h; sourceTree = "<group>"; };
+		55F8C1591D9E5EB4008149DD /* UCTAnimTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTAnimTabBarItem.m; sourceTree = "<group>"; };
+		55F8C15B1D9E5EF3008149DD /* UCTHomeTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTHomeTabBarItem.h; sourceTree = "<group>"; };
+		55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeTabBarItem.m; sourceTree = "<group>"; };
 		55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageCollectionViewController.h; sourceTree = "<group>"; };
 		55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +244,7 @@
 		484A90691D870024002E36B4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				55F8C1571D9E5E81008149DD /* TabBar */,
 				552887901D87FCBD0035B4A8 /* Home */,
 			);
 			path = View;
@@ -353,6 +360,17 @@
 				554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		55F8C1571D9E5E81008149DD /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				55F8C1581D9E5EB4008149DD /* UCTAnimTabBarItem.h */,
+				55F8C1591D9E5EB4008149DD /* UCTAnimTabBarItem.m */,
+				55F8C15B1D9E5EF3008149DD /* UCTHomeTabBarItem.h */,
+				55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		A84CEA446997E84AB91439B3 /* Pods */ = {
@@ -560,7 +578,9 @@
 				55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */,
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
 				484A90421D86FBA7002E36B4 /* AppDelegate.m in Sources */,
+				55F8C15A1D9E5EB4008149DD /* UCTAnimTabBarItem.m in Sources */,
 				553A45921D93844E0058FCDD /* SpecialNewsCollectionViewCell.m in Sources */,
+				55F8C15D1D9E5EF3008149DD /* UCTHomeTabBarItem.m in Sources */,
 				483F93041D8994EE00F978DC /* NewsService.m in Sources */,
 				553A45911D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.m in Sources */,
 				4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */,
