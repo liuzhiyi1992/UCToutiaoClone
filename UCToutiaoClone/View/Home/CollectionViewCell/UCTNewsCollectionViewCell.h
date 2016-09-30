@@ -14,6 +14,7 @@
 
 @class ZYHArticleModel;
 @interface UCTNewsCollectionViewCell : UCTCollectionViewCell
+@property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UCTOPMarkView *opMark;
 @property (strong, nonatomic) NSArray *footerIconHConstraints;
 - (void)updateCellWithModel:(ZYHArticleModel *)model;

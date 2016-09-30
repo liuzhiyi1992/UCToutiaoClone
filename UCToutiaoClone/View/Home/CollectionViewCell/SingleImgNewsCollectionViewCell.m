@@ -27,7 +27,6 @@
 @interface SingleImgNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
-@property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
@@ -67,9 +66,9 @@
     [self.contentView addSubview:self.opMark];
     
     self.sourceLabel = [[UILabel alloc] init];
-    [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
-    [_sourceLabel setFont:SOURCE_LABEL_FONT];
-    [self.contentView addSubview:_sourceLabel];
+    [self.sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
+    [self.sourceLabel setFont:SOURCE_LABEL_FONT];
+    [self.contentView addSubview:self.sourceLabel];
     
     self.timeLabel = [[UILabel alloc] init];
     [_timeLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
@@ -97,7 +96,7 @@
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
     
-    [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         //与opMark一起的水平布局在update数据时添加
         make.leading.equalTo(_titleLabel).priority(700);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
@@ -105,12 +104,14 @@
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(_sourceLabel.mas_trailing).offset(5);
-        make.top.equalTo(_sourceLabel);
+        make.leading.equalTo(self.sourceLabel.mas_trailing).offset(5);
+        make.top.equalTo(self.sourceLabel);
     }];
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
+    //opMark
+    [super updateCellWithModel:model];
     //todo 根据图片的宽高比决定cell样式
     //title image source time
     [_titleLabel setText:model.articleTitle];
@@ -119,27 +120,7 @@
         NSString *urlString = thumbnailDict[@"url"];
         [_mainImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
     }
-    [_sourceLabel setText:model.sourceName];
+    [self.sourceLabel setText:model.sourceName];
     [_timeLabel setText:model.publicTimeString];
-    //opMark
-    if (self.footerIconHConstraints) {
-        [self.contentView removeConstraints:self.footerIconHConstraints];
-    }
-    if (model.opMark.length > 0) {
-        [self.opMark setHidden:NO];
-        [self.opMark updateWithTitle:model.opMark iconUrlString:model.opMarkIconUrl];
-        //layout sourceLabel & opMark
-        CGSize opMarkSize = [UCTOPMarkView opMarkSizeWithString:model.opMark];
-        [self.opMark setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [_sourceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        NSDictionary *views = @{@"opMark":self.opMark, @"sourceLabel":_sourceLabel};
-        //todo sourceLabel不一定有
-        NSString *hConstraintString = [NSString stringWithFormat:@"H:|-%d-[opMark(%f)]-5-[sourceLabel]", LEADING_MARGIN, opMarkSize.width];
-        NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:hConstraintString options:NSLayoutFormatAlignAllCenterY metrics:nil views:views];
-        self.footerIconHConstraints = hConstraints;
-        [self.contentView addConstraints:self.footerIconHConstraints];
-    } else {
-        [self.opMark setHidden:YES];
-    }
 }
 @end

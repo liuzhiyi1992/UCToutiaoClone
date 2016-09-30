@@ -29,7 +29,6 @@
 @property (strong, nonatomic) UIImageView *leftImageView;
 @property (strong, nonatomic) UIImageView *centerImageView;
 @property (strong, nonatomic) UIImageView *rightImageView;
-@property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
@@ -61,11 +60,14 @@
     [_titleLabel setFont:TITLE_LABEL_FONT];
     [self.contentView addSubview:_titleLabel];
     
+    self.opMark = [[UCTOPMarkView alloc] init];
+    [self.contentView addSubview:self.opMark];
+    
     self.sourceLabel = [[UILabel alloc] init];
-    [_sourceLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
-    [_sourceLabel setFont:SOURCE_LABEL_FONT];
-    [self.contentView addSubview:_sourceLabel];
+    [self.sourceLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [self.sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
+    [self.sourceLabel setFont:SOURCE_LABEL_FONT];
+    [self.contentView addSubview:self.sourceLabel];
     
     self.leftImageView = [[UIImageView alloc] init];
     self.centerImageView = [[UIImageView alloc] init];
@@ -113,15 +115,15 @@
         make.trailing.equalTo(self.contentView).offset(-LEADING_IMAGE_VIEW);
     }];
     
-    [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN_CELL);
         make.top.equalTo(_leftImageView.mas_bottom).offset(8);
         make.leading.equalTo(_titleLabel);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(_sourceLabel.mas_trailing).offset(5);
-        make.top.equalTo(_sourceLabel);
+        make.leading.equalTo(self.sourceLabel.mas_trailing).offset(5);
+        make.top.equalTo(self.sourceLabel);
     }];
 }
 
@@ -138,7 +140,7 @@
         [_rightImageView sd_setImageWithURL:[NSURL URLWithString:thumbnailsList[2][@"url"]]];
     }
     //_sourceLabel
-    [_sourceLabel setText:model.sourceName];
+    [self.sourceLabel setText:model.sourceName];
     //timeLabel
     [_timeLabel setText:model.publicTimeString];
 }

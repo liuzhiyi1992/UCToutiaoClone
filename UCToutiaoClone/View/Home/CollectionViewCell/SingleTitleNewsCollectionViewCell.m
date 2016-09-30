@@ -20,7 +20,6 @@
 
 @interface SingleTitleNewsCollectionViewCell ()
 @property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *sourceLabel;
 @property (strong, nonatomic) UILabel *timeLabel;
 @end
 
@@ -51,10 +50,13 @@
     [_titleLabel setFont:TITLE_LABEL_FONT];
     [self.contentView addSubview:_titleLabel];
     
+    self.opMark = [[UCTOPMarkView alloc] init];
+    [self.contentView addSubview:self.opMark];
+    
     self.sourceLabel = [[UILabel alloc] init];
-    [_sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
-    [_sourceLabel setFont:SOURCE_LABEL_FONT];
-    [self.contentView addSubview:_sourceLabel];
+    [self.sourceLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
+    [self.sourceLabel setFont:SOURCE_LABEL_FONT];
+    [self.contentView addSubview:self.sourceLabel];
     
     self.timeLabel = [[UILabel alloc] init];
     [_timeLabel setTextColor:SOURCE_LABEL_FONT_COLOR];
@@ -67,21 +69,21 @@
         make.top.equalTo(self.contentView).offset(TOP_MARGIN);
     }];
     
-    [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_titleLabel.mas_bottom).offset(10);
         make.leading.equalTo(_titleLabel);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(_sourceLabel.mas_trailing).offset(5);
-        make.top.equalTo(_sourceLabel);
+        make.leading.equalTo(self.sourceLabel.mas_trailing).offset(5);
+        make.top.equalTo(self.sourceLabel);
     }];
 }
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
     [_titleLabel setText:model.articleTitle];
-    [_sourceLabel setText:model.sourceName];
+    [self.sourceLabel setText:model.sourceName];
     [_timeLabel setText:model.publicTimeString];
 }
 @end
