@@ -9,4 +9,6 @@
 #import "UCTNewsCollectionViewCell.h"
 
 @implementation UCTNewsCollectionViewCell
+- (void)updateCellWithModel:(ZYHArticleModel *)model {
+}
 @end

@@ -63,9 +63,7 @@
     self.mainImageView = [[UIImageView alloc] init];
     [self.contentView addSubview:_mainImageView];
     
-    self.opMark = [[UIButton alloc] init];
-    [self.opMark setTitleColor:TITLE_LABEL_FONT_COLOR forState:UIControlStateNormal];
-    [self.opMark.titleLabel setFont:SOURCE_LABEL_FONT];
+    self.opMark = [[UCTOPMarkView alloc] init];
     [self.contentView addSubview:self.opMark];
     
     self.sourceLabel = [[UILabel alloc] init];
@@ -94,16 +92,14 @@
     }];
     
     [self.opMark mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.equalTo(_titleLabel);
+        //水平布局在update数据时添加
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
-//    self.opMarkWidthConstraint = [NSLayoutConstraint constraintWithItem:_opMark attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:0.f];
-//    [self.contentView addConstraint:self.opMarkWidthConstraint];
     
     [_sourceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        //与opMark一起的水平布局在update数据时添加
         make.leading.equalTo(_titleLabel).priority(700);
-//        make.leading.equalTo(self.opMark.mas_trailing);
         make.bottom.equalTo(self.contentView).offset(-BOTTOM_MARGIN);
         make.top.greaterThanOrEqualTo(_titleLabel.mas_bottom).offset(8);
     }];
@@ -116,41 +112,34 @@
 
 - (void)updateCellWithModel:(ZYHArticleModel *)model {
     //todo 根据图片的宽高比决定cell样式
+    //title image source time
     [_titleLabel setText:model.articleTitle];
     if (model.thumbnails.count > 0) {
         NSDictionary *thumbnailDict = model.thumbnails.firstObject;
         NSString *urlString = thumbnailDict[@"url"];
         [_mainImageView sd_setImageWithURL:[NSURL URLWithString:urlString]];
     }
-    
     [_sourceLabel setText:model.sourceName];
     [_timeLabel setText:model.publicTimeString];
-    
     //opMark
     if (self.footerIconHConstraints) {
         [self.contentView removeConstraints:self.footerIconHConstraints];
     }
     if (model.opMark.length > 0) {
         [self.opMark setHidden:NO];
-        [self.opMark setTitle:model.opMark forState:UIControlStateNormal];
-        [self.opMark sd_setImageWithURL:[NSURL URLWithString:model.opMarkIconUrl] forState:UIControlStateNormal];
-        
+        [self.opMark updateWithTitle:model.opMark iconUrlString:model.opMarkIconUrl];
         //layout sourceLabel & opMark
-        CGSize opMarkSize = [self opMarkSizeWithString:model.opMark];
+        CGSize opMarkSize = [UCTOPMarkView opMarkSizeWithString:model.opMark];
         [self.opMark setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_sourceLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
         NSDictionary *views = @{@"opMark":self.opMark, @"sourceLabel":_sourceLabel};
         //todo sourceLabel不一定有
-        NSString *hConstraintString = [NSString stringWithFormat:@"H:|-%d-[opMark(%f)]-10-[sourceLabel]|", LEADING_MARGIN, opMarkSize.width];
+        NSString *hConstraintString = [NSString stringWithFormat:@"H:|-%d-[opMark(%f)]-5-[sourceLabel]", LEADING_MARGIN, opMarkSize.width];
         NSArray *hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:hConstraintString options:NSLayoutFormatAlignAllCenterY metrics:nil views:views];
-        NSLayoutConstraint *opMarkHeightConstraint = [NSLayoutConstraint constraintWithItem:self.opMark attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.f constant:opMarkSize.height];
-        NSMutableArray *mutArray = [NSMutableArray arrayWithArray:hConstraints];
-        [mutArray addObject:opMarkHeightConstraint];
-        self.footerIconHConstraints = [mutArray copy];
+        self.footerIconHConstraints = hConstraints;
         [self.contentView addConstraints:self.footerIconHConstraints];
     } else {
         [self.opMark setHidden:YES];
     }
 }
-
 @end

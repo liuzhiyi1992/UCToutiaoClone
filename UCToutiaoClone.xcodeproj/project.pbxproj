@@ -39,6 +39,7 @@
 		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
 		55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */; };
+		55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */; };
 		55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */; };
 		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
@@ -119,6 +120,8 @@
 		55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchRefreshView.m; sourceTree = "<group>"; };
 		55B8739B1D93DD250041EE34 /* UICollectionView+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Bounds.h"; sourceTree = "<group>"; };
 		55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Bounds.m"; sourceTree = "<group>"; };
+		55F8C1541D9E3FDB008149DD /* UCTOPMarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTOPMarkView.h; sourceTree = "<group>"; };
+		55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTOPMarkView.m; sourceTree = "<group>"; };
 		55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageCollectionViewController.h; sourceTree = "<group>"; };
 		55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -254,6 +257,8 @@
 				55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */,
 				55967F241D9922DB0034E1D8 /* UCTClipAnimatedView.h */,
 				55967F251D9922DB0034E1D8 /* UCTClipAnimatedView.m */,
+				55F8C1541D9E3FDB008149DD /* UCTOPMarkView.h */,
+				55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				553A45931D93844E0058FCDD /* ThreeImgNewsCollectionViewCell.m in Sources */,
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
 				558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */,
+				55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */,
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
 				55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */,
 				55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */,
