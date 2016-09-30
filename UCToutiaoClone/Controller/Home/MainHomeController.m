@@ -149,19 +149,20 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 }
 
 - (void)setupHomeTableViewControllers {
-    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
-    for (int i = 0; i < _navChannelList.count; i ++) {
-        ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-        //todo
-        if (i == 0) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+        for (int i = 0; i < _navChannelList.count; i ++) {
+            ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+            //todo
             tableVC.scrollDelegate = (id<ZYHPageCollectionViewControllerDelegate>)_mainNavView;
             tableVC.homePageScrollView = _mainScrollView;
+            [self addChildViewController:tableVC];
+             [_homePageScrollView addSubview:tableVC.view];
+            [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _homePageScrollView.frame.size.width, _homePageScrollView.frame.size.height)];
         }
-        [self addChildViewController:tableVC];
-         [_homePageScrollView addSubview:tableVC.view];
-        [tableVC.view setFrame:CGRectMake(i * screenWidth, 0, _homePageScrollView.frame.size.width, _homePageScrollView.frame.size.height)];
-    }
-    [_homePageScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
+        [_homePageScrollView setContentSize:CGSizeMake(_navChannelList.count * screenWidth, 0)];
+    });
 }
 
 - (void)setupSliderBar {
