@@ -9,5 +9,15 @@
 #import "UCTHomeTabBarItem.h"
 
 @implementation UCTHomeTabBarItem
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setupItem];
+    }
+    return self;
+}
 
+- (void)setupItem {
+    [super setupItem];
+}
 @end

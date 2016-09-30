@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UCTAnimTabBarItem : UITabBarItem
-
+@interface UCTAnimTabBarItem : UIView
+@property (strong, nonatomic) UIButton *mainButton;
+@property (strong, nonatomic) UILabel *titleLabel;
+@property (strong, nonatomic) UIImageView *mainImageView;
+- (void)setupItem;
 @end
