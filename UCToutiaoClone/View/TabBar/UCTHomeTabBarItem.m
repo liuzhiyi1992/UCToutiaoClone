@@ -8,9 +8,11 @@
 
 #import "UCTHomeTabBarItem.h"
 #import "Masonry.h"
+#import "UIColor+hexColor.h"
 
 @interface UCTHomeTabBarItem ()
 @property (strong, nonatomic) UIImageView *subImageView;
+@property (strong, nonatomic) UIImageView *spotImageView;
 @end
 
 @implementation UCTHomeTabBarItem
@@ -33,16 +35,38 @@
     [_subImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.mainImageView);
     }];
+    
+    self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
+//    [_spotImageView setBackgroundColor:[UIColor hexColor:@"FAC852"]];
+    [self addSubview:_spotImageView];
+    [self sendSubviewToBack:_spotImageView];
+    [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.and.height.equalTo(self.mainImageView).multipliedBy(0.4);
+        make.centerX.equalTo(self.mainImageView);
+        make.centerY.equalTo(self.mainImageView).offset(0);
+    }];
 }
 
 - (void)handleClick {
     NSLog(@"点击了");
-//    self.subImageView.transform = CGAffineTransformMakeRotation(-0.5*M_PI);
-    [UIView animateWithDuration:0.5f animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
         self.mainImageView.alpha = 0;
         self.subImageView.alpha = 1;
-//        self.subImageView.transform = CGAffineTransformMakeRotation(0);
+    } completion:^(BOOL finished) {
+        [self.titleLabel setText:@"刷新"];
     }];
+    
+    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
+    subImageViewRotationAnim.toValue = @(0);
+    CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    subImageViewScaleAnim.fromValue = @(0);
+    subImageViewScaleAnim.toValue = @(1);
+    
+    CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
+    [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
+    subImageViewAnims.duration = 0.2f;
+    [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
 }
 
 - (void)releaseAnim {
