@@ -13,6 +13,7 @@
 @interface UCTHomeTabBarItem ()
 @property (strong, nonatomic) UIImageView *subImageView;
 @property (strong, nonatomic) UIImageView *spotImageView;
+@property (assign, nonatomic) BOOL tmpFlag;
 @end
 
 @implementation UCTHomeTabBarItem
@@ -37,6 +38,7 @@
     }];
     
     self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
+    _spotImageView.alpha = 0;
 //    [_spotImageView setBackgroundColor:[UIColor hexColor:@"FAC852"]];
     [self addSubview:_spotImageView];
     [self sendSubviewToBack:_spotImageView];
@@ -48,32 +50,81 @@
 }
 
 - (void)handleClick {
-    NSLog(@"点击了");
-    [UIView animateWithDuration:0.2f animations:^{
+    if (_tmpFlag) {
+        [self releaseAnim];
+        self.tmpFlag = NO;
+    } else {
+        [self selectedAnim];
+        self.tmpFlag = YES;
+    }
+}
+
+- (void)releaseAnim {
+    _spotImageView.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.mainImageView.alpha = 1;
+    } completion:^(BOOL finished) {
+//        _subImageView.alpha = 0;
+        [self.titleLabel setText:@"首页"];
+    }];
+    //subImageView
+    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    subImageViewRotationAnim.fillMode = kCAFillModeForwards;
+//    subImageViewRotationAnim.removedOnCompletion = NO;
+    subImageViewRotationAnim.fromValue = @(0);
+    subImageViewRotationAnim.toValue = @(-0.5*M_PI);
+    
+    CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+//    subImageViewScaleAnim.fillMode = kCAFillModeForwards;
+//    subImageViewScaleAnim.removedOnCompletion = NO;
+    subImageViewScaleAnim.fromValue = @(1);
+    subImageViewScaleAnim.toValue = @(0);
+    CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
+//    subImageViewAnims.fillMode = kCAFillModeForwards;
+    [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
+    subImageViewAnims.duration = 2.3f;
+    [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+    
+//    [CATransaction begin];
+//    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    CATransform3D transform3Dt = CATransform3DMakeRotation(0.5*M_PI, 0, 0, -1);
+    _subImageView.layer.transform = CATransform3DScale(transform3Dt, 0, 0, 0);
+//    _subImageView.layer.transform = CATransform3DRotate(transform3Dt, 0.5*M_PI, 0, 0, -1);
+//    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
+//    _subImageView.layer.transform = CATransform3DMakeRotation(0.5*M_PI, 0, 0, -1);
+//    [CATransaction commit];
+}
+
+- (void)selectedAnim {
+    _subImageView.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
         self.mainImageView.alpha = 0;
-        self.subImageView.alpha = 1;
+        _subImageView.alpha = 1;
     } completion:^(BOOL finished) {
         [self.titleLabel setText:@"刷新"];
     }];
-    
+    //subImageView
     CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
     subImageViewRotationAnim.toValue = @(0);
     CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     subImageViewScaleAnim.fromValue = @(0);
     subImageViewScaleAnim.toValue = @(1);
-    
     CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
     [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
-    subImageViewAnims.duration = 0.2f;
+    subImageViewAnims.duration = 0.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
-}
-
-- (void)releaseAnim {
+    //spotImageView
+    _spotImageView.alpha = 1;
+    CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    spotImageViewScale.fromValue = @(0);
+    spotImageViewScale.toValue = @(1);
+    spotImageViewScale.duration = 0.3f;
+    [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"soptImageView"];
     
-}
-
-- (void)selectedAnim {
-    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+    [CATransaction commit];
 }
 @end
