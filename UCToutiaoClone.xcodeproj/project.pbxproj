@@ -20,6 +20,7 @@
 		484A90581D86FBA7002E36B4 /* UCToutiaoCloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 484A90571D86FBA7002E36B4 /* UCToutiaoCloneTests.m */; };
 		484C3A6A1D92D2DC000D9161 /* ZYHArticleDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 484C3A691D92D2DC000D9161 /* ZYHArticleDateFormatter.m */; };
 		48B4201A1DA8CC2500FD13CF /* UCTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B420191DA8CC2500FD13CF /* UCTTabBarController.m */; };
+		48B4201D1DA8DE6900FD13CF /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4201C1DA8DE6900FD13CF /* UIView+Utils.m */; };
 		552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */; };
 		5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887981D87FD750035B4A8 /* MainHomeController.m */; };
 		5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */; };
@@ -85,6 +86,8 @@
 		484C3A691D92D2DC000D9161 /* ZYHArticleDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHArticleDateFormatter.m; sourceTree = "<group>"; };
 		48B420181DA8CC2500FD13CF /* UCTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTTabBarController.h; sourceTree = "<group>"; };
 		48B420191DA8CC2500FD13CF /* UCTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTTabBarController.m; sourceTree = "<group>"; };
+		48B4201B1DA8DE6900FD13CF /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
+		48B4201C1DA8DE6900FD13CF /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
 		52AC275F93386EC1FB9AFE09 /* Pods-UCToutiaoClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.release.xcconfig"; sourceTree = "<group>"; };
 		552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavChannelView.h; sourceTree = "<group>"; };
 		552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavChannelView.m; sourceTree = "<group>"; };
@@ -346,6 +349,8 @@
 		558D17011D894DB4008FC971 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				48B4201B1DA8DE6900FD13CF /* UIView+Utils.h */,
+				48B4201C1DA8DE6900FD13CF /* UIView+Utils.m */,
 				484C3A681D92D2DC000D9161 /* ZYHArticleDateFormatter.h */,
 				484C3A691D92D2DC000D9161 /* ZYHArticleDateFormatter.m */,
 				558D17021D894DF2008FC971 /* UIColor+hexColor.h */,
@@ -600,6 +605,7 @@
 				4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */,
 				553A45941D93844E0058FCDD /* UCTNewsCollectionViewCell.m in Sources */,
 				55967F261D9922DB0034E1D8 /* UCTClipAnimatedView.m in Sources */,
+				48B4201D1DA8DE6900FD13CF /* UIView+Utils.m in Sources */,
 				558D17091D895170008FC971 /* ZYHChannelModel.m in Sources */,
 				55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */,
 				55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */,
