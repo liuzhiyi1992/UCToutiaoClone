@@ -85,14 +85,14 @@
     subImageViewAnims.duration = 2.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
     
-//    [CATransaction begin];
-//    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    CATransform3D transform3Dt = CATransform3DMakeRotation(0.5*M_PI, 0, 0, -1);
-    _subImageView.layer.transform = CATransform3DScale(transform3Dt, 0, 0, 0);
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+//    CATransform3D transform3Dt = CATransform3DMakeScale(0, 0, 0);
+//    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
 //    _subImageView.layer.transform = CATransform3DRotate(transform3Dt, 0.5*M_PI, 0, 0, -1);
 //    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
 //    _subImageView.layer.transform = CATransform3DMakeRotation(0.5*M_PI, 0, 0, -1);
-//    [CATransaction commit];
+    [CATransaction commit];
 }
 
 - (void)selectedAnim {
