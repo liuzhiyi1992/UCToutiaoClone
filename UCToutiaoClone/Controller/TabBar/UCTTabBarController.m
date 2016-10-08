@@ -39,9 +39,8 @@
 //    [self.tabBarItemList addObject:homeTabBarItem3];
     
     for (UCTAnimTabBarItem *barItem in _tabBarItemList) {
-        CGPoint itemCenter = [self centerOfTabBarItem:barItem];
-        
         [barItem updateHeight:_customTabBar.frame.size.height];
+        CGPoint itemCenter = [self centerOfTabBarItem:barItem];
         [barItem setCenter:itemCenter];
         [_customTabBar addSubview:barItem];
     }

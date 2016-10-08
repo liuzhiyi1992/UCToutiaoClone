@@ -19,6 +19,5 @@
 
 - (void)setupItem {
     [super setupItem];
-    [self setBackgroundColor:[UIColor redColor]];
 }
 @end
