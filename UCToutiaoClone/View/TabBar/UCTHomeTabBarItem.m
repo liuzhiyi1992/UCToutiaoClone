@@ -64,29 +64,32 @@
     [UIView animateWithDuration:0.3f animations:^{
         self.mainImageView.alpha = 1;
     } completion:^(BOOL finished) {
-//        _subImageView.alpha = 0;
         [self.titleLabel setText:@"首页"];
     }];
     //subImageView
-    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//    subImageViewRotationAnim.fillMode = kCAFillModeForwards;
-//    subImageViewRotationAnim.removedOnCompletion = NO;
-    subImageViewRotationAnim.fromValue = @(0);
-    subImageViewRotationAnim.toValue = @(-0.5*M_PI);
+    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    NSValue *fromVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.f, 0.0f, 0.f, 0.f)];
+    NSValue *toVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f)];
+    subImageViewRotationAnim.fromValue = fromVal;
+    subImageViewRotationAnim.toValue = toVal;
     
     CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-//    subImageViewScaleAnim.fillMode = kCAFillModeForwards;
-//    subImageViewScaleAnim.removedOnCompletion = NO;
     subImageViewScaleAnim.fromValue = @(1);
     subImageViewScaleAnim.toValue = @(0);
     CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
-//    subImageViewAnims.fillMode = kCAFillModeForwards;
     [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
-    subImageViewAnims.duration = 2.3f;
+    subImageViewAnims.duration = 0.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
     
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    CATransform3D rotate;
+    CATransform3D scale;
+    scale =CATransform3DMakeScale(0.f, 0.f, 0.f);
+    rotate =CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
+    [_subImageView.layer setTransform:rotate];
+    [_subImageView.layer setTransform:scale];
+    
 //    CATransform3D transform3Dt = CATransform3DMakeScale(0, 0, 0);
 //    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
 //    _subImageView.layer.transform = CATransform3DRotate(transform3Dt, 0.5*M_PI, 0, 0, -1);
