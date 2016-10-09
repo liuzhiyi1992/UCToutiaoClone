@@ -20,16 +20,7 @@
 @end
 
 @implementation UCTAnimTabBarItem
-//- (instancetype)init {
-//    self = [super init];
-//    if (self) {
-//        [self setupItem];
-//    }
-//    return self;
-//}
-
 - (void)setupItem {
-//    [self updateWidth:TABBAR_ITEM_WIDTH];
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(TABBAR_ITEM_WIDTH));
     }];

@@ -79,7 +79,6 @@
     NSValue *toVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f)];
     subImageViewRotationAnim.fromValue = fromVal;
     subImageViewRotationAnim.toValue = toVal;
-    
     CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     subImageViewScaleAnim.fromValue = @(1);
     subImageViewScaleAnim.toValue = @(0);
@@ -97,12 +96,6 @@
     rotate = CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
     combine = CATransform3DConcat(rotate, scale);
     [_subImageView.layer setTransform:combine];
-    
-//    CATransform3D transform3Dt = CATransform3DMakeScale(0, 0, 0);
-//    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
-//    _subImageView.layer.transform = CATransform3DRotate(transform3Dt, 0.5*M_PI, 0, 0, -1);
-//    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
-//    _subImageView.layer.transform = CATransform3DMakeRotation(0.5*M_PI, 0, 0, -1);
     [CATransaction commit];
 }
 
