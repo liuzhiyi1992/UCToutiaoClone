@@ -66,6 +66,13 @@
     } completion:^(BOOL finished) {
         [self.titleLabel setText:@"首页"];
     }];
+    //mainImageView
+    CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    mainImageViewScaleAnim.fromValue = @(1.2);
+    mainImageViewScaleAnim.toValue = @(1);
+    mainImageViewScaleAnim.duration = 0.3f;
+    [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
+    
     //subImageView
     CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
     NSValue *fromVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.f, 0.0f, 0.f, 0.f)];
@@ -83,12 +90,13 @@
     
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    CATransform3D combine;
     CATransform3D rotate;
     CATransform3D scale;
-    scale =CATransform3DMakeScale(0.f, 0.f, 0.f);
-    rotate =CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
-    [_subImageView.layer setTransform:rotate];
-    [_subImageView.layer setTransform:scale];
+    scale = CATransform3DMakeScale(0.f, 0.f, 0.f);
+    rotate = CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
+    combine = CATransform3DConcat(rotate, scale);
+    [_subImageView.layer setTransform:combine];
     
 //    CATransform3D transform3Dt = CATransform3DMakeScale(0, 0, 0);
 //    _subImageView.layer.transform = CATransform3DMakeScale(0, 0, 0);
@@ -106,6 +114,13 @@
     } completion:^(BOOL finished) {
         [self.titleLabel setText:@"刷新"];
     }];
+    //mainImageView
+    CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    mainImageViewScaleAnim.fromValue = @(1);
+    mainImageViewScaleAnim.toValue = @(1.2);
+    mainImageViewScaleAnim.duration = 0.3f;
+    [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
+    
     //subImageView
     CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
