@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48050EC61DAA7F0C004D8587 /* SubscribeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48050EC51DAA7F0C004D8587 /* SubscribeController.m */; };
+		48050EC91DAA8FFC004D8587 /* UCTVideoTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48050EC81DAA8FFC004D8587 /* UCTVideoTabBarItem.m */; };
+		48050ECC1DAA9158004D8587 /* UCTMineTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 48050ECB1DAA9158004D8587 /* UCTMineTabBarItem.m */; };
 		4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */; };
 		4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 4814C6821D885F1500B8A9DB /* UCTNetwork.m */; };
 		483F93041D8994EE00F978DC /* NewsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 483F93031D8994EE00F978DC /* NewsService.m */; };
@@ -62,6 +65,12 @@
 /* Begin PBXFileReference section */
 		3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UCToutiaoClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CFF16036A680DB793518E26 /* Pods-UCToutiaoClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.debug.xcconfig"; sourceTree = "<group>"; };
+		48050EC41DAA7F0C004D8587 /* SubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeController.h; sourceTree = "<group>"; };
+		48050EC51DAA7F0C004D8587 /* SubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeController.m; sourceTree = "<group>"; };
+		48050EC71DAA8FFC004D8587 /* UCTVideoTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTVideoTabBarItem.h; sourceTree = "<group>"; };
+		48050EC81DAA8FFC004D8587 /* UCTVideoTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTVideoTabBarItem.m; sourceTree = "<group>"; };
+		48050ECA1DAA9158004D8587 /* UCTMineTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTMineTabBarItem.h; sourceTree = "<group>"; };
+		48050ECB1DAA9158004D8587 /* UCTMineTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTMineTabBarItem.m; sourceTree = "<group>"; };
 		4814C67C1D884DE100B8A9DB /* ZYHChannelItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYHChannelItemCell.h; path = UCToutiaoClone/View/ZYHChannelItemCell.h; sourceTree = SOURCE_ROOT; };
 		4814C67D1D884DE100B8A9DB /* ZYHChannelItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYHChannelItemCell.m; path = UCToutiaoClone/View/ZYHChannelItemCell.m; sourceTree = SOURCE_ROOT; };
 		4814C6811D885F1500B8A9DB /* UCTNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNetwork.h; sourceTree = "<group>"; };
@@ -328,6 +337,8 @@
 				5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */,
 				55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */,
 				55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */,
+				48050EC41DAA7F0C004D8587 /* SubscribeController.h */,
+				48050EC51DAA7F0C004D8587 /* SubscribeController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -392,6 +403,10 @@
 				55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */,
 				486D48841DAA4D6300B516E0 /* UCTSubscribeTabBarItem.h */,
 				486D48851DAA4D6300B516E0 /* UCTSubscribeTabBarItem.m */,
+				48050EC71DAA8FFC004D8587 /* UCTVideoTabBarItem.h */,
+				48050EC81DAA8FFC004D8587 /* UCTVideoTabBarItem.m */,
+				48050ECA1DAA9158004D8587 /* UCTMineTabBarItem.h */,
+				48050ECB1DAA9158004D8587 /* UCTMineTabBarItem.m */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -596,6 +611,7 @@
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
 				55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */,
 				55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */,
+				48050EC61DAA7F0C004D8587 /* SubscribeController.m in Sources */,
 				48B4201A1DA8CC2500FD13CF /* UCTTabBarController.m in Sources */,
 				554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */,
 				558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */,
@@ -607,6 +623,7 @@
 				553A45921D93844E0058FCDD /* SpecialNewsCollectionViewCell.m in Sources */,
 				55F8C15D1D9E5EF3008149DD /* UCTHomeTabBarItem.m in Sources */,
 				483F93041D8994EE00F978DC /* NewsService.m in Sources */,
+				48050EC91DAA8FFC004D8587 /* UCTVideoTabBarItem.m in Sources */,
 				553A45911D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.m in Sources */,
 				4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */,
 				553A45941D93844E0058FCDD /* UCTNewsCollectionViewCell.m in Sources */,
@@ -616,6 +633,7 @@
 				55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */,
 				55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */,
 				5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */,
+				48050ECC1DAA9158004D8587 /* UCTMineTabBarItem.m in Sources */,
 				484A903F1D86FBA7002E36B4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
