@@ -1,12 +1,12 @@
 //
-//  UCTHomeTabBarItem.h
+//  UCTSubscribeTabBarItem.h
 //  UCToutiaoClone
 //
-//  Created by zhiyi on 16/9/30.
+//  Created by lzy on 16/10/9.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
 #import "UCTAnimTabBarItem.h"
 
-@interface UCTHomeTabBarItem : UCTAnimTabBarItem
+@interface UCTSubscribeTabBarItem : UCTAnimTabBarItem
 @end
