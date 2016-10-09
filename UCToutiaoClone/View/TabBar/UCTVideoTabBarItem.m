@@ -1,20 +1,20 @@
 //
-//  UCTSubscribeTabBarItem.m
+//  UCTVideoTabBarItem.m
 //  UCToutiaoClone
 //
 //  Created by lzy on 16/10/9.
 //  Copyright © 2016年 lzy. All rights reserved.
 //
 
-#import "UCTSubscribeTabBarItem.h"
+#import "UCTVideoTabBarItem.h"
 #import "Masonry.h"
 
-@interface UCTSubscribeTabBarItem ()
+@interface UCTVideoTabBarItem ()
 @property (strong, nonatomic) UIImageView *spotImageView;
 @property (assign, nonatomic) BOOL tmpFlag;
 @end
 
-@implementation UCTSubscribeTabBarItem
+@implementation UCTVideoTabBarItem
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -25,8 +25,8 @@
 
 - (void)setupItem {
     [super setupItem];
-    [self.mainImageView setImage:[UIImage imageNamed:@"icon_subscribe"]];
-    [self.titleLabel setText:@"订阅号"];
+    [self.mainImageView setImage:[UIImage imageNamed:@"icon_video"]];
+    [self.titleLabel setText:@"视频"];
     
     self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
     _spotImageView.alpha = 0;
@@ -34,8 +34,7 @@
     [self sendSubviewToBack:_spotImageView];
     [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.equalTo(self.mainImageView).multipliedBy(0.4);
-        make.trailing.equalTo(self.mainImageView).offset(-4);
-        make.top.equalTo(self.mainImageView).offset(1);
+        make.center.equalTo(self.mainImageView);
     }];
 }
 

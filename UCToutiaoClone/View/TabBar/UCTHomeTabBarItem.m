@@ -39,13 +39,11 @@
     
     self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
     _spotImageView.alpha = 0;
-//    [_spotImageView setBackgroundColor:[UIColor hexColor:@"FAC852"]];
     [self addSubview:_spotImageView];
     [self sendSubviewToBack:_spotImageView];
     [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.equalTo(self.mainImageView).multipliedBy(0.4);
-        make.centerX.equalTo(self.mainImageView);
-        make.centerY.equalTo(self.mainImageView).offset(0);
+        make.center.equalTo(self.mainImageView);
     }];
 }
 

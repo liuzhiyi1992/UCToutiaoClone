@@ -8,6 +8,9 @@
 
 #import "UCTTabBarController.h"
 #import "UCTHomeTabBarItem.h"
+#import "UCTSubscribeTabBarItem.h"
+#import "UCTVideoTabBarItem.h"
+#import "UCTMineTabBarItem.h"
 #import "UIView+Utils.h"
 #import "Masonry.h"
 
@@ -32,9 +35,14 @@
     
     //item size由item自己决定
     UCTHomeTabBarItem *homeTabBarItem = [[UCTHomeTabBarItem alloc] init];
-//    UCTHomeTabBarItem *homeTabBarItem2 = [[UCTHomeTabBarItem alloc] init];
+    UCTSubscribeTabBarItem *subscribeTabBarItem = [[UCTSubscribeTabBarItem alloc] init];
+    UCTVideoTabBarItem *videoTabBarItem = [[UCTVideoTabBarItem alloc] init];
+    UCTMineTabBarItem *mineTabBarItem = [[UCTMineTabBarItem alloc] init];
 //    UCTHomeTabBarItem *homeTabBarItem3 = [[UCTHomeTabBarItem alloc] init];
     [self.tabBarItemList addObject:homeTabBarItem];
+    [self.tabBarItemList addObject:subscribeTabBarItem];
+    [self.tabBarItemList addObject:videoTabBarItem];
+    [self.tabBarItemList addObject:mineTabBarItem];
 //    [self.tabBarItemList addObject:homeTabBarItem2];
 //    [self.tabBarItemList addObject:homeTabBarItem3];
     
