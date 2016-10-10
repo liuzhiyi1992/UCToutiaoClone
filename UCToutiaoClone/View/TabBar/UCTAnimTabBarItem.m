@@ -15,11 +15,19 @@
 #define TITLE_LABEL_TEXT_COLOR [UIColor hexColor:@"bdbec0"]
 #define TABBAR_ITEM_WIDTH 60.f
 
-
 @interface UCTAnimTabBarItem ()
 @end
 
 @implementation UCTAnimTabBarItem
+- (instancetype)initWithTabBarController:(UITabBarController *)tabBarController index:(NSUInteger)index {
+    self = [super init];
+    if (self) {
+        _index = index;
+        _tabBarController = tabBarController;
+        [self setupItem];
+    }
+    return self;
+}
 - (void)setupItem {
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(@(TABBAR_ITEM_WIDTH));
@@ -56,5 +64,6 @@
 }
 
 - (void)handleClick {
+    _tabBarController.selectedIndex = _index;
 }
 @end

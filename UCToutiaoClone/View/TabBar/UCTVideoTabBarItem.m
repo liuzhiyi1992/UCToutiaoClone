@@ -15,14 +15,6 @@
 @end
 
 @implementation UCTVideoTabBarItem
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupItem];
-    }
-    return self;
-}
-
 - (void)setupItem {
     [super setupItem];
     [self.mainImageView setImage:[UIImage imageNamed:@"icon_video"]];
@@ -39,6 +31,7 @@
 }
 
 - (void)handleClick {
+//    [super handleClick];
     if (_tmpFlag) {
         [self releaseAnim];
         self.tmpFlag = NO;

@@ -17,13 +17,13 @@
 @end
 
 @implementation UCTHomeTabBarItem
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self setupItem];
-    }
-    return self;
-}
+//- (instancetype)init {
+//    self = [super init];
+//    if (self) {
+//        [self setupItem];
+//    }
+//    return self;
+//}
 
 - (void)setupItem {
     [super setupItem];
@@ -48,6 +48,7 @@
 }
 
 - (void)handleClick {
+    [super handleClick];
     if (_tmpFlag) {
         [self releaseAnim];
         self.tmpFlag = NO;

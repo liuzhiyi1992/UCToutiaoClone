@@ -34,10 +34,10 @@
     [self.view addSubview:_customTabBar];
     
     //item size由item自己决定
-    UCTHomeTabBarItem *homeTabBarItem = [[UCTHomeTabBarItem alloc] init];
-    UCTSubscribeTabBarItem *subscribeTabBarItem = [[UCTSubscribeTabBarItem alloc] init];
-    UCTVideoTabBarItem *videoTabBarItem = [[UCTVideoTabBarItem alloc] init];
-    UCTMineTabBarItem *mineTabBarItem = [[UCTMineTabBarItem alloc] init];
+    UCTHomeTabBarItem *homeTabBarItem = [[UCTHomeTabBarItem alloc] initWithTabBarController:self index:0];
+    UCTSubscribeTabBarItem *subscribeTabBarItem = [[UCTSubscribeTabBarItem alloc] initWithTabBarController:self index:1];
+    UCTVideoTabBarItem *videoTabBarItem = [[UCTVideoTabBarItem alloc] initWithTabBarController:self index:2];
+    UCTMineTabBarItem *mineTabBarItem = [[UCTMineTabBarItem alloc] initWithTabBarController:self index:3];
 //    UCTHomeTabBarItem *homeTabBarItem3 = [[UCTHomeTabBarItem alloc] init];
     [self.tabBarItemList addObject:homeTabBarItem];
     [self.tabBarItemList addObject:subscribeTabBarItem];

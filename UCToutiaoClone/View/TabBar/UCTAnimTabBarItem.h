@@ -12,5 +12,9 @@
 @property (strong, nonatomic) UIButton *mainButton;
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIImageView *mainImageView;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (assign, nonatomic) NSUInteger index;
+- (instancetype)initWithTabBarController:(UITabBarController *)tabBarController index:(NSUInteger)index;
 - (void)setupItem;
+- (void)handleClick;
 @end
