@@ -10,6 +10,8 @@
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
 
+#define SPOTIMAGEVIEW_CENTERY_OFFSET 2
+
 @interface UCTHomeTabBarItem ()
 @property (strong, nonatomic) UIImageView *subImageView;
 @property (strong, nonatomic) UIImageView *spotImageView;
@@ -44,7 +46,8 @@
     [self sendSubviewToBack:_spotImageView];
     [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.and.height.equalTo(self.mainImageView).multipliedBy(0.4);
-        make.center.equalTo(self.mainImageView);
+        make.centerX.equalTo(self.mainImageView);
+        make.centerY.equalTo(self.mainImageView).offset(SPOTIMAGEVIEW_CENTERY_OFFSET);
     }];
 }
 
@@ -158,17 +161,25 @@
     [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
     subImageViewAnims.duration = 0.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+    
     //spotImageView
     _spotImageView.alpha = 1;
     CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
     spotImageViewScale.fromValue = @(0);
     spotImageViewScale.toValue = @(1);
-    spotImageViewScale.duration = 0.3f;
-    [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"soptImageView"];
+    CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
+    spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
+    CGPoint toPoint = CGPointMake(_spotImageView.layer.position.x, _spotImageView.layer.position.y-SPOTIMAGEVIEW_CENTERY_OFFSET);
+    spotImageViewPoiAnim.toValue = [NSValue valueWithCGPoint:toPoint];
+    CAAnimationGroup *spotImageViewAnims = [CAAnimationGroup animation];
+    [spotImageViewAnims setAnimations:@[spotImageViewScale, spotImageViewPoiAnim]];
+    spotImageViewAnims.duration = 0.3f;
+    [_spotImageView.layer addAnimation:spotImageViewAnims forKey:@"spotImageView"];
     
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+    [_spotImageView.layer setPosition:toPoint];
     [CATransaction commit];
 }
 
@@ -200,6 +211,12 @@
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
     
     //todo spotImageView position
+    CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
+    spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
+    CGPoint toPoint = CGPointMake(_spotImageView.layer.position.x, _spotImageView.layer.position.y+SPOTIMAGEVIEW_CENTERY_OFFSET);
+    spotImageViewPoiAnim.toValue = [NSValue valueWithCGPoint:toPoint];
+    spotImageViewPoiAnim.duration = 0.3f;
+    [_spotImageView.layer addAnimation:spotImageViewPoiAnim forKey:@"spotImagView"];
     
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
@@ -210,6 +227,7 @@
     rotate = CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
     combine = CATransform3DConcat(rotate, scale);
     [_subImageView.layer setTransform:combine];
+    [_spotImageView.layer setPosition:toPoint];
     [CATransaction commit];
 }
 
