@@ -17,4 +17,6 @@
 - (instancetype)initWithTabBarController:(UITabBarController *)tabBarController index:(NSUInteger)index;
 - (void)setupItem;
 - (void)handleClick;
+- (void)releaseAnim;
+- (void)selectedAnim;
 @end

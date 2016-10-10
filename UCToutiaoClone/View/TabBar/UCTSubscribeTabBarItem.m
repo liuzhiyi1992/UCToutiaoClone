@@ -33,13 +33,6 @@
 
 - (void)handleClick {
     [super handleClick];
-    if (_tmpFlag) {
-        [self releaseAnim];
-        self.tmpFlag = NO;
-    } else {
-        [self selectedAnim];
-        self.tmpFlag = YES;
-    }
 }
 
 - (void)releaseAnim {

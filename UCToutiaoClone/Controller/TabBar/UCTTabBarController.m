@@ -20,11 +20,8 @@
 @end
 
 @implementation UCTTabBarController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     CGRect tabBarRect = self.tabBar.frame;
     [self.tabBar removeFromSuperview];
     
@@ -38,21 +35,14 @@
     UCTSubscribeTabBarItem *subscribeTabBarItem = [[UCTSubscribeTabBarItem alloc] initWithTabBarController:self index:1];
     UCTVideoTabBarItem *videoTabBarItem = [[UCTVideoTabBarItem alloc] initWithTabBarController:self index:2];
     UCTMineTabBarItem *mineTabBarItem = [[UCTMineTabBarItem alloc] initWithTabBarController:self index:3];
-//    UCTHomeTabBarItem *homeTabBarItem3 = [[UCTHomeTabBarItem alloc] init];
     [self.tabBarItemList addObject:homeTabBarItem];
     [self.tabBarItemList addObject:subscribeTabBarItem];
     [self.tabBarItemList addObject:videoTabBarItem];
     [self.tabBarItemList addObject:mineTabBarItem];
-//    [self.tabBarItemList addObject:homeTabBarItem2];
-//    [self.tabBarItemList addObject:homeTabBarItem3];
-    
     
     CGFloat viewWidth = self.view.bounds.size.width;
     for (UCTAnimTabBarItem *barItem in _tabBarItemList) {
-//        [barItem updateHeight:_customTabBar.frame.size.height];
-//        CGPoint itemCenter = [self centerOfTabBarItem:barItem];
         CGFloat itemCenterX = [self centerXOfTabBarItem:barItem];
-//        [barItem setCenter:itemCenter];
         [_customTabBar addSubview:barItem];
         [barItem mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(_customTabBar);
@@ -83,10 +73,21 @@
     return _tabBarItemList;
 }
 
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    if (self.selectedIndex == selectedIndex) {
+        
+    } else {
+        UCTAnimTabBarItem *previousItem = [_tabBarItemList objectAtIndex:self.selectedIndex];
+        [previousItem releaseAnim];
+        [super setSelectedIndex:selectedIndex];
+        UCTAnimTabBarItem *currentItem = [_tabBarItemList objectAtIndex:self.selectedIndex];
+        [currentItem selectedAnim];
+    }
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

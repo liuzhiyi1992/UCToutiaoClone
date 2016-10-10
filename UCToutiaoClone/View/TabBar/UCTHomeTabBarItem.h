@@ -8,5 +8,10 @@
 
 #import "UCTAnimTabBarItem.h"
 
+typedef NS_ENUM(NSUInteger, HomeTabBarItemStatus) {
+    HomeTabBarItemStatusWeather = 0,
+    HomeTabBarItemStatusReading = 1,
+};
+
 @interface UCTHomeTabBarItem : UCTAnimTabBarItem
 @end

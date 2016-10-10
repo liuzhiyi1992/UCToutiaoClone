@@ -14,6 +14,7 @@
 @property (strong, nonatomic) UIImageView *subImageView;
 @property (strong, nonatomic) UIImageView *spotImageView;
 @property (assign, nonatomic) BOOL tmpFlag;
+@property (assign, nonatomic) HomeTabBarItemStatus itemStatus;
 @end
 
 @implementation UCTHomeTabBarItem
@@ -27,6 +28,7 @@
 
 - (void)setupItem {
     [super setupItem];
+    self.itemStatus = HomeTabBarItemStatusWeather;
     [self.mainImageView setImage:[UIImage imageNamed:@"icon_home"]];
     [self.titleLabel setText:@"首页"];
     
@@ -38,7 +40,7 @@
     }];
     
     self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
-    _spotImageView.alpha = 0;
+//    _spotImageView.alpha = 0;
     [self addSubview:_spotImageView];
     [self sendSubviewToBack:_spotImageView];
     [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -49,13 +51,6 @@
 
 - (void)handleClick {
     [super handleClick];
-    if (_tmpFlag) {
-        [self releaseAnim];
-        self.tmpFlag = NO;
-    } else {
-        [self selectedAnim];
-        self.tmpFlag = YES;
-    }
 }
 
 - (void)releaseAnim {
@@ -99,6 +94,46 @@
 }
 
 - (void)selectedAnim {
+    _subImageView.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.mainImageView.alpha = 0;
+        _subImageView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self.titleLabel setText:@"刷新"];
+    }];
+    //mainImageView
+    CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    mainImageViewScaleAnim.fromValue = @(1);
+    mainImageViewScaleAnim.toValue = @(1.2);
+    mainImageViewScaleAnim.duration = 0.3f;
+    [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
+    
+    //subImageView
+    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
+    subImageViewRotationAnim.toValue = @(0);
+    CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    subImageViewScaleAnim.fromValue = @(0);
+    subImageViewScaleAnim.toValue = @(1);
+    CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
+    [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
+    subImageViewAnims.duration = 0.3f;
+    [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+    //spotImageView
+    _spotImageView.alpha = 1;
+    CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    spotImageViewScale.fromValue = @(0);
+    spotImageViewScale.toValue = @(1);
+    spotImageViewScale.duration = 0.3f;
+    [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"soptImageView"];
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+    [CATransaction commit];
+}
+
+- (void)toReadingStatusAnim {
     _subImageView.alpha = 0;
     [UIView animateWithDuration:0.3f animations:^{
         self.mainImageView.alpha = 0;
