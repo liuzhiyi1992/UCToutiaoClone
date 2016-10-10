@@ -15,6 +15,8 @@
 @protocol ZYHPageCollectionViewControllerHomeDelegate <NSObject>
 - (void)pageScrollViewDidEndDragging;
 - (void)pageScrollViewDidEndDecelerating;
+- (void)pageScrollViewDidMakeWeatherAppear;
+- (void)pageScrollViewDidMakeWeatherDisappear;
 @end
 
 @interface ZYHPageCollectionViewController : UICollectionViewController

@@ -370,6 +370,14 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     }
 }
 
+- (void)pageScrollViewDidMakeWeatherAppear {
+    //todo tabbar动画
+}
+
+- (void)pageScrollViewDidMakeWeatherDisappear {
+    //todo tabbar动画
+}
+
 - (void)pageScrollViewDidEndDragging {
     [self correctScrollWhiteStop];
 }
@@ -386,10 +394,14 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     if (correctOffsetY > (0.5 * CUSTOM_NAV_DISPLAY_HEIGHT) && correctOffsetY < (CUSTOM_NAV_DISPLAY_HEIGHT)) {
         [UIView animateWithDuration:0.3f animations:^{
             [_mainScrollView setContentOffset:CGPointMake(0, CUSTOM_NAV_DISPLAY_HEIGHT + originalOffsetY)];
+        } completion:^(BOOL finished) {
+            //todo tabbar动画
         }];
     } else if (correctOffsetY < (0.5 * CUSTOM_NAV_DISPLAY_HEIGHT)) {
         [UIView animateWithDuration:0.3f animations:^{
             [_mainScrollView setContentOffset:CGPointMake(0, originalOffsetY)];
+        } completion:^(BOOL finished) {
+            //todo tabbar动画
         }];
     }
 }

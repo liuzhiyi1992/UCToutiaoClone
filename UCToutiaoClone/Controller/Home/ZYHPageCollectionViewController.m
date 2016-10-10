@@ -295,6 +295,10 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
                                                               currentContentOffset.y + scrollView.contentOffset.y)
                                          animated:NO];
             [scrollView setContentOffset:CGPointMake(0, 0)];
+            if (_homePageScrollView.contentOffset.y >= CUSTOM_NAV_DISPLAY_HEIGHT-20) {
+                //天气完全收起了
+                [_homeDelegate pageScrollViewDidMakeWeatherDisappear];
+            }
         } else {//回弹矫正
             [UIView animateWithDuration:0.3f animations:^{
                 [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
@@ -311,6 +315,10 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
                                                               currentContentOffset.y + scrollView.contentOffset.y)
                                          animated:NO];
             [scrollView setContentOffset:CGPointMake(0, 0)];
+            if (_homePageScrollView.contentOffset.y <= -20) {
+                //天气完全展开了
+                [_homeDelegate pageScrollViewDidMakeWeatherAppear];
+            }
         } else {//回弹矫正
             [UIView animateWithDuration:0.3f animations:^{
                 [_homePageScrollView setContentOffset:CGPointMake(currentContentOffset.x,
