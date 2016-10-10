@@ -58,7 +58,7 @@
     [colorBlock mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(_titleLabel.mas_height);
         make.width.equalTo(@3);
-        make.leading.equalTo(self.contentView).offset(3);
+        make.leading.equalTo(self.contentView).offset(4);
         make.centerY.equalTo(self.contentView);
     }];
 }
