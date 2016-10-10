@@ -12,9 +12,15 @@
 - (void)pageScrollViewDidScroll2OffsetY:(CGFloat)offsetY;
 @end
 
+@protocol ZYHPageCollectionViewControllerHomeDelegate <NSObject>
+- (void)pageScrollViewDidEndDragging;
+- (void)pageScrollViewDidEndDecelerating;
+@end
+
 @interface ZYHPageCollectionViewController : UICollectionViewController
 @property (copy, nonatomic) NSString *channelId;
 @property (strong, nonatomic) UIScrollView *homePageScrollView;
 @property (weak, nonatomic) id<ZYHPageCollectionViewControllerDelegate> scrollDelegate;
+@property (weak, nonatomic) id<ZYHPageCollectionViewControllerHomeDelegate> homeDelegate;
 - (void)freshData;
 @end

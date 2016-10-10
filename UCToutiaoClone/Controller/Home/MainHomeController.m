@@ -37,7 +37,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 #define HOME_PAGE_SCROLL_VIEW_HEIGHT (SCREEN_HEIGHT - CHANNEL_COLLECTION_VIEW_HEIGHT - 20 - 49)//tabBar49, statusBar20
 
 
-@interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate>
+@interface MainHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate, ZYHPageCollectionViewControllerHomeDelegate>
 @property (strong, nonatomic) ZYNavChannelView *navChannelview;
 @property (strong, nonatomic) UIScrollView *mainScrollView;
 @property (strong, nonatomic) UIScrollView *homePageScrollView;
@@ -156,6 +156,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
             ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
             //todo
             tableVC.scrollDelegate = (id<ZYHPageCollectionViewControllerDelegate>)_mainNavView;
+            tableVC.homeDelegate = self;
             tableVC.homePageScrollView = _mainScrollView;
             [self addChildViewController:tableVC];
              [_homePageScrollView addSubview:tableVC.view];
@@ -332,6 +333,7 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     }
 }
 
+#pragma mark - Delegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ZYHChannelItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[ZYHChannelItemCell cellReuseIdentifier] forIndexPath:indexPath];
     ZYHChannelModel *model = _navChannelList[indexPath.row];
@@ -365,6 +367,30 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     } else if ([scrollView isEqual:_mainScrollView]) {
         CGFloat scrollContentOffsetY = scrollView.contentOffset.y;
         [_scrollDelegate mainHomeScrollViewDidScroll2OffsetY:scrollContentOffsetY];
+    }
+}
+
+- (void)pageScrollViewDidEndDragging {
+    [self correctScrollWhiteStop];
+}
+
+- (void)pageScrollViewDidEndDecelerating {
+    [self correctScrollWhiteStop];
+}
+
+- (void)correctScrollWhiteStop {
+    //静止矫正
+    CGFloat offsetY = _mainScrollView.contentOffset.y;
+    CGFloat originalOffsetY = -20;
+    CGFloat correctOffsetY = offsetY - originalOffsetY;//因为mainScrollView初始offset-20
+    if (correctOffsetY > (0.5 * CUSTOM_NAV_DISPLAY_HEIGHT) && correctOffsetY < (CUSTOM_NAV_DISPLAY_HEIGHT)) {
+        [UIView animateWithDuration:0.3f animations:^{
+            [_mainScrollView setContentOffset:CGPointMake(0, CUSTOM_NAV_DISPLAY_HEIGHT + originalOffsetY)];
+        }];
+    } else if (correctOffsetY < (0.5 * CUSTOM_NAV_DISPLAY_HEIGHT)) {
+        [UIView animateWithDuration:0.3f animations:^{
+            [_mainScrollView setContentOffset:CGPointMake(0, originalOffsetY)];
+        }];
     }
 }
 
