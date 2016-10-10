@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UCTHomeTabBarItem.h"
 
 @interface UCTTabBarController : UITabBarController
-
+- (void)mainHomeTabBarItemChangeAnimStatus:(HomeTabBarItemStatus)status;
 @end

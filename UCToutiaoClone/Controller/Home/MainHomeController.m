@@ -17,6 +17,7 @@
 #import "ZYHPageCollectionViewController.h"
 #import "UCTClipAnimatedView.h"
 #import "UCTWeatherAnimatedView.h"
+#import "UCTTabBarController.h"
 
 const NSInteger PRELOAD_PAGE_NUMBER = 3;//!!单数
 const BOOL OPEN_PAGE_RECOVER_MECHANISM = YES;
@@ -371,11 +372,11 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 }
 
 - (void)pageScrollViewDidMakeWeatherAppear {
-    //todo tabbar动画
+    [self tabBarItemAnimStatusChange2Weather];
 }
 
 - (void)pageScrollViewDidMakeWeatherDisappear {
-    //todo tabbar动画
+    [self tabBarItemAnimStatusChange2Reading];
 }
 
 - (void)pageScrollViewDidEndDragging {
@@ -395,15 +396,23 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
         [UIView animateWithDuration:0.3f animations:^{
             [_mainScrollView setContentOffset:CGPointMake(0, CUSTOM_NAV_DISPLAY_HEIGHT + originalOffsetY)];
         } completion:^(BOOL finished) {
-            //todo tabbar动画
+            [self tabBarItemAnimStatusChange2Reading];
         }];
     } else if (correctOffsetY < (0.5 * CUSTOM_NAV_DISPLAY_HEIGHT)) {
         [UIView animateWithDuration:0.3f animations:^{
             [_mainScrollView setContentOffset:CGPointMake(0, originalOffsetY)];
         } completion:^(BOOL finished) {
-            //todo tabbar动画
+            [self tabBarItemAnimStatusChange2Weather];
         }];
     }
+}
+
+- (void)tabBarItemAnimStatusChange2Reading {
+    [(UCTTabBarController *)self.tabBarController mainHomeTabBarItemChangeAnimStatus:HomeTabBarItemStatusReading];
+}
+
+- (void)tabBarItemAnimStatusChange2Weather {
+    [(UCTTabBarController *)self.tabBarController mainHomeTabBarItemChangeAnimStatus:HomeTabBarItemStatusWeather];
 }
 
 - (void)didReceiveMemoryWarning {

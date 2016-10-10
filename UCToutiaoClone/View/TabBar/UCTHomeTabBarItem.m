@@ -14,7 +14,6 @@
 @property (strong, nonatomic) UIImageView *subImageView;
 @property (strong, nonatomic) UIImageView *spotImageView;
 @property (assign, nonatomic) BOOL tmpFlag;
-@property (assign, nonatomic) HomeTabBarItemStatus itemStatus;
 @end
 
 @implementation UCTHomeTabBarItem
@@ -171,5 +170,61 @@
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
     [CATransaction commit];
+}
+
+- (void)toWeatherStatusAnim {
+    _spotImageView.alpha = 0;
+    [UIView animateWithDuration:0.3f animations:^{
+        self.mainImageView.alpha = 1;
+    } completion:^(BOOL finished) {
+        [self.titleLabel setText:@"首页"];
+    }];
+    //mainImageView
+    CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    mainImageViewScaleAnim.fromValue = @(1.2);
+    mainImageViewScaleAnim.toValue = @(1);
+    mainImageViewScaleAnim.duration = 0.3f;
+    [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
+    
+    //subImageView
+    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform"];
+    NSValue *fromVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.f, 0.0f, 0.f, 0.f)];
+    NSValue *toVal = [NSValue valueWithCATransform3D:CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f)];
+    subImageViewRotationAnim.fromValue = fromVal;
+    subImageViewRotationAnim.toValue = toVal;
+    CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    subImageViewScaleAnim.fromValue = @(1);
+    subImageViewScaleAnim.toValue = @(0);
+    CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
+    [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
+    subImageViewAnims.duration = 0.3f;
+    [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    CATransform3D combine;
+    CATransform3D rotate;
+    CATransform3D scale;
+    scale = CATransform3DMakeScale(0.f, 0.f, 0.f);
+    rotate = CATransform3DMakeRotation(0.5*M_PI, 0.0f, 0.0f, -1.0f);
+    combine = CATransform3DConcat(rotate, scale);
+    [_subImageView.layer setTransform:combine];
+    [CATransaction commit];
+}
+
+- (void)toNeedsRefreshStatusAnim {
+    //急需刷新状态
+}
+
+- (void)setItemStatus:(HomeTabBarItemStatus)itemStatus {
+    if (_itemStatus == itemStatus) {
+        return;
+    }
+    _itemStatus = itemStatus;
+    if (itemStatus == HomeTabBarItemStatusReading) {
+        [self toReadingStatusAnim];
+    } else if (itemStatus == HomeTabBarItemStatusWeather) {
+        [self toWeatherStatusAnim];
+    }
 }
 @end

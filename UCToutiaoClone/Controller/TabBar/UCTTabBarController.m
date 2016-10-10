@@ -7,7 +7,6 @@
 //
 
 #import "UCTTabBarController.h"
-#import "UCTHomeTabBarItem.h"
 #import "UCTSubscribeTabBarItem.h"
 #import "UCTVideoTabBarItem.h"
 #import "UCTMineTabBarItem.h"
@@ -50,6 +49,10 @@
             make.centerX.equalTo(@(itemCenterX - viewWidth/2));
         }];
     }
+}
+
+- (void)mainHomeTabBarItemChangeAnimStatus:(HomeTabBarItemStatus)status {
+    [(UCTHomeTabBarItem *)_tabBarItemList.firstObject setItemStatus:status];
 }
 
 - (CGPoint)centerOfTabBarItem:(UCTAnimTabBarItem *)item {

@@ -11,7 +11,9 @@
 typedef NS_ENUM(NSUInteger, HomeTabBarItemStatus) {
     HomeTabBarItemStatusWeather = 0,
     HomeTabBarItemStatusReading = 1,
+    HomeTabBarItemStatusNeedsRefresh = 2,
 };
 
 @interface UCTHomeTabBarItem : UCTAnimTabBarItem
+@property (assign, nonatomic) HomeTabBarItemStatus itemStatus;
 @end
