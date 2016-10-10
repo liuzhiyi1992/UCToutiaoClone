@@ -45,6 +45,8 @@
 		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
 		55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */; };
+		55F61A1E1DAB691B0072A6C0 /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F61A1D1DAB691B0072A6C0 /* VideoController.m */; };
+		55F61A211DAB69330072A6C0 /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F61A201DAB69330072A6C0 /* MineController.m */; };
 		55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */; };
 		55F8C15A1D9E5EB4008149DD /* UCTAnimTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1591D9E5EB4008149DD /* UCTAnimTabBarItem.m */; };
 		55F8C15D1D9E5EF3008149DD /* UCTHomeTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */; };
@@ -140,6 +142,10 @@
 		55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchRefreshView.m; sourceTree = "<group>"; };
 		55B8739B1D93DD250041EE34 /* UICollectionView+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Bounds.h"; sourceTree = "<group>"; };
 		55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Bounds.m"; sourceTree = "<group>"; };
+		55F61A1C1DAB691B0072A6C0 /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
+		55F61A1D1DAB691B0072A6C0 /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
+		55F61A1F1DAB69330072A6C0 /* MineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineController.h; sourceTree = "<group>"; };
+		55F61A201DAB69330072A6C0 /* MineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineController.m; sourceTree = "<group>"; };
 		55F8C1541D9E3FDB008149DD /* UCTOPMarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTOPMarkView.h; sourceTree = "<group>"; };
 		55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTOPMarkView.m; sourceTree = "<group>"; };
 		55F8C1581D9E5EB4008149DD /* UCTAnimTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTAnimTabBarItem.h; sourceTree = "<group>"; };
@@ -339,6 +345,10 @@
 				55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */,
 				48050EC41DAA7F0C004D8587 /* SubscribeController.h */,
 				48050EC51DAA7F0C004D8587 /* SubscribeController.m */,
+				55F61A1C1DAB691B0072A6C0 /* VideoController.h */,
+				55F61A1D1DAB691B0072A6C0 /* VideoController.m */,
+				55F61A1F1DAB69330072A6C0 /* MineController.h */,
+				55F61A201DAB69330072A6C0 /* MineController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -599,6 +609,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4846E2E51D8D791C000B746E /* NetworkManager.m in Sources */,
+				55F61A1E1DAB691B0072A6C0 /* VideoController.m in Sources */,
 				5538EA1B1D9D128D00717199 /* UCTWeatherAnimatedView.m in Sources */,
 				558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */,
 				553A45901D93844E0058FCDD /* SingleImgNewsCollectionViewCell.m in Sources */,
@@ -634,6 +645,7 @@
 				55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */,
 				5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */,
 				48050ECC1DAA9158004D8587 /* UCTMineTabBarItem.m in Sources */,
+				55F61A211DAB69330072A6C0 /* MineController.m in Sources */,
 				484A903F1D86FBA7002E36B4 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
