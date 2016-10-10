@@ -173,7 +173,6 @@
 }
 
 - (void)toWeatherStatusAnim {
-    _spotImageView.alpha = 0;
     [UIView animateWithDuration:0.3f animations:^{
         self.mainImageView.alpha = 1;
     } completion:^(BOOL finished) {
@@ -199,6 +198,8 @@
     [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
     subImageViewAnims.duration = 0.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+    
+    //todo spotImageView position
     
     [CATransaction begin];
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
