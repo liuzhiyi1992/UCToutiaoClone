@@ -13,7 +13,7 @@
 #define SEARCH_BAR_LEADING_TRAILNG 10
 #define SEARCH_BAR_MARGIN_BOTTOM 10
 #define SEARCH_BAR_HEIGHT 30
-#define SELF_HEIGHT (2*SEARCH_BAR_MARGIN_BOTTOM + SEARCH_BAR_HEIGHT)
+#define SEARCH_REFRESH_VIEW_HEIGHT (2*SEARCH_BAR_MARGIN_BOTTOM + SEARCH_BAR_HEIGHT)
 #define TEXT_PLACEHOLDER @"搜索文章、订阅号"
 #define TEXT_FONT [UIFont systemFontOfSize:12.f]
 #define TEXT_FONT_COLOR [UIColor hexColor:@"9C9DA0"]
@@ -33,7 +33,7 @@
 - (void)setup {
     [self setBackgroundColor:[UIColor hexColor:@"f9f9f9"]];
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@SELF_HEIGHT);
+        make.height.equalTo(@SEARCH_REFRESH_VIEW_HEIGHT);
     }];
     
     UIView *searchBar = [self createSearchBar];
@@ -67,7 +67,7 @@
 
 - (CGFloat)searchRefreshViewHeight {
     if (self.bounds.size.height <= 0) {
-        return SELF_HEIGHT;
+        return SEARCH_REFRESH_VIEW_HEIGHT;
     }
     return self.bounds.size.height;
 }

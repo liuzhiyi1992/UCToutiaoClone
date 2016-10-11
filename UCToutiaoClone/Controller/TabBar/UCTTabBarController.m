@@ -82,7 +82,7 @@
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     if (self.selectedIndex == selectedIndex) {
-        
+        //todo 重复选中
     } else {
         UCTAnimTabBarItem *previousItem = [_tabBarItemList objectAtIndex:self.selectedIndex];
         [previousItem releaseAnim];

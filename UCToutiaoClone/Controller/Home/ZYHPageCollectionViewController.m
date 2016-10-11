@@ -23,6 +23,7 @@
 #import "Masonry.h"
 #import "UICollectionView+Bounds.h"
 #import "MainHomeController.h"
+#import "MJRefreshGifHeader.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -115,10 +116,26 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     NSLog(@"fresh Data");
 }
 
+
+- (MJRefreshGifHeader *)createMJRefreshGifHeader {
+    MJRefreshGifHeader *mjHeader = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self loadNewData];
+    }];
+    UIImage *loadingImage0 = [UIImage imageNamed:@"loading_0"];
+    UIImage *loadingImage1 = [UIImage imageNamed:@"loading_1"];
+    UIImage *loadingImage2 = [UIImage imageNamed:@"loading_2"];
+    UIImage *loadingImage3 = [UIImage imageNamed:@"loading_3"];
+    NSArray *loadingImageList = @[loadingImage0, loadingImage1, loadingImage2, loadingImage3];
+    [mjHeader setImages:loadingImageList forState:MJRefreshStateRefreshing];
+    [mjHeader setImages:loadingImageList forState:MJRefreshStatePulling];
+    mjHeader.stateLabel.hidden = YES;
+    mjHeader.lastUpdatedTimeLabel.hidden = YES;
+    mjHeader.ignoredScrollViewContentInsetTop = 35;
+    return mjHeader;
+}
+
 - (void)setupMJ {
-//    self.collectionView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
-//        [self loadNewData];
-//    }];
+    self.collectionView.mj_header = [self createMJRefreshGifHeader];
     self.collectionView.mj_footer = [MJRefreshAutoGifFooter footerWithRefreshingBlock:^{
         [self loadMoreData];
     }];
