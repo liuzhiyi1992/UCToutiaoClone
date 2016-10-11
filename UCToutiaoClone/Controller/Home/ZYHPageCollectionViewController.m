@@ -130,7 +130,9 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [mjHeader setImages:loadingImageList forState:MJRefreshStatePulling];
     mjHeader.stateLabel.hidden = YES;
     mjHeader.lastUpdatedTimeLabel.hidden = YES;
-    mjHeader.ignoredScrollViewContentInsetTop = 35;
+    if (_searchRefreshView) { //有searchBar的页面
+        mjHeader.ignoredScrollViewContentInsetTop = 35;
+    }
     return mjHeader;
 }
 
