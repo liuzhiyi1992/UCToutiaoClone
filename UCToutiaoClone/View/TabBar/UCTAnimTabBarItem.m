@@ -59,7 +59,7 @@
         make.centerX.equalTo(self);
         make.leading.greaterThanOrEqualTo(self);
         make.bottom.equalTo(_titleLabel.mas_top);
-        make.width.and.height.equalTo(@30);
+        make.width.and.height.equalTo(@28);
     }];
 }
 

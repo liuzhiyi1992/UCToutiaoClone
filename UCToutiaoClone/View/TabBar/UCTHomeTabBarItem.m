@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIImageView *subImageView;
 @property (strong, nonatomic) UIImageView *spotImageView;
 @property (assign, nonatomic) BOOL tmpFlag;
+@property (assign, nonatomic) CGFloat spotImageViewCurrentScale;
 @end
 
 @implementation UCTHomeTabBarItem
@@ -41,7 +42,7 @@
     }];
     
     self.spotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ornament7"]];
-//    _spotImageView.alpha = 0;
+    _spotImageViewCurrentScale = 1.f;
     [self addSubview:_spotImageView];
     [self sendSubviewToBack:_spotImageView];
     [_spotImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,7 +70,7 @@
         [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
         _spotImageView.layer.transform = CATransform3DMakeScale(0, 0, 1);
         [CATransaction commit];
-    } else if (_itemStatus == HomeTabBarItemStatusReading) {
+    } else if (_itemStatus == HomeTabBarItemStatusReading || _itemStatus == HomeTabBarItemStatusNeedsRefresh) {
         _spotImageView.alpha = 0;
         [UIView animateWithDuration:0.3f animations:^{
             self.mainImageView.alpha = 1;
@@ -124,7 +125,7 @@
         [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
         _spotImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
         [CATransaction commit];
-    } else if (_itemStatus == HomeTabBarItemStatusReading) {
+    } else if (_itemStatus == HomeTabBarItemStatusReading || _itemStatus == HomeTabBarItemStatusNeedsRefresh) {
         _subImageView.alpha = 0;
         [UIView animateWithDuration:0.3f animations:^{
             self.mainImageView.alpha = 0;
@@ -154,13 +155,14 @@
         _spotImageView.alpha = 1;
         CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
         spotImageViewScale.fromValue = @(0);
-        spotImageViewScale.toValue = @(1);
-        spotImageViewScale.duration = 0.3f;
+        spotImageViewScale.toValue = @(_spotImageViewCurrentScale);
+        spotImageViewScale.duration = 0.35f;
         [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"soptImageView"];
         
         [CATransaction begin];
         [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
         _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+        _spotImageView.layer.transform = CATransform3DMakeScale(_spotImageViewCurrentScale, _spotImageViewCurrentScale, 1);
         [CATransaction commit];
     }
 }
@@ -195,7 +197,7 @@
     //spotImageView
     _spotImageView.alpha = 1;
     CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    spotImageViewScale.fromValue = @(0);
+    spotImageViewScale.fromValue = @(_spotImageViewCurrentScale);
     spotImageViewScale.toValue = @(1);
     CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
     spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
@@ -210,6 +212,8 @@
     [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
     _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
     [_spotImageView.layer setPosition:toPoint];
+    [_spotImageView.layer setTransform:CATransform3DMakeScale(1, 1, 1)];
+    _spotImageViewCurrentScale = 1.f;
     [CATransaction commit];
 }
 
@@ -240,7 +244,7 @@
     subImageViewAnims.duration = 0.3f;
     [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
     
-    //todo spotImageView position
+    //spotImageView
     CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
     spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
     CGPoint toPoint = CGPointMake(_spotImageView.layer.position.x, _spotImageView.layer.position.y+SPOTIMAGEVIEW_CENTERY_OFFSET);
@@ -263,6 +267,18 @@
 
 - (void)toNeedsRefreshStatusAnim {
     //急需刷新状态
+    //spotImageView
+    CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    spotImageViewScale.fromValue = @(1);
+    spotImageViewScale.toValue = @(2.5);
+    spotImageViewScale.duration = 0.3f;
+    [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"spotImageView"];
+    
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+    _spotImageView.layer.transform = CATransform3DMakeScale(2.5, 2.5, 1);
+    _spotImageViewCurrentScale = 2.5f;
+    [CATransaction commit];
 }
 
 - (void)setItemStatus:(HomeTabBarItemStatus)itemStatus {
@@ -270,10 +286,18 @@
         return;
     }
     _itemStatus = itemStatus;
-    if (itemStatus == HomeTabBarItemStatusReading) {
-        [self toReadingStatusAnim];
-    } else if (itemStatus == HomeTabBarItemStatusWeather) {
-        [self toWeatherStatusAnim];
+    switch (itemStatus) {
+        case HomeTabBarItemStatusReading:
+            [self toReadingStatusAnim];
+            break;
+        case HomeTabBarItemStatusWeather:
+            [self toWeatherStatusAnim];
+            break;
+        case HomeTabBarItemStatusNeedsRefresh:
+            [self toNeedsRefreshStatusAnim];
+            break;
+        default:
+            break;
     }
 }
 @end

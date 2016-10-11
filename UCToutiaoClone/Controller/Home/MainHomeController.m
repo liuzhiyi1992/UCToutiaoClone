@@ -387,6 +387,13 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     [self correctScrollWhiteStop];
 }
 
+- (void)pageScrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY > SCREEN_HEIGHT) {
+        [self tabBarItemAnimStatusChange2NeedsRefresh];
+    }
+}
+
 - (void)correctScrollWhiteStop {
     //静止矫正
     CGFloat offsetY = _mainScrollView.contentOffset.y;
@@ -413,6 +420,10 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
 
 - (void)tabBarItemAnimStatusChange2Weather {
     [(UCTTabBarController *)self.tabBarController mainHomeTabBarItemChangeAnimStatus:HomeTabBarItemStatusWeather];
+}
+
+- (void)tabBarItemAnimStatusChange2NeedsRefresh {
+    [(UCTTabBarController *)self.tabBarController mainHomeTabBarItemChangeAnimStatus:HomeTabBarItemStatusNeedsRefresh];
 }
 
 - (void)didReceiveMemoryWarning {

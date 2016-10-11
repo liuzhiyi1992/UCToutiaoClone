@@ -285,6 +285,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_homeDelegate pageScrollViewDidScroll:scrollView];
     //联动首页mainScrollView 动作向上
     CGFloat remainingHeight = 20;
     CGFloat divideOffset = CUSTOM_NAV_HEIGHT - MAIN_SCROLLVIEW_OFFSET_TOP - remainingHeight;

@@ -52,7 +52,11 @@
 }
 
 - (void)mainHomeTabBarItemChangeAnimStatus:(HomeTabBarItemStatus)status {
-    [(UCTHomeTabBarItem *)_tabBarItemList.firstObject setItemStatus:status];
+    UCTHomeTabBarItem *homeTabBarItem = (UCTHomeTabBarItem *)_tabBarItemList.firstObject;
+    if (homeTabBarItem.itemStatus == HomeTabBarItemStatusNeedsRefresh) {
+        return;
+    }
+    [homeTabBarItem setItemStatus:status];
 }
 
 - (CGPoint)centerOfTabBarItem:(UCTAnimTabBarItem *)item {

@@ -17,6 +17,7 @@
 - (void)pageScrollViewDidEndDecelerating;
 - (void)pageScrollViewDidMakeWeatherAppear;
 - (void)pageScrollViewDidMakeWeatherDisappear;
+- (void)pageScrollViewDidScroll:(UIScrollView *)scrollView;
 @end
 
 @interface ZYHPageCollectionViewController : UICollectionViewController
