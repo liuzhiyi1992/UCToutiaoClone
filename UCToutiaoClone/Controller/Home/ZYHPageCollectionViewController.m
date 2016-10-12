@@ -24,6 +24,7 @@
 #import "UICollectionView+Bounds.h"
 #import "MainHomeController.h"
 #import "MJRefreshGifHeader.h"
+#import "UCTHomeTabBarItem.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -91,7 +92,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)setupSearchRefreshView {
-    if ([_channelId isEqualToString:@"100"]) {
+    if ([_channelId isEqualToString:INDEX_CHANNEL_ID]) {
         self.searchRefreshView = [[UCTHomeSearchRefreshView alloc] init];
         CGFloat viewHeight = [_searchRefreshView searchRefreshViewHeight];
         
@@ -101,6 +102,8 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
             make.leading.equalTo(self.collectionView);
             make.width.equalTo(self.collectionView);
         }];
+        //mj header
+        self.collectionView.mj_header.ignoredScrollViewContentInsetTop = 35;
     }
 }
 
@@ -130,9 +133,6 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     [mjHeader setImages:loadingImageList forState:MJRefreshStatePulling];
     mjHeader.stateLabel.hidden = YES;
     mjHeader.lastUpdatedTimeLabel.hidden = YES;
-    if (_searchRefreshView) { //有searchBar的页面
-        mjHeader.ignoredScrollViewContentInsetTop = 35;
-    }
     return mjHeader;
 }
 
@@ -169,6 +169,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
             [weakSelf canNotLoadMore];
         }
         if (status == UCTNetworkResponseSucceed) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA object:nil];
             //数据先放model解析出来
             weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
@@ -223,6 +224,10 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)canNotLoadMore {
     [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+}
+
+- (void)beginRefresh {
+    [self.collectionView.mj_header beginRefreshing];
 }
 
 #pragma mark - Delegate DataSource

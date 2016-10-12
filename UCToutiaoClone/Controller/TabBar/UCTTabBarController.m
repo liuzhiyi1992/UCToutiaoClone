@@ -12,6 +12,7 @@
 #import "UCTMineTabBarItem.h"
 #import "UIView+Utils.h"
 #import "Masonry.h"
+#import "MainHomeController.h"
 
 @interface UCTTabBarController ()
 @property (strong, nonatomic) UIView *customTabBar;
@@ -82,6 +83,12 @@
 
 - (void)setSelectedIndex:(NSUInteger)selectedIndex {
     if (self.selectedIndex == selectedIndex) {
+        if (selectedIndex == 0) {//首页
+            //刷新
+            UINavigationController *navController = (UINavigationController *)[self.childViewControllers objectAtIndex:selectedIndex];
+            MainHomeController *mainHomeController = (MainHomeController *)navController.topViewController;
+            [mainHomeController refreshCurrentPage];
+        }
         //todo 重复选中
     } else {
         UCTAnimTabBarItem *previousItem = [_tabBarItemList objectAtIndex:self.selectedIndex];

@@ -11,6 +11,7 @@
 #import "UIColor+hexColor.h"
 
 #define SPOTIMAGEVIEW_CENTERY_OFFSET 2
+NSString * const NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA = @"NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA";
 
 @interface UCTHomeTabBarItem ()
 @property (strong, nonatomic) UIImageView *subImageView;
@@ -28,8 +29,13 @@
 //    return self;
 //}
 
+- (void)dealloc {
+    [self resignNotification];
+}
+
 - (void)setupItem {
     [super setupItem];
+    [self registerNotification];
     self.itemStatus = HomeTabBarItemStatusWeather;
     [self.mainImageView setImage:[UIImage imageNamed:@"icon_home"]];
     [self.titleLabel setText:@"首页"];
@@ -50,6 +56,29 @@
         make.centerX.equalTo(self.mainImageView);
         make.centerY.equalTo(self.mainImageView).offset(SPOTIMAGEVIEW_CENTERY_OFFSET);
     }];
+}
+
+- (void)registerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pageDidRefresh) name:NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA object:nil];
+}
+
+- (void)resignNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)pageDidRefresh {
+    switch (_itemStatus) {
+        case HomeTabBarItemStatusReading:
+            break;
+        case HomeTabBarItemStatusWeather:
+            break;
+        case HomeTabBarItemStatusNeedsRefresh:
+            [self toReadingStatusAnim];
+            self.itemStatus = HomeTabBarItemStatusReading;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)handleClick {
@@ -168,53 +197,68 @@
 }
 
 - (void)toReadingStatusAnim {
-    _subImageView.alpha = 0;
-    [UIView animateWithDuration:0.3f animations:^{
-        self.mainImageView.alpha = 0;
-        _subImageView.alpha = 1;
-    } completion:^(BOOL finished) {
-        [self.titleLabel setText:@"刷新"];
-    }];
-    //mainImageView
-    CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    mainImageViewScaleAnim.fromValue = @(1);
-    mainImageViewScaleAnim.toValue = @(1.2);
-    mainImageViewScaleAnim.duration = 0.3f;
-    [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
-    
-    //subImageView
-    CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
-    subImageViewRotationAnim.toValue = @(0);
-    CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    subImageViewScaleAnim.fromValue = @(0);
-    subImageViewScaleAnim.toValue = @(1);
-    CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
-    [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
-    subImageViewAnims.duration = 0.3f;
-    [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
-    
-    //spotImageView
-    _spotImageView.alpha = 1;
-    CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-    spotImageViewScale.fromValue = @(_spotImageViewCurrentScale);
-    spotImageViewScale.toValue = @(1);
-    CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
-    spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
-    CGPoint toPoint = CGPointMake(_spotImageView.layer.position.x, _spotImageView.layer.position.y-SPOTIMAGEVIEW_CENTERY_OFFSET);
-    spotImageViewPoiAnim.toValue = [NSValue valueWithCGPoint:toPoint];
-    CAAnimationGroup *spotImageViewAnims = [CAAnimationGroup animation];
-    [spotImageViewAnims setAnimations:@[spotImageViewScale, spotImageViewPoiAnim]];
-    spotImageViewAnims.duration = 0.3f;
-    [_spotImageView.layer addAnimation:spotImageViewAnims forKey:@"spotImageView"];
-    
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-    _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
-    [_spotImageView.layer setPosition:toPoint];
-    [_spotImageView.layer setTransform:CATransform3DMakeScale(1, 1, 1)];
-    _spotImageViewCurrentScale = 1.f;
-    [CATransaction commit];
+    if (_itemStatus == HomeTabBarItemStatusWeather) {
+        _subImageView.alpha = 0;
+        [UIView animateWithDuration:0.3f animations:^{
+            self.mainImageView.alpha = 0;
+            _subImageView.alpha = 1;
+        } completion:^(BOOL finished) {
+            [self.titleLabel setText:@"刷新"];
+        }];
+        //mainImageView
+        CABasicAnimation *mainImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        mainImageViewScaleAnim.fromValue = @(1);
+        mainImageViewScaleAnim.toValue = @(1.2);
+        mainImageViewScaleAnim.duration = 0.3f;
+        [self.mainImageView.layer addAnimation:mainImageViewScaleAnim forKey:@"mainImageView"];
+        
+        //subImageView
+        CABasicAnimation *subImageViewRotationAnim = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        subImageViewRotationAnim.fromValue = @(-0.5*M_PI);
+        subImageViewRotationAnim.toValue = @(0);
+        CABasicAnimation *subImageViewScaleAnim = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        subImageViewScaleAnim.fromValue = @(0);
+        subImageViewScaleAnim.toValue = @(1);
+        CAAnimationGroup *subImageViewAnims = [CAAnimationGroup animation];
+        [subImageViewAnims setAnimations:@[subImageViewRotationAnim, subImageViewScaleAnim]];
+        subImageViewAnims.duration = 0.3f;
+        [_subImageView.layer addAnimation:subImageViewAnims forKey:@"subImageView"];
+        
+        //spotImageView
+        _spotImageView.alpha = 1;
+        CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        spotImageViewScale.fromValue = @(_spotImageViewCurrentScale);
+        spotImageViewScale.toValue = @(1);
+        CABasicAnimation *spotImageViewPoiAnim = [CABasicAnimation animationWithKeyPath:@"position"];
+        spotImageViewPoiAnim.fromValue = [NSValue valueWithCGPoint:_spotImageView.layer.position];
+        CGPoint toPoint = CGPointMake(_spotImageView.layer.position.x, _spotImageView.layer.position.y-SPOTIMAGEVIEW_CENTERY_OFFSET);
+        spotImageViewPoiAnim.toValue = [NSValue valueWithCGPoint:toPoint];
+        CAAnimationGroup *spotImageViewAnims = [CAAnimationGroup animation];
+        [spotImageViewAnims setAnimations:@[spotImageViewScale, spotImageViewPoiAnim]];
+        spotImageViewAnims.duration = 0.3f;
+        [_spotImageView.layer addAnimation:spotImageViewAnims forKey:@"spotImageView"];
+        
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        _subImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+        [_spotImageView.layer setPosition:toPoint];
+        [_spotImageView.layer setTransform:CATransform3DMakeScale(1, 1, 1)];
+        _spotImageViewCurrentScale = 1.f;
+        [CATransaction commit];
+    } else if (_itemStatus == HomeTabBarItemStatusNeedsRefresh) {
+        //spotImageView
+        CABasicAnimation *spotImageViewScale = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        spotImageViewScale.fromValue = @(_spotImageViewCurrentScale);
+        spotImageViewScale.toValue = @(1);
+        spotImageViewScale.duration = 0.3f;
+        [_spotImageView.layer addAnimation:spotImageViewScale forKey:@"spotImageView"];
+        
+        [CATransaction begin];
+        [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+        _spotImageView.layer.transform = CATransform3DMakeScale(1, 1, 1);
+        _spotImageViewCurrentScale = 1.f;
+        [CATransaction commit];
+    }
 }
 
 - (void)toWeatherStatusAnim {
@@ -285,7 +329,6 @@
     if (_itemStatus == itemStatus) {
         return;
     }
-    _itemStatus = itemStatus;
     switch (itemStatus) {
         case HomeTabBarItemStatusReading:
             [self toReadingStatusAnim];
@@ -299,5 +342,6 @@
         default:
             break;
     }
+    _itemStatus = itemStatus;
 }
 @end

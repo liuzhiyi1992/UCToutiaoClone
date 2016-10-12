@@ -26,4 +26,5 @@
 @property (weak, nonatomic) id<ZYHPageCollectionViewControllerDelegate> scrollDelegate;
 @property (weak, nonatomic) id<ZYHPageCollectionViewControllerHomeDelegate> homeDelegate;
 - (void)freshData;
+- (void)beginRefresh;
 @end

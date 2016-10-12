@@ -155,7 +155,6 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
         CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
         for (int i = 0; i < _navChannelList.count; i ++) {
             ZYHPageCollectionViewController *tableVC = [[ZYHPageCollectionViewController alloc] initWithCollectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-            //todo
             tableVC.scrollDelegate = (id<ZYHPageCollectionViewControllerDelegate>)_mainNavView;
             tableVC.homeDelegate = self;
             tableVC.homePageScrollView = _mainScrollView;
@@ -331,6 +330,13 @@ const BOOL ONLY_LOAD_DEFAULT_CHANNEL = YES;
     ZYHPageTableViewController *viewController =  [[self childViewControllers] objectAtIndex:page];
     if (viewController) {
         [viewController freshData];
+    }
+}
+
+- (void)refreshCurrentPage {
+    if (self.childViewControllers.count > 0) {
+        ZYHPageCollectionViewController *pageController = [self.childViewControllers objectAtIndex:_currentPage];
+        [pageController beginRefresh];
     }
 }
 

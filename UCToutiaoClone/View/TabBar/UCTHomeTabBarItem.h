@@ -8,6 +8,8 @@
 
 #import "UCTAnimTabBarItem.h"
 
+extern NSString * const NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA;
+
 typedef NS_ENUM(NSUInteger, HomeTabBarItemStatus) {
     HomeTabBarItemStatusWeather = 0,
     HomeTabBarItemStatusReading = 1,

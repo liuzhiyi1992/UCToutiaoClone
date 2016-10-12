@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define INDEX_CHANNEL_ID @"100"
 #define SCREEN_WIDTH [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
 extern const CGFloat MAIN_SCROLLVIEW_OFFSET_TOP;
@@ -24,4 +25,5 @@ extern const CGFloat CUSTOM_NAV_DISPLAY_HEIGHT;
 
 @interface MainHomeController : UIViewController
 @property (weak, nonatomic) id<MainHomeControllerScrollDelegate> scrollDelegate;
+- (void)refreshCurrentPage;
 @end
