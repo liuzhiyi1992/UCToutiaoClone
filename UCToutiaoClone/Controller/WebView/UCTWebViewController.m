@@ -57,6 +57,7 @@
 - (UIWebView *)mainWebView {
     if (!_mainWebView) {
         _mainWebView = [[UIWebView alloc] init];
+        [_mainWebView setBackgroundColor:[UIColor whiteColor]];
         _mainWebView.delegate = self;
         [self.view addSubview:_mainWebView];
         [_mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
