@@ -25,6 +25,7 @@
 #import "MainHomeController.h"
 #import "MJRefreshGifHeader.h"
 #import "UCTHomeTabBarItem.h"
+#import "UCTWebViewController.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
