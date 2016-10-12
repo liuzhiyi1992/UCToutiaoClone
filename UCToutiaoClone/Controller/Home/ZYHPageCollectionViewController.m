@@ -65,22 +65,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     
     [self setupCollectionView];
     [self setupMJ];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canScroll) name:@"canScroll" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cannotScroll) name:@"cannotScroll" object:nil];
-//    [self.collectionView setCanCancelContentTouches:NO];
-//    self.collectionView.delaysContentTouches = NO;
 }
-
-//- (void)canScroll {
-//    NSLog(@"canScroll");
-//    self.collectionView.canCancelContentTouches = YES;
-//}
-//
-//- (void)cannotScroll {
-//    NSLog(@"cannotScroll");
-//    self.collectionView.canCancelContentTouches = NO;
-//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
