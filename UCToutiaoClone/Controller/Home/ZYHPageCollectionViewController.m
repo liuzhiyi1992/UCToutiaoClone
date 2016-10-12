@@ -24,6 +24,7 @@
 #import "UICollectionView+Bounds.h"
 #import "MainHomeController.h"
 #import "MJRefreshGifHeader.h"
+#import "UCTWebViewController.h"
 
 #define ARTICLE_MAP_SPECIALS @"specials"
 #define ARTICLE_MAP_ARTICLES @"articles"
@@ -233,7 +234,9 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
+    UCTWebViewController *uctWebViewController = [[UCTWebViewController alloc] initWithRequestUrlString:model.urlString title:model.articleTitle];
+    [self.navigationController pushViewController:uctWebViewController animated:YES];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {

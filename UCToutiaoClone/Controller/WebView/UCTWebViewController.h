@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTWebViewController : UIViewController
-
+- (instancetype)initWithRequestUrlString:(NSString *)requestUrlString title:(NSString *)title;
 @end

@@ -7,31 +7,56 @@
 //
 
 #import "UCTWebViewController.h"
+#import "Masonry.h"
 
-@interface UCTWebViewController ()
-
+@interface UCTWebViewController () <UIWebViewDelegate>
+@property (strong, nonatomic) UIWebView *mainWebView;
+@property (copy, nonatomic) NSString *requestUrlString;
 @end
 
 @implementation UCTWebViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self loadRequest];
 }
+
+- (void)loadRequest {
+    if (_requestUrlString.length > 0) {
+        NSURL *requestUrl = [NSURL URLWithString:_requestUrlString];
+        NSURLRequest *request = [[NSURLRequest alloc] initWithURL:requestUrl];
+        [self.mainWebView loadRequest:request];
+    }
+}
+
+- (instancetype)initWithRequestUrlString:(NSString *)requestUrlString title:(NSString *)title {
+    self = [self init];
+    if (self) {
+        self.title = title;
+        _requestUrlString = requestUrlString;
+    }
+    return self;
+}
+
+- (void)configureWebView {
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIWebView *)mainWebView {
+    if (!_mainWebView) {
+        _mainWebView = [[UIWebView alloc] init];
+        _mainWebView.delegate = self;
+        [self.view addSubview:_mainWebView];
+        [_mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.view);
+        }];
+    }
+    return _mainWebView;
 }
-*/
-
 @end
