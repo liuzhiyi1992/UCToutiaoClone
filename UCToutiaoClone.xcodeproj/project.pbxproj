@@ -36,6 +36,7 @@
 		553A45941D93844E0058FCDD /* UCTNewsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 553A458F1D93844E0058FCDD /* UCTNewsCollectionViewCell.m */; };
 		5543AD721DADDE7E00A4A5D9 /* UCTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5543AD711DADDE7E00A4A5D9 /* UCTWebViewController.m */; };
 		5543AD761DADEAA400A4A5D9 /* UCTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5543AD751DADEAA400A4A5D9 /* UCTViewController.m */; };
+		5543AD791DAE103500A4A5D9 /* UCTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5543AD781DAE103500A4A5D9 /* UCTNavigationController.m */; };
 		554B63DC1D8E8354003C3797 /* channelPagePlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 554B63DB1D8E8354003C3797 /* channelPagePlaceholder@2x.png */; };
 		554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */; };
 		558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */; };
@@ -127,6 +128,8 @@
 		5543AD711DADDE7E00A4A5D9 /* UCTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTWebViewController.m; sourceTree = "<group>"; };
 		5543AD741DADEAA400A4A5D9 /* UCTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTViewController.h; sourceTree = "<group>"; };
 		5543AD751DADEAA400A4A5D9 /* UCTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTViewController.m; sourceTree = "<group>"; };
+		5543AD771DAE103500A4A5D9 /* UCTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNavigationController.h; sourceTree = "<group>"; };
+		5543AD781DAE103500A4A5D9 /* UCTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNavigationController.m; sourceTree = "<group>"; };
 		554B63DB1D8E8354003C3797 /* channelPagePlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channelPagePlaceholder@2x.png"; sourceTree = "<group>"; };
 		554B63DD1D8EA1D2003C3797 /* ZYHArticleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHArticleModel.h; sourceTree = "<group>"; };
 		554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHArticleModel.m; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 			children = (
 				5543AD741DADEAA400A4A5D9 /* UCTViewController.h */,
 				5543AD751DADEAA400A4A5D9 /* UCTViewController.m */,
+				5543AD771DAE103500A4A5D9 /* UCTNavigationController.h */,
+				5543AD781DAE103500A4A5D9 /* UCTNavigationController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -648,6 +653,7 @@
 				5543AD761DADEAA400A4A5D9 /* UCTViewController.m in Sources */,
 				55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */,
 				552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */,
+				5543AD791DAE103500A4A5D9 /* UCTNavigationController.m in Sources */,
 				55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */,
 				55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */,
 				48050EC61DAA7F0C004D8587 /* SubscribeController.m in Sources */,
