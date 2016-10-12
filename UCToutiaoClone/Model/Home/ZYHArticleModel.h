@@ -13,6 +13,7 @@
 @property (copy, nonatomic) NSString *recoid;
 @property (copy, nonatomic) NSString *articleTitle;
 @property (copy, nonatomic) NSString *urlString;
+@property (copy, nonatomic) NSString *zzdUrlString;
 @property (strong, nonatomic) NSArray *thumbnails;
 @property (strong, nonatomic) NSArray *images;
 

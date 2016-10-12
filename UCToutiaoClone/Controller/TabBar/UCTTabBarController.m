@@ -22,13 +22,13 @@
 @implementation UCTTabBarController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self cleanTheBlackLine];
     CGRect tabBarRect = self.tabBar.frame;
-    [self.tabBar removeFromSuperview];
     
     self.customTabBar = [[UIView alloc] init];
     [_customTabBar setBackgroundColor:[UIColor whiteColor]];
-    [_customTabBar setFrame:tabBarRect];
-    [self.view addSubview:_customTabBar];
+    [_customTabBar setFrame:CGRectMake(0, 0, tabBarRect.size.width, tabBarRect.size.height)];
+    [self.tabBar addSubview:_customTabBar];
     
     //item size由item自己决定
     UCTHomeTabBarItem *homeTabBarItem = [[UCTHomeTabBarItem alloc] initWithTabBarController:self index:0];
@@ -50,6 +50,11 @@
             make.centerX.equalTo(@(itemCenterX - viewWidth/2));
         }];
     }
+}
+
+- (void)cleanTheBlackLine {
+    [self.tabBar setBackgroundImage:[UIImage new]];
+    [self.tabBar setShadowImage:[UIImage new]];
 }
 
 - (void)mainHomeTabBarItemChangeAnimStatus:(HomeTabBarItemStatus)status {

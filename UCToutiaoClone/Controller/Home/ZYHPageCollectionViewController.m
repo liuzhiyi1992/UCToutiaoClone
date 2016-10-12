@@ -66,22 +66,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     
     [self setupCollectionView];
     [self setupMJ];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(canScroll) name:@"canScroll" object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cannotScroll) name:@"cannotScroll" object:nil];
-//    [self.collectionView setCanCancelContentTouches:NO];
-//    self.collectionView.delaysContentTouches = NO;
 }
-
-//- (void)canScroll {
-//    NSLog(@"canScroll");
-//    self.collectionView.canCancelContentTouches = YES;
-//}
-//
-//- (void)cannotScroll {
-//    NSLog(@"cannotScroll");
-//    self.collectionView.canCancelContentTouches = NO;
-//}
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -253,6 +238,9 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
+    UCTWebViewController *uctWebViewController = [[UCTWebViewController alloc] initWithRequestUrlString:model.urlString title:@""];
+    [self.navigationController pushViewController:uctWebViewController animated:YES];
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
