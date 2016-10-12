@@ -10,6 +10,8 @@
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
 
+const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
+
 @interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
 @property (copy, nonatomic) NSString *requestUrlString;
@@ -82,14 +84,14 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
-    if (offsetY - _scrollViewBeginDraggingOffsetY > 30) {
+    if (offsetY - _scrollViewBeginDraggingOffsetY > SCROLLVIEW_REACTION_OFFSET_Y) {
         if (NO == _isStatusBarNeed2Hide) {
             self.isStatusBarNeed2Hide = YES;
             [UIView animateWithDuration:.3 animations:^{
                 [self setNeedsStatusBarAppearanceUpdate];
             }];
         }
-    } else if (offsetY - _scrollViewBeginDraggingOffsetY < -30) {
+    } else if (offsetY - _scrollViewBeginDraggingOffsetY < -SCROLLVIEW_REACTION_OFFSET_Y) {
         if (YES == _isStatusBarNeed2Hide) {
             self.isStatusBarNeed2Hide = NO;
             [UIView animateWithDuration:.3 animations:^{
