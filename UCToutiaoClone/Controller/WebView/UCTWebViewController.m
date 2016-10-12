@@ -8,6 +8,7 @@
 
 #import "UCTWebViewController.h"
 #import "Masonry.h"
+#import "UIColor+hexColor.h"
 
 @interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
@@ -52,6 +53,14 @@
 - (void)configureNavigationBar {
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
+    UIBarButtonItem *moreButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_more"] style:UIBarButtonItemStylePlain target:self action:@selector(clickMoreButton:)];
+    [moreButton setTintColor:[UIColor hexColor:@"3B424C"]];
+    self.navigationItem.rightBarButtonItem = moreButton;
+}
+
+- (void)clickMoreButton:(id)sender {
+    
 }
 
 - (void)loadRequest {
