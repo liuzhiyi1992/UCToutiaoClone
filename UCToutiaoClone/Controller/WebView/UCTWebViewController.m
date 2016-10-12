@@ -14,6 +14,8 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 
 @interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
+@property (strong, nonatomic) UIButton *moreButton;
+@property (strong, nonatomic) UIButton *backButton;
 @property (copy, nonatomic) NSString *requestUrlString;
 @property (assign, nonatomic) BOOL isStatusBarNeed2Hide;
 @property (assign, nonatomic) CGFloat scrollViewBeginDraggingOffsetY;
@@ -56,9 +58,16 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
     
-    UIBarButtonItem *moreButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_more"] style:UIBarButtonItemStylePlain target:self action:@selector(clickMoreButton:)];
-    [moreButton setTintColor:[UIColor hexColor:@"3B424C"]];
-    self.navigationItem.rightBarButtonItem = moreButton;
+    
+    self.moreButton = [[UIButton alloc] init];
+    [_moreButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [_moreButton.layer setCornerRadius:16];
+    [_moreButton addTarget:self action:@selector(clickMoreButton:) forControlEvents:UIControlEventTouchUpInside];
+    [_moreButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_more"] forState:UIControlStateNormal];
+    UIBarButtonItem *moreButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_moreButton];
+//    UIBarButtonItem *moreButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_more"] style:UIBarButtonItemStylePlain target:self action:@selector(clickMoreButton:)];
+//    [moreButtonItem setTintColor:[UIColor hexColor:@"3B424C"]];
+    self.navigationItem.rightBarButtonItem = moreButtonItem;
 }
 
 - (void)clickMoreButton:(id)sender {
@@ -86,19 +95,30 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     CGFloat offsetY = scrollView.contentOffset.y;
     if (offsetY - _scrollViewBeginDraggingOffsetY > SCROLLVIEW_REACTION_OFFSET_Y) {
         if (NO == _isStatusBarNeed2Hide) {
-            self.isStatusBarNeed2Hide = YES;
-            [UIView animateWithDuration:.3 animations:^{
-                [self setNeedsStatusBarAppearanceUpdate];
-            }];
+            [self toReadingStatus];
         }
     } else if (offsetY - _scrollViewBeginDraggingOffsetY < -SCROLLVIEW_REACTION_OFFSET_Y) {
         if (YES == _isStatusBarNeed2Hide) {
-            self.isStatusBarNeed2Hide = NO;
-            [UIView animateWithDuration:.3 animations:^{
-                [self setNeedsStatusBarAppearanceUpdate];
-            }];
+            [self toOperatingStatus];
         }
     }
+}
+
+- (void)toReadingStatus {
+    self.isStatusBarNeed2Hide = YES;
+    [UIView animateWithDuration:.3 animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+        [_moreButton setBackgroundColor:[UIColor lightGrayColor]];
+        
+    }];
+}
+
+- (void)toOperatingStatus {
+    self.isStatusBarNeed2Hide = NO;
+    [UIView animateWithDuration:.3 animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+        [_moreButton setBackgroundColor:[UIColor whiteColor]];
+    }];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
