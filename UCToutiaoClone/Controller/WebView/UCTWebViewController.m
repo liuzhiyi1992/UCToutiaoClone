@@ -9,9 +9,11 @@
 #import "UCTWebViewController.h"
 #import "Masonry.h"
 
-@interface UCTWebViewController () <UIWebViewDelegate>
+@interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
 @property (copy, nonatomic) NSString *requestUrlString;
+@property (assign, nonatomic) BOOL isStatusBarNeed2Hide;
+@property (assign, nonatomic) CGFloat scrollViewBeginDraggingOffsetY;
 @end
 
 @implementation UCTWebViewController
@@ -25,6 +27,26 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return _isStatusBarNeed2Hide;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
+    return UIStatusBarAnimationFade;
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [UIView animateWithDuration:.8 animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+    }];
 }
 
 - (void)configureNavigationBar {
@@ -49,6 +71,29 @@
     return self;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offsetY = scrollView.contentOffset.y;
+    if (offsetY - _scrollViewBeginDraggingOffsetY > 30) {
+        if (NO == _isStatusBarNeed2Hide) {
+            self.isStatusBarNeed2Hide = YES;
+            [UIView animateWithDuration:.3 animations:^{
+                [self setNeedsStatusBarAppearanceUpdate];
+            }];
+        }
+    } else if (offsetY - _scrollViewBeginDraggingOffsetY < -30) {
+        if (YES == _isStatusBarNeed2Hide) {
+            self.isStatusBarNeed2Hide = NO;
+            [UIView animateWithDuration:.3 animations:^{
+                [self setNeedsStatusBarAppearanceUpdate];
+            }];
+        }
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    self.scrollViewBeginDraggingOffsetY = scrollView.contentOffset.y;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -59,6 +104,7 @@
         _mainWebView = [[UIWebView alloc] init];
         [_mainWebView setBackgroundColor:[UIColor whiteColor]];
         _mainWebView.delegate = self;
+        _mainWebView.scrollView.delegate = self;
         [self.view addSubview:_mainWebView];
         [_mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.view);
