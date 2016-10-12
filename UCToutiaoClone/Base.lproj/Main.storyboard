@@ -47,7 +47,7 @@
         <scene sceneID="EOR-Tg-cy8">
             <objects>
                 <navigationController id="aXU-0R-TLC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="YdK-S0-VN1">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="YdK-S0-VN1">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LMc-0y-XNm">
@@ -66,7 +66,7 @@
         <scene sceneID="RSF-ZH-xMZ">
             <objects>
                 <navigationController title="订阅号" id="oQt-Ye-0LF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="8TS-mB-W0u">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="8TS-mB-W0u">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="HpK-P9-osI">
@@ -81,11 +81,11 @@
             </objects>
             <point key="canvasLocation" x="-383" y="2167"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="c0j-l1-Pbl">
             <objects>
                 <navigationController id="QX5-zf-cQ0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Udw-t5-bfQ">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="Udw-t5-bfQ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9A9-BH-jZB">
@@ -119,11 +119,11 @@
             </objects>
             <point key="canvasLocation" x="510" y="3674"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Fnt-pB-gvE">
             <objects>
                 <navigationController id="UG4-P6-SCW" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="piz-a8-1b8">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="" id="piz-a8-1b8">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="100"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pjX-2q-AZA">

@@ -94,7 +94,6 @@
             MainHomeController *mainHomeController = (MainHomeController *)navController.topViewController;
             [mainHomeController refreshCurrentPage];
         }
-        //todo 重复选中
     } else {
         UCTAnimTabBarItem *previousItem = [_tabBarItemList objectAtIndex:self.selectedIndex];
         [previousItem releaseAnim];
