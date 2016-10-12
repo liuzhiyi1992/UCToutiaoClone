@@ -25,6 +25,7 @@
     self.articleTitle = dict[@"title"];
     self.recoid = dict[@"recoid"];
     self.urlString = dict[@"url"];
+    self.zzdUrlString = dict[@"zzd_url"];
     self.thumbnails = dict[@"thumbnails"];
     self.images = dict[@"images"];
     self.opMark = dict[@"op_mark"];

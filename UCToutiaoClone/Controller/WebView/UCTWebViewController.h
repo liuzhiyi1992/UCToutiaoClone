@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UCTViewController.h"
 
-@interface UCTWebViewController : UIViewController
+@interface UCTWebViewController : UCTViewController
 - (instancetype)initWithRequestUrlString:(NSString *)requestUrlString title:(NSString *)title;
 @end

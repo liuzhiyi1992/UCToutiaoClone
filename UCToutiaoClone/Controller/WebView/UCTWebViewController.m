@@ -18,7 +18,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureNavigationBar];
     [self loadRequest];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)configureNavigationBar {
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
 }
 
 - (void)loadRequest {
@@ -37,11 +48,6 @@
     }
     return self;
 }
-
-- (void)configureWebView {
-    
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

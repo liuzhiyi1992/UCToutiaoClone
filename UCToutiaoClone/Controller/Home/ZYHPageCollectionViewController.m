@@ -235,7 +235,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     ZYHArticleModel *model = [_dataList objectAtIndex:indexPath.row];
-    UCTWebViewController *uctWebViewController = [[UCTWebViewController alloc] initWithRequestUrlString:model.urlString title:model.articleTitle];
+    UCTWebViewController *uctWebViewController = [[UCTWebViewController alloc] initWithRequestUrlString:model.urlString title:@""];
     [self.navigationController pushViewController:uctWebViewController animated:YES];
 }
 
