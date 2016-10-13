@@ -33,12 +33,13 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -49,16 +50,13 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     return UIStatusBarAnimationFade;
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [UIView animateWithDuration:.8 animations:^{
-        [self setNeedsStatusBarAppearanceUpdate];
-    }];
-}
-
 - (void)configureNavigationBar {
     [super configureNavigationBar];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
+    
+    self.navigationController.navigationBar.translucent = YES;
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
     
     self.moreButton = [[UIButton alloc] init];
     [_moreButton setFrame:CGRectMake(0, 0, 32, 32)];
@@ -75,7 +73,6 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     [_backButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
     UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     self.navigationItem.leftBarButtonItem = backButtonItem;
-    
 }
 
 - (void)clickMoreButton:(id)sender {
@@ -147,24 +144,9 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
         _mainWebView.scrollView.delegate = self;
         [self.view addSubview:_mainWebView];
         [_mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.customNavTitleView.mas_bottom);
-            make.leading.and.trailing.and.bottom.equalTo(self.view);
+            make.edges.equalTo(self.view);
         }];
     }
     return _mainWebView;
-}
-
-- (UIView *)customNavTitleView {
-    if (!_customNavTitleView) {
-        _customNavTitleView = [[UIView alloc] init];
-        [_customNavTitleView setBackgroundColor:[UIColor redColor]];
-        [self.view addSubview:_customNavTitleView];
-        [_customNavTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.equalTo(@CUSTOM_NAV_BAR_HEIGHT);
-            make.top.equalTo(self.view);
-            make.leading.and.trailing.equalTo(self.view);
-        }];
-    }
-    return _customNavTitleView;
 }
 @end
