@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UCTViewController : UIViewController
-
+- (void)configureNavigationBar;
 @end

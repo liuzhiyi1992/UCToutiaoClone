@@ -375,7 +375,4 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
     [self setupSearchRefreshView];
 }
-
-
-
 @end

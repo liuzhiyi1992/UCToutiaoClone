@@ -17,11 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
-    [self configureBaseNavigationBar];
-    
+    [self configureNavigationBar];
 }
 
-- (void)configureBaseNavigationBar {
+- (void)configureNavigationBar {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_back"] style:UIBarButtonItemStylePlain target:self action:@selector(clickBackButton:)];
     [backButton setTintColor:[UIColor hexColor:@"3B424C"]];
     self.navigationItem.leftBarButtonItem = backButton;

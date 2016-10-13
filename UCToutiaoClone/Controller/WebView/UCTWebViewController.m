@@ -25,7 +25,6 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configureNavigationBar];
     [self loadRequest];
 }
 
@@ -55,9 +54,9 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 }
 
 - (void)configureNavigationBar {
+    [super configureNavigationBar];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"icon_alpha"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc] init]];
-    
     
     self.moreButton = [[UIButton alloc] init];
     [_moreButton setFrame:CGRectMake(0, 0, 32, 32)];
@@ -65,9 +64,16 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     [_moreButton addTarget:self action:@selector(clickMoreButton:) forControlEvents:UIControlEventTouchUpInside];
     [_moreButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_more"] forState:UIControlStateNormal];
     UIBarButtonItem *moreButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_moreButton];
-//    UIBarButtonItem *moreButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_nav_more"] style:UIBarButtonItemStylePlain target:self action:@selector(clickMoreButton:)];
-//    [moreButtonItem setTintColor:[UIColor hexColor:@"3B424C"]];
     self.navigationItem.rightBarButtonItem = moreButtonItem;
+    
+    self.backButton = [[UIButton alloc] init];
+    [_backButton setFrame:CGRectMake(0, 0, 32, 32)];
+    [_backButton.layer setCornerRadius:16];
+    [_backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
+    UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
+    self.navigationItem.leftBarButtonItem = backButtonItem;
+    
 }
 
 - (void)clickMoreButton:(id)sender {
@@ -109,7 +115,7 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     [UIView animateWithDuration:.3 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
         [_moreButton setBackgroundColor:[UIColor lightGrayColor]];
-        
+        [_backButton setBackgroundColor:[UIColor lightGrayColor]];
     }];
 }
 
@@ -118,6 +124,7 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     [UIView animateWithDuration:.3 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
         [_moreButton setBackgroundColor:[UIColor whiteColor]];
+        [_backButton setBackgroundColor:[UIColor whiteColor]];
     }];
 }
 
