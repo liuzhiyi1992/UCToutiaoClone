@@ -10,10 +10,13 @@
 #import "Masonry.h"
 #import "UIColor+hexColor.h"
 
+#define CUSTOM_NAV_BAR_HEIGHT 44
+
 const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 
 @interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
+@property (strong, nonatomic) UIView *customNavTitleView;
 @property (strong, nonatomic) UIButton *moreButton;
 @property (strong, nonatomic) UIButton *backButton;
 @property (copy, nonatomic) NSString *requestUrlString;
@@ -30,13 +33,12 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -145,9 +147,24 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
         _mainWebView.scrollView.delegate = self;
         [self.view addSubview:_mainWebView];
         [_mainWebView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
+            make.top.equalTo(self.customNavTitleView.mas_bottom);
+            make.leading.and.trailing.and.bottom.equalTo(self.view);
         }];
     }
     return _mainWebView;
+}
+
+- (UIView *)customNavTitleView {
+    if (!_customNavTitleView) {
+        _customNavTitleView = [[UIView alloc] init];
+        [_customNavTitleView setBackgroundColor:[UIColor redColor]];
+        [self.view addSubview:_customNavTitleView];
+        [_customNavTitleView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.height.equalTo(@CUSTOM_NAV_BAR_HEIGHT);
+            make.top.equalTo(self.view);
+            make.leading.and.trailing.equalTo(self.view);
+        }];
+    }
+    return _customNavTitleView;
 }
 @end
