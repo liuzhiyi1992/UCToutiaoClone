@@ -155,7 +155,9 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
             [weakSelf canNotLoadMore];
         }
         if (status == UCTNetworkResponseSucceed) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA object:nil];
+            if (!isAppend) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_NAME_HOME_PAGE_DID_LOAD_DATA object:nil];
+            }
             //数据先放model解析出来
             weakSelf.articlesIdList = [dataDict objectForKey:@"items"];
             NSDictionary *articlesDict = [dataDict objectForKey:@"articles"];
