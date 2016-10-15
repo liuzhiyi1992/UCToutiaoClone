@@ -229,7 +229,7 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     NSString *identifier = objc_msgSendGetCellIdentifier_(clazz, NSSelectorFromString(@"cellReuseIdentifier"));
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (nil == cell) {
-        cell = [[clazz alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[clazz alloc] initWithFrame:CGRectZero];
     }
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
