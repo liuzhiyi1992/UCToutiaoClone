@@ -375,4 +375,12 @@ id (*objc_msgSendGetCellIdentifier_)(id self, SEL _cmd) = (void *)objc_msgSend;
     }
     [self setupSearchRefreshView];
 }
+
+- (NSMutableDictionary *)templateCellDict {
+    if (!_templateCellDict) {
+        _templateCellDict = [NSMutableDictionary dictionary];
+    }
+    return _templateCellDict;
+}
+
 @end
