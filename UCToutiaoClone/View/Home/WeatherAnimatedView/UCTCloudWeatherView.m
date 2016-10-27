@@ -35,29 +35,29 @@
 }
 
 - (void)configureAnim {
-//    UIImageView *firstImageView = _imageViewList.firstObject;
-//    CAKeyframeAnimation *firstAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    firstAnim.duration = 7.f;
-//    firstAnim.repeatCount = HUGE_VALF;
-//    UIBezierPath *firstPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(firstImageView.center.x-15, firstImageView.center.y-3) radius:3 startAngle:0 endAngle:2*M_PI clockwise:YES];
-//    firstAnim.path = firstPath.CGPath;
-//    [firstImageView.layer addAnimation:firstAnim forKey:@"position"];
-//    
-//    UIImageView *secondImageView = _imageViewList[1];
-//    CAKeyframeAnimation *secondAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    secondAnim.duration = 6.f;
-//    secondAnim.repeatCount = HUGE_VALF;
-//    UIBezierPath *secondPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(secondImageView.center.x+5, secondImageView.center.y-5) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
-//    secondAnim.path = secondPath.CGPath;
-//    [secondImageView.layer addAnimation:secondAnim forKey:@"position"];
-//    
-//    UIImageView *thirdImageView = _imageViewList[2];
-//    CAKeyframeAnimation *thirdAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    thirdAnim.duration = 5.f;
-//    thirdAnim.repeatCount = HUGE_VALF;
-//    UIBezierPath *thirdPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(thirdImageView.center.x, thirdImageView.center.y-10) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
-//    thirdAnim.path = thirdPath.CGPath;
-//    [thirdImageView.layer addAnimation:thirdAnim forKey:@"position"];
+    UIImageView *firstImageView = _imageViewList.firstObject;
+    CAKeyframeAnimation *firstAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    firstAnim.duration = 7.f;
+    firstAnim.repeatCount = HUGE_VALF;
+    UIBezierPath *firstPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(firstImageView.center.x-15, firstImageView.center.y-3) radius:3 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    firstAnim.path = firstPath.CGPath;
+    [firstImageView.layer addAnimation:firstAnim forKey:@"position"];
+    
+    UIImageView *secondImageView = _imageViewList[1];
+    CAKeyframeAnimation *secondAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    secondAnim.duration = 6.f;
+    secondAnim.repeatCount = HUGE_VALF;
+    UIBezierPath *secondPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(secondImageView.center.x+5, secondImageView.center.y-5) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    secondAnim.path = secondPath.CGPath;
+    [secondImageView.layer addAnimation:secondAnim forKey:@"position"];
+    
+    UIImageView *thirdImageView = _imageViewList[2];
+    CAKeyframeAnimation *thirdAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
+    thirdAnim.duration = 5.f;
+    thirdAnim.repeatCount = HUGE_VALF;
+    UIBezierPath *thirdPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(thirdImageView.center.x, thirdImageView.center.y-10) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
+    thirdAnim.path = thirdPath.CGPath;
+    [thirdImageView.layer addAnimation:thirdAnim forKey:@"position"];
 }
 
 //- (void)transformWithHomeScrollOffsetY:(CGFloat)offsetY {
