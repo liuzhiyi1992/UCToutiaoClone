@@ -40,6 +40,7 @@
 		554B63DC1D8E8354003C3797 /* channelPagePlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 554B63DB1D8E8354003C3797 /* channelPagePlaceholder@2x.png */; };
 		554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */; };
 		557A5D231DC1D83E0070EB8B /* UCTSunnyWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */; };
+		557A5D261DC1E6CC0070EB8B /* UCTGloomRainWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557A5D251DC1E6CC0070EB8B /* UCTGloomRainWeatherView.m */; };
 		558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */; };
 		558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FF1D894CBC008FC971 /* UCTCollectionViewCell.m */; };
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
@@ -137,6 +138,8 @@
 		554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHArticleModel.m; sourceTree = "<group>"; };
 		557A5D211DC1D83E0070EB8B /* UCTSunnyWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTSunnyWeatherView.h; sourceTree = "<group>"; };
 		557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTSunnyWeatherView.m; sourceTree = "<group>"; };
+		557A5D241DC1E6CC0070EB8B /* UCTGloomRainWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTGloomRainWeatherView.h; sourceTree = "<group>"; };
+		557A5D251DC1E6CC0070EB8B /* UCTGloomRainWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTGloomRainWeatherView.m; sourceTree = "<group>"; };
 		558D16FB1D892CE3008FC971 /* UCTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNetworkManager.h; sourceTree = "<group>"; };
 		558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNetworkManager.m; sourceTree = "<group>"; };
 		558D16FE1D894CBC008FC971 /* UCTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTCollectionViewCell.h; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				55F2F7731DC1D3F70020B6FB /* UCTCloudWeatherView.m */,
 				557A5D211DC1D83E0070EB8B /* UCTSunnyWeatherView.h */,
 				557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */,
+				557A5D241DC1E6CC0070EB8B /* UCTGloomRainWeatherView.h */,
+				557A5D251DC1E6CC0070EB8B /* UCTGloomRainWeatherView.m */,
 			);
 			path = WeatherAnimatedView;
 			sourceTree = "<group>";
@@ -658,6 +663,7 @@
 				486D48861DAA4D6300B516E0 /* UCTSubscribeTabBarItem.m in Sources */,
 				4814C67E1D884DE100B8A9DB /* ZYHChannelItemCell.m in Sources */,
 				553A45931D93844E0058FCDD /* ThreeImgNewsCollectionViewCell.m in Sources */,
+				557A5D261DC1E6CC0070EB8B /* UCTGloomRainWeatherView.m in Sources */,
 				484A90451D86FBA7002E36B4 /* ViewController.m in Sources */,
 				558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */,
 				5543AD721DADDE7E00A4A5D9 /* UCTWebViewController.m in Sources */,
