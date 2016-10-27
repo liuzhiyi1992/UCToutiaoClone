@@ -12,6 +12,8 @@
 #import "UCTWeatherAnimatedView.h"
 #import "MainHomeController.h"
 #import "ZYHPageCollectionViewController.h"
+#import "UCTCloudWeatherView.h"
+#import "UCTSunnyWeatherView.h"
 
 #define TEMPERATURE_LABEL_FONT [UIFont boldSystemFontOfSize:40.f]
 #define TEMPERATURE_LABEL_TEXT_COLOR [UIColor hexColor:@"3F444D"]
@@ -33,7 +35,7 @@
 - (void)setupView {
     [self setBackgroundColor:[UIColor whiteColor]];
     
-    self.weatherView = [[UCTWeatherAnimatedView alloc] init];
+    self.weatherView = [[UCTSunnyWeatherView alloc] init];
     [self addSubview:_weatherView];
     
     self.temperatureLabel = [[UILabel alloc] init];
