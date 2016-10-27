@@ -22,7 +22,7 @@
     NSMutableArray *rainMutArray = [NSMutableArray array];
     for (int i = 3; i > 0; i --) {
         if (1 == i) {
-            //添加下雨图层
+            //Rain层
             for (int k = 1; k < 4; k ++) {
                 UIImageView *rainImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"Rain%d", k]]];
                 [self addSubview:rainImageView];
@@ -36,6 +36,7 @@
                 }];
             }
         }
+        //Gloom层
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"Gloom%d", i]]];
         [self addSubview:imageView];
         [mutArray addObject:imageView];
