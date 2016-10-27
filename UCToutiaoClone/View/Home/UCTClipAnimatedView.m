@@ -28,9 +28,14 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        [self queryWeatherInfo];
         [self setupView];
     }
     return self;
+}
+
+- (void)queryWeatherInfo {
+    
 }
 
 - (void)setupView {
@@ -42,7 +47,7 @@
     self.temperatureLabel = [[UILabel alloc] init];
     [_temperatureLabel setFont:TEMPERATURE_LABEL_FONT];
     [_temperatureLabel setTextColor:TEMPERATURE_LABEL_TEXT_COLOR];
-    [_temperatureLabel setText:@"35"];
+    [_temperatureLabel setText:@"- -"];
     [self addSubview:_temperatureLabel];
     
     UIView *dotView = [[UIView alloc] init];
