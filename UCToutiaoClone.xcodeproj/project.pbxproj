@@ -39,6 +39,7 @@
 		5543AD791DAE103500A4A5D9 /* UCTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5543AD781DAE103500A4A5D9 /* UCTNavigationController.m */; };
 		554B63DC1D8E8354003C3797 /* channelPagePlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 554B63DB1D8E8354003C3797 /* channelPagePlaceholder@2x.png */; };
 		554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */; };
+		557A5D231DC1D83E0070EB8B /* UCTSunnyWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */; };
 		558D16FD1D892CE3008FC971 /* UCTNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */; };
 		558D17001D894CBC008FC971 /* UCTCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D16FF1D894CBC008FC971 /* UCTCollectionViewCell.m */; };
 		558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D17031D894DF2008FC971 /* UIColor+hexColor.m */; };
@@ -48,6 +49,7 @@
 		55B873971D938F2F0041EE34 /* UCTHomeSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873961D938F2F0041EE34 /* UCTHomeSearchBar.m */; };
 		55B8739A1D9390010041EE34 /* UCTHomeSearchRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */; };
 		55B8739D1D93DD250041EE34 /* UICollectionView+Bounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */; };
+		55F2F7741DC1D3F70020B6FB /* UCTCloudWeatherView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F2F7731DC1D3F70020B6FB /* UCTCloudWeatherView.m */; };
 		55F61A1E1DAB691B0072A6C0 /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F61A1D1DAB691B0072A6C0 /* VideoController.m */; };
 		55F61A211DAB69330072A6C0 /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F61A201DAB69330072A6C0 /* MineController.m */; };
 		55F8C1561D9E3FDB008149DD /* UCTOPMarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1551D9E3FDB008149DD /* UCTOPMarkView.m */; };
@@ -133,6 +135,8 @@
 		554B63DB1D8E8354003C3797 /* channelPagePlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "channelPagePlaceholder@2x.png"; sourceTree = "<group>"; };
 		554B63DD1D8EA1D2003C3797 /* ZYHArticleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHArticleModel.h; sourceTree = "<group>"; };
 		554B63DE1D8EA1D2003C3797 /* ZYHArticleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHArticleModel.m; sourceTree = "<group>"; };
+		557A5D211DC1D83E0070EB8B /* UCTSunnyWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTSunnyWeatherView.h; sourceTree = "<group>"; };
+		557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTSunnyWeatherView.m; sourceTree = "<group>"; };
 		558D16FB1D892CE3008FC971 /* UCTNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTNetworkManager.h; sourceTree = "<group>"; };
 		558D16FC1D892CE3008FC971 /* UCTNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTNetworkManager.m; sourceTree = "<group>"; };
 		558D16FE1D894CBC008FC971 /* UCTCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTCollectionViewCell.h; sourceTree = "<group>"; };
@@ -151,6 +155,8 @@
 		55B873991D9390010041EE34 /* UCTHomeSearchRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeSearchRefreshView.m; sourceTree = "<group>"; };
 		55B8739B1D93DD250041EE34 /* UICollectionView+Bounds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+Bounds.h"; sourceTree = "<group>"; };
 		55B8739C1D93DD250041EE34 /* UICollectionView+Bounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+Bounds.m"; sourceTree = "<group>"; };
+		55F2F7721DC1D3F70020B6FB /* UCTCloudWeatherView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTCloudWeatherView.h; sourceTree = "<group>"; };
+		55F2F7731DC1D3F70020B6FB /* UCTCloudWeatherView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTCloudWeatherView.m; sourceTree = "<group>"; };
 		55F61A1C1DAB691B0072A6C0 /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		55F61A1D1DAB691B0072A6C0 /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
 		55F61A1F1DAB69330072A6C0 /* MineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineController.h; sourceTree = "<group>"; };
@@ -369,6 +375,10 @@
 			children = (
 				5538EA191D9D128D00717199 /* UCTWeatherAnimatedView.h */,
 				5538EA1A1D9D128D00717199 /* UCTWeatherAnimatedView.m */,
+				55F2F7721DC1D3F70020B6FB /* UCTCloudWeatherView.h */,
+				55F2F7731DC1D3F70020B6FB /* UCTCloudWeatherView.m */,
+				557A5D211DC1D83E0070EB8B /* UCTSunnyWeatherView.h */,
+				557A5D221DC1D83E0070EB8B /* UCTSunnyWeatherView.m */,
 			);
 			path = WeatherAnimatedView;
 			sourceTree = "<group>";
@@ -639,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F2F7741DC1D3F70020B6FB /* UCTCloudWeatherView.m in Sources */,
 				4846E2E51D8D791C000B746E /* NetworkManager.m in Sources */,
 				55F61A1E1DAB691B0072A6C0 /* VideoController.m in Sources */,
 				5538EA1B1D9D128D00717199 /* UCTWeatherAnimatedView.m in Sources */,
@@ -670,6 +681,7 @@
 				483F93041D8994EE00F978DC /* NewsService.m in Sources */,
 				48050EC91DAA8FFC004D8587 /* UCTVideoTabBarItem.m in Sources */,
 				553A45911D93844E0058FCDD /* SingleTitleNewsCollectionViewCell.m in Sources */,
+				557A5D231DC1D83E0070EB8B /* UCTSunnyWeatherView.m in Sources */,
 				4814C6831D885F1500B8A9DB /* UCTNetwork.m in Sources */,
 				553A45941D93844E0058FCDD /* UCTNewsCollectionViewCell.m in Sources */,
 				55967F261D9922DB0034E1D8 /* UCTClipAnimatedView.m in Sources */,
