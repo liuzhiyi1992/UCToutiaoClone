@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UCTNetwork.h"
 
 @interface WeatherService : NSObject
-
++ (void)queryWeatherInfoWithCity:(NSString *)city
+                      completion:(void (^)(UCTNetworkResponseStatus status, NSDictionary *resultDict))completion;
 @end

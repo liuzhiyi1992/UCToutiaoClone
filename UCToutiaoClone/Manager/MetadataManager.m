@@ -8,14 +8,22 @@
 
 #import "MetadataManager.h"
 #import "ZYLocationManager.h"
+#import "CommonService.h"
+#import "WeatherService.h"
 
 static MetadataManager *_metadataManager = nil;
 @interface MetadataManager () <UIAlertViewDelegate>
 @property (assign, nonatomic) CLLocationCoordinate2D location;
 @property (copy, nonatomic) NSString *city;
+@property (copy, nonatomic) NSString *cityCode;
+@property (strong, nonatomic) NSDictionary *weatherDict;
 @end
 
 @implementation MetadataManager
+{
+    CLLocationCoordinate2D _location;
+    NSString *_city;
+}
 + (instancetype)shareManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -45,8 +53,20 @@ static MetadataManager *_metadataManager = nil;
     return _location;
 }
 
+- (void)setLocation:(CLLocationCoordinate2D)location {
+    _location = location;
+}
+
 - (NSString *)city {
     [self prepareLocationInfo];
     return _city;
+}
+
+- (void)setCity:(NSString *)city {
+    _city = [city copy];
+    __weak __typeof(self) weakSelf = self;
+    [WeatherService queryWeatherInfoWithCity:_city completion:^(UCTNetworkResponseStatus status, NSDictionary *resultDict) {
+        weakSelf.weatherDict = resultDict;
+    }];
 }
 @end

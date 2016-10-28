@@ -20,7 +20,7 @@
     [mutDict setValue:@"iPhone7,1" forKey:@"mi"];
     [mutDict setValue:@"195" forKey:@"pf"];
     [mutDict setValue:@"isp:电信;prov:广东;city:广州;na:中国;cc:CN;ac:cp=" forKey:@"cp"];
-    [mutDict setValue:@"bTkwBTigl5NEMRtjFm+RjbHqHnskMiIuAfMEejMnsF3quRENtz7M+1hVGmkdEw==" forKey:@"ei"];
+    [mutDict setValue:@"bTkwBTigl5NEMRtjFm+RjbHqHnskMiIuAfMEejMnsF3quRENtz7M+1hVGmkdEw==" forKey:@"ei"];//todo不要
     return mutDict;
 }
 
