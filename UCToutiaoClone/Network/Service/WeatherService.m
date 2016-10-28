@@ -21,6 +21,9 @@
     [reqDict setValue:@"414x736" forKey:@"ss"];
     [reqDict setValue:@"997" forKey:@"bi"];
     [reqDict setValue:@"bb1495bb5b6736c5" forKey:@"vcode"];
+    [reqDict setValue:@"天河区" forKey:@"county"];
+//    [reqDict setValue:@"1" forKey:@"v"];
+    //county
     //ve=1.6.0.809
     
     [UCTNetwork getWithUrlString:@"http://wea.uc.cn/v2/swa_weather.php" parameters:reqDict responseHandler:^(UCTNetworkResponseStatus status, NSDictionary *resultDict) {

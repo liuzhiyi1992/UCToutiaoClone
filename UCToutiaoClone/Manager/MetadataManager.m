@@ -64,9 +64,11 @@ static MetadataManager *_metadataManager = nil;
 
 - (void)setCity:(NSString *)city {
     _city = [city copy];
+    /*
     __weak __typeof(self) weakSelf = self;
     [WeatherService queryWeatherInfoWithCity:_city completion:^(UCTNetworkResponseStatus status, NSDictionary *resultDict) {
         weakSelf.weatherDict = resultDict;
     }];
+     */
 }
 @end
