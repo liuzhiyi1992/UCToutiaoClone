@@ -10,5 +10,7 @@
 #import "UCTNetwork.h"
 
 @interface CommonService : NSObject
-+ (void)queryLocationInfoWithcompletion:(void(^)(UCTNetworkResponseStatus status, NSDictionary *resultDict))completion;
++ (void)queryLocationInfoWithLatitude:(double)latitude
+                            longitude:(double)longitude
+                           completion:(void(^)(UCTNetworkResponseStatus status, NSDictionary *resultDict))completion;
 @end
