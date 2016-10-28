@@ -21,6 +21,7 @@ PODS:
   - SDWebImage/Core (3.7.6)
   - SVProgressHUD (2.0.3)
   - UITableView+FDTemplateLayoutCell (1.4)
+  - ZYLocationManager (0.2.0)
 
 DEPENDENCIES:
   - AFNetworking (= 3.1.0)
@@ -29,6 +30,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.7.5)
   - SVProgressHUD
   - UITableView+FDTemplateLayoutCell (= 1.4)
+  - ZYLocationManager (~> 0.2.0)
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -37,5 +39,8 @@ SPEC CHECKSUMS:
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
+  ZYLocationManager: 2dd0353e168bc853b774ee7df8a4021191592adc
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: dbaddb9a36839f036a5c8f65ef3b6717b9e5393d
+
+COCOAPODS: 1.1.1

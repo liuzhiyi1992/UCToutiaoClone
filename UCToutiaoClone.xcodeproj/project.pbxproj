@@ -25,6 +25,7 @@
 		486D48861DAA4D6300B516E0 /* UCTSubscribeTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 486D48851DAA4D6300B516E0 /* UCTSubscribeTabBarItem.m */; };
 		48B4201A1DA8CC2500FD13CF /* UCTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B420191DA8CC2500FD13CF /* UCTTabBarController.m */; };
 		48B4201D1DA8DE6900FD13CF /* UIView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 48B4201C1DA8DE6900FD13CF /* UIView+Utils.m */; };
+		5522B0FE1DC3239E00A3DF9D /* MetadataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5522B0FD1DC3239E00A3DF9D /* MetadataManager.m */; };
 		552887951D87FCBD0035B4A8 /* ZYNavChannelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */; };
 		5528879B1D87FD750035B4A8 /* MainHomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 552887981D87FD750035B4A8 /* MainHomeController.m */; };
 		5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5528879A1D87FD750035B4A8 /* ZYHPageTableViewController.m */; };
@@ -59,7 +60,7 @@
 		55F8C15A1D9E5EB4008149DD /* UCTAnimTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C1591D9E5EB4008149DD /* UCTAnimTabBarItem.m */; };
 		55F8C15D1D9E5EF3008149DD /* UCTHomeTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */; };
 		55F9C8141D928D5D0057D39A /* ZYHPageCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */; };
-		D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */; };
+		C69D2AD5179E3581A2196034 /* libPods-UCToutiaoClone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEB0820EF6CDFC36187AFC50 /* libPods-UCToutiaoClone.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +74,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UCToutiaoClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3CFF16036A680DB793518E26 /* Pods-UCToutiaoClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.debug.xcconfig"; sourceTree = "<group>"; };
 		48050EC41DAA7F0C004D8587 /* SubscribeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubscribeController.h; sourceTree = "<group>"; };
 		48050EC51DAA7F0C004D8587 /* SubscribeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubscribeController.m; sourceTree = "<group>"; };
 		48050EC71DAA8FFC004D8587 /* UCTVideoTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UCTVideoTabBarItem.h; sourceTree = "<group>"; };
@@ -110,7 +109,8 @@
 		48B420191DA8CC2500FD13CF /* UCTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTTabBarController.m; sourceTree = "<group>"; };
 		48B4201B1DA8DE6900FD13CF /* UIView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Utils.h"; sourceTree = "<group>"; };
 		48B4201C1DA8DE6900FD13CF /* UIView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Utils.m"; sourceTree = "<group>"; };
-		52AC275F93386EC1FB9AFE09 /* Pods-UCToutiaoClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.release.xcconfig"; sourceTree = "<group>"; };
+		5522B0FC1DC3239E00A3DF9D /* MetadataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetadataManager.h; sourceTree = "<group>"; };
+		5522B0FD1DC3239E00A3DF9D /* MetadataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetadataManager.m; sourceTree = "<group>"; };
 		552887931D87FCBD0035B4A8 /* ZYNavChannelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNavChannelView.h; sourceTree = "<group>"; };
 		552887941D87FCBD0035B4A8 /* ZYNavChannelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNavChannelView.m; sourceTree = "<group>"; };
 		552887971D87FD750035B4A8 /* MainHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHomeController.h; sourceTree = "<group>"; };
@@ -178,6 +178,9 @@
 		55F8C15C1D9E5EF3008149DD /* UCTHomeTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UCTHomeTabBarItem.m; sourceTree = "<group>"; };
 		55F9C8121D928D5D0057D39A /* ZYHPageCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYHPageCollectionViewController.h; sourceTree = "<group>"; };
 		55F9C8131D928D5D0057D39A /* ZYHPageCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYHPageCollectionViewController.m; sourceTree = "<group>"; };
+		9DBD2F187141484007224E53 /* Pods-UCToutiaoClone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.debug.xcconfig"; sourceTree = "<group>"; };
+		BEB0820EF6CDFC36187AFC50 /* libPods-UCToutiaoClone.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UCToutiaoClone.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C273088B1A5593DA85038B5D /* Pods-UCToutiaoClone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UCToutiaoClone.release.xcconfig"; path = "Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +188,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D57CAC2C99260564CE18C161 /* libPods-UCToutiaoClone.a in Frameworks */,
+				C69D2AD5179E3581A2196034 /* libPods-UCToutiaoClone.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,8 +235,8 @@
 				484A903C1D86FBA7002E36B4 /* UCToutiaoClone */,
 				484A90561D86FBA7002E36B4 /* UCToutiaoCloneTests */,
 				484A903B1D86FBA7002E36B4 /* Products */,
-				A84CEA446997E84AB91439B3 /* Pods */,
-				B2F4123EAAC1A5788CE6C6DD /* Frameworks */,
+				85067B5E8948C00B327F8674 /* Pods */,
+				64CA9D8758C809F9CCA355EB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +252,7 @@
 		484A903C1D86FBA7002E36B4 /* UCToutiaoClone */ = {
 			isa = PBXGroup;
 			children = (
+				5522B0FB1DC3236600A3DF9D /* Manager */,
 				554B63D41D8E75C9003C3797 /* Resource */,
 				484A90621D86FF5A002E36B4 /* Controller */,
 				484A90691D870024002E36B4 /* View */,
@@ -312,6 +316,15 @@
 				48B420191DA8CC2500FD13CF /* UCTTabBarController.m */,
 			);
 			path = TabBar;
+			sourceTree = "<group>";
+		};
+		5522B0FB1DC3236600A3DF9D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5522B0FC1DC3239E00A3DF9D /* MetadataManager.h */,
+				5522B0FD1DC3239E00A3DF9D /* MetadataManager.m */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		552887901D87FCBD0035B4A8 /* Home */ = {
@@ -477,21 +490,21 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		A84CEA446997E84AB91439B3 /* Pods */ = {
+		64CA9D8758C809F9CCA355EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3CFF16036A680DB793518E26 /* Pods-UCToutiaoClone.debug.xcconfig */,
-				52AC275F93386EC1FB9AFE09 /* Pods-UCToutiaoClone.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		B2F4123EAAC1A5788CE6C6DD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3BBB290D771C115EB6F6F387 /* libPods-UCToutiaoClone.a */,
+				BEB0820EF6CDFC36187AFC50 /* libPods-UCToutiaoClone.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		85067B5E8948C00B327F8674 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9DBD2F187141484007224E53 /* Pods-UCToutiaoClone.debug.xcconfig */,
+				C273088B1A5593DA85038B5D /* Pods-UCToutiaoClone.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,13 +514,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 484A905C1D86FBA7002E36B4 /* Build configuration list for PBXNativeTarget "UCToutiaoClone" */;
 			buildPhases = (
-				755EEAF93E21ACCB3445B527 /* [CP] Check Pods Manifest.lock */,
+				A0EB73F3F852CD3BEDFA535A /* [CP] Check Pods Manifest.lock */,
 				484A90361D86FBA7002E36B4 /* Sources */,
 				484A90371D86FBA7002E36B4 /* Frameworks */,
 				484A90381D86FBA7002E36B4 /* Resources */,
-				851AAC2F324EAB6876D621E4 /* [CP] Embed Pods Frameworks */,
-				2AB55A6222B7FC8C1D9A70BD /* [CP] Copy Pods Resources */,
-				411782B6A30957AE0EE0726A /* Embed Pods Frameworks */,
+				A11AFE0276D7051AA94F99FD /* [CP] Embed Pods Frameworks */,
+				DA62BA255E52EEDCE49EEE7B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -597,37 +609,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2AB55A6222B7FC8C1D9A70BD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		411782B6A30957AE0EE0726A /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		755EEAF93E21ACCB3445B527 /* [CP] Check Pods Manifest.lock */ = {
+		A0EB73F3F852CD3BEDFA535A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -639,10 +621,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		851AAC2F324EAB6876D621E4 /* [CP] Embed Pods Frameworks */ = {
+		A11AFE0276D7051AA94F99FD /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -655,6 +637,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA62BA255E52EEDCE49EEE7B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UCToutiaoClone/Pods-UCToutiaoClone-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -688,6 +685,7 @@
 				48B4201A1DA8CC2500FD13CF /* UCTTabBarController.m in Sources */,
 				554B63DF1D8EA1D2003C3797 /* ZYHArticleModel.m in Sources */,
 				558D17041D894DF2008FC971 /* UIColor+hexColor.m in Sources */,
+				5522B0FE1DC3239E00A3DF9D /* MetadataManager.m in Sources */,
 				484C3A6A1D92D2DC000D9161 /* ZYHArticleDateFormatter.m in Sources */,
 				55B83A4C1D8FCFCD00626DFF /* UCTTableViewCell.m in Sources */,
 				5528879C1D87FD750035B4A8 /* ZYHPageTableViewController.m in Sources */,
@@ -840,7 +838,7 @@
 		};
 		484A905D1D86FBA7002E36B4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CFF16036A680DB793518E26 /* Pods-UCToutiaoClone.debug.xcconfig */;
+			baseConfigurationReference = 9DBD2F187141484007224E53 /* Pods-UCToutiaoClone.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -859,7 +857,7 @@
 		};
 		484A905E1D86FBA7002E36B4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52AC275F93386EC1FB9AFE09 /* Pods-UCToutiaoClone.release.xcconfig */;
+			baseConfigurationReference = C273088B1A5593DA85038B5D /* Pods-UCToutiaoClone.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

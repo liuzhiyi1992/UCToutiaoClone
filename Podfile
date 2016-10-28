@@ -5,4 +5,5 @@ target 'UCToutiaoClone' do
     pod 'MJRefresh'
     pod 'Masonry'
     pod 'SDWebImage', '~> 3.7.5'
+    pod 'ZYLocationManager', '~> 0.2.0'
 end
