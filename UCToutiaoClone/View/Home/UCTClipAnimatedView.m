@@ -40,8 +40,11 @@
 
 - (void)setupView {
     [self setBackgroundColor:[UIColor whiteColor]];
+    NSArray *weatherList = @[@"Cloud", @"Sunny", @"GloomRain"];
+    NSUInteger randomIndex = arc4random() % weatherList.count;
+    NSString *className = [NSString stringWithFormat:@"UCT%@WeatherView", weatherList[randomIndex]];
     
-    self.weatherView = [[UCTGloomRainWeatherView alloc] init];
+    self.weatherView = [[NSClassFromString(className) alloc] init];
     [self addSubview:_weatherView];
     
     self.temperatureLabel = [[UILabel alloc] init];

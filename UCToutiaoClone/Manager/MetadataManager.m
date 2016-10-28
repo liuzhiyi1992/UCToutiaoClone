@@ -24,6 +24,7 @@ static MetadataManager *_metadataManager = nil;
     CLLocationCoordinate2D _location;
     NSString *_city;
 }
+
 + (instancetype)shareManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
