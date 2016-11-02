@@ -10,4 +10,5 @@
 
 @interface UCTViewController : UIViewController
 - (void)configureNavigationBar;
+- (void)clickBackButton:(id)sender;
 @end

@@ -11,8 +11,9 @@
 #import "UIColor+hexColor.h"
 
 #define CUSTOM_NAV_BAR_HEIGHT 44
+#define BAR_BUTTON_ITEM_COLOR_READING [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:0.4f]
 
-const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
+const CGFloat SCROLLVIEW_REACTION_OFFSET_Y = 40;
 
 @interface UCTWebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) UIWebView *mainWebView;
@@ -104,6 +105,12 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
         }
     } else if (offsetY - _scrollViewBeginDraggingOffsetY < -SCROLLVIEW_REACTION_OFFSET_Y) {
         if (YES == _isStatusBarNeed2Hide) {
+            self.isStatusBarNeed2Hide = NO;
+            [UIView animateWithDuration:.3 animations:^{
+                [self setNeedsStatusBarAppearanceUpdate];
+            }];
+        }
+        if (0 >= offsetY) {
             [self toOperatingStatus];
         }
     }
@@ -113,8 +120,8 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y  = 80;
     self.isStatusBarNeed2Hide = YES;
     [UIView animateWithDuration:.3 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
-        [_moreButton setBackgroundColor:[UIColor lightGrayColor]];
-        [_backButton setBackgroundColor:[UIColor lightGrayColor]];
+        [_moreButton setBackgroundColor:BAR_BUTTON_ITEM_COLOR_READING];
+        [_backButton setBackgroundColor:BAR_BUTTON_ITEM_COLOR_READING];
     }];
 }
 

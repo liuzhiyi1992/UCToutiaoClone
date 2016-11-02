@@ -17,7 +17,7 @@
 - (void)setupView {
     NSMutableArray *mutArray = [NSMutableArray array];
     for (int i = 0; i < 3; i ++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Fine1"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Fine3"]];
         [self addSubview:imageView];
         [mutArray addObject:imageView];
         
@@ -41,6 +41,8 @@
     firstAnim.path = firstPath.CGPath;
     [firstImageView.layer addAnimation:firstAnim forKey:@"position"];
     
+    CABasicAnimation *firstRotate = [CABasicAnimation animationWithKeyPath:@""]
+    
     UIImageView *secondImageView = _imageViewList[1];
     CAKeyframeAnimation *secondAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     secondAnim.duration = 6.f;
@@ -56,6 +58,8 @@
     UIBezierPath *thirdPath = [UIBezierPath bezierPathWithArcCenter:CGPointMake(thirdImageView.center.x, thirdImageView.center.y-10) radius:5 startAngle:0 endAngle:2*M_PI clockwise:YES];
     thirdAnim.path = thirdPath.CGPath;
     [thirdImageView.layer addAnimation:thirdAnim forKey:@"position"];
+    
+    //旋转
 }
 
 @end
