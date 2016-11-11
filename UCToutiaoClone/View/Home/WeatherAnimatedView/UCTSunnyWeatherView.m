@@ -17,7 +17,7 @@
 - (void)setupView {
     NSMutableArray *mutArray = [NSMutableArray array];
     for (int i = 0; i < 3; i ++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Fine3"]];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Fine4"]];
         [self addSubview:imageView];
         [mutArray addObject:imageView];
         
