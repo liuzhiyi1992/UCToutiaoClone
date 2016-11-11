@@ -117,6 +117,8 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y = 40;
 }
 
 - (void)toReadingStatus {
+    [_moreButton setBackgroundImage:[UIImage imageNamed:@"icon_more_white"] forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"icon_back_white"] forState:UIControlStateNormal];
     self.isStatusBarNeed2Hide = YES;
     [UIView animateWithDuration:.3 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
@@ -126,6 +128,8 @@ const CGFloat SCROLLVIEW_REACTION_OFFSET_Y = 40;
 }
 
 - (void)toOperatingStatus {
+    [_moreButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_more"] forState:UIControlStateNormal];
+    [_backButton setBackgroundImage:[UIImage imageNamed:@"icon_nav_back"] forState:UIControlStateNormal];
     self.isStatusBarNeed2Hide = NO;
     [UIView animateWithDuration:.3 animations:^{
         [self setNeedsStatusBarAppearanceUpdate];
